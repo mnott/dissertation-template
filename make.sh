@@ -425,21 +425,40 @@ _parse () {
   fi
 
   #
-  # Run our parser
+  # Run our parser:
   #
+  # Collect the files
+  #
+  if [[ -f "${DEST}/files.txt" ]]; then rm -f "${DEST}/files.txt"; fi
   while read i; do
     find "${INPUT}/$i" -type f -name "*md" ! -name "$MOC" 2>/dev/null |
       sort |
       tr \\n \\0 |
-      xargs -0 -n1 -I % echo '%';
-
-    find "${INPUT}/$i" -type f -name "*md" ! -name "$MOC" 2>/dev/null |
-      sort |
-      tr \\n \\0 |
-      xargs -0 -n1 -I % cat '%' |
-      perl -e 'while(<>) { print; }; print "\n\n";' |
-      perl "${ROOT}/templates/${PARSER}" >>"${DEST}/${FILE}.md";
+      xargs -0 -n1 -I % echo '%' >> "${DEST}/files.txt";
   done < "${INPUT}/${INCLUDE}"
+
+  #
+  # Parse the files
+  #
+  cat "${DEST}/files.txt" |
+  while read in; do
+    cat "$in" |
+    perl -e 'while(<>) { print; }; print "\n\n";' |
+    perl "${ROOT}/templates/${PARSER}" >>"${DEST}/${FILE}.md";
+  done
+
+  #
+  # Optionally, show those files
+  #
+  cat "${DEST}/files.txt" |
+  while read in; do
+    log DEBUG "+ $in";
+  done
+
+  #
+  # Clean Up
+  #
+  if [[ -f "${DEST}/files.txt" ]]; then rm -f "${DEST}/files.txt"; fi
 
   #
   # Run Pandoc
