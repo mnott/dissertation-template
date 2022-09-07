@@ -21,14 +21,14 @@ doctype          : "book"    # book or article
 #
 # Front Matter
 #
-showtitlepage    : "true"   # Whether you want to show the title page
-showparts        : "true"   # Whether you want to have parts for the Appendix
-showlistofs      : "true"   # Any ``ListOfs?''
-showtoc          : "true"   # Table of Contents?
-showlot          : "true"   # List of Tables?
-showlof          : "true"   # List of Figures?
-showloe          : "true"   # List of Exhibits?
-showwordcount    : "true"   # Put word count in wc.tex
+showtitlepage    : "false"  # Whether you want to show the title page
+showparts        : "false"  # Whether you want to have parts for the Appendix
+showlistofs      : "false"  # Any ``ListOfs?''
+showtoc          : "false"  # Table of Contents?
+showlot          : "false"  # List of Tables?
+showlof          : "false"  # List of Figures?
+showloe          : "false"  # List of Exhibits?
+showwordcount    : "false"  # Put word count in wc.tex
 tocdepth         : "3"      # Depth of Table of Contents (default: 2)
 
 #
@@ -41,13 +41,13 @@ emptypages       : "true"    # Whether to start each chapter on a new page
 #
 # Back Matter
 #
-showreferences   : "true"    # Show References?
-showappendix     : "true"   # Show any Appendix?
-showendnotes     : "true"   # Show End Notes?
-showanyglossary  : "true"   # Show any of Acronyms, Symbols, Glossary?
-showacronyms     : "true"   # Show Acronyms and Symbols?
-showglossary     : "true"   # Show Glossary?
-showindex        : "true"   # Show Index?
+showreferences   : "true"   # Show References?
+showappendix     : "false"  # Show any Appendix?
+showendnotes     : "false"  # Show End Notes?
+showanyglossary  : "false"  # Show any of Acronyms, Symbols, Glossary?
+showacronyms     : "false"  # Show Acronyms and Symbols?
+showglossary     : "false"  # Show Glossary?
+showindex        : "false"  # Show Index?
 ...
 
 ```
