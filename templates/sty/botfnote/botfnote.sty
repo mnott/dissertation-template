@@ -1,0 +1,44 @@
+%----Le laboratoire de robotique de l'Institut de recherche d'Hydro-Quebec-----
+%
+% Nom     :
+% Fonction: Forces footnotes at the bottom of the page.
+% Fichiers: bottomfnote.sty
+% Notes   :
+%
+% Cree    : 17 mai 93 ----------- Martin Boyer <mboyer@ireq-robot.hydro.qc.ca>
+% Modifie : 17 mai 93 ---------1- Martin Boyer <mboyer@ireq-robot.hydro.qc.ca>
+%
+% Historique:
+%------------------------------------------------------------------------------
+
+%From Donald Arseneau <asnd@reg.triumf.ca>:
+%(A hack, by his own account.  This is an abuse of \footnoterule)
+
+%\def\footnoterule{\@textbottom \kern-3\p@
+%  \hrule width 2truein \kern 2.6\p@ % the \hrule is .4pt high
+%  \if@minipage\else \gdef\@textbottom{\global\raggedbottom}\fi}
+
+% From Steve Manch <RAMANCH@WEIZMANN.weizmann.ac.il>:
+
+\def\@makecol{\ifvoid\footins \setbox\@outputbox\box\@cclv
+   \else\setbox\@outputbox
+     \vbox to\@colht{\boxmaxdepth\@maxdepth
+          \unvbox\@cclv\vfill\relax
+          \vskip\skip\footins\footnoterule
+       \color@begingroup
+         \normalcolor
+         \footnoterule
+         \unvbox \footins
+       \color@endgroup}\fi
+     \xdef\@freelist{\@freelist\@midlist}%
+     \global\let\@midlist\@empty\@combinefloats
+   \ifvbox\@kludgeins
+     \@makespecialcolbox
+   \else
+     \setbox\@outputbox\vbox to\@colht{\@texttop
+          \dimen@ \dp\@outputbox
+          \unvbox\@outputbox
+          \vskip -\dimen@
+          \@textbottom}%
+     \fi
+   \global\maxdepth\@maxdepth}

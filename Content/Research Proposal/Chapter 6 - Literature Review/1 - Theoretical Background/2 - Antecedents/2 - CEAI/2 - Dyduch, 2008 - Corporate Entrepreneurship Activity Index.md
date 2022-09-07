@@ -1,0 +1,1 @@
+Building on the CEAI, [[@Dyduch-2008aa]](t) analyzes different forms of CE, with a focus on its effects of organizational performance. It contains relevant references, and in particular, its discussion of a Corporate Entrepreneurship Activity Index ((18)[[@Dyduch-2008aa]](c), referring to [[@Hornsby-2002aa]](c)).

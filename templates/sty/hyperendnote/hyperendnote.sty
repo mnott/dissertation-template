@@ -1,0 +1,51 @@
+%%% snip
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcounter{Hendnote}
+\long\def\@endnotetext#1{%
+   \if@enotesopen \else \@openenotes \fi
+   \immediate\write\@enotes{\@doanenote{\@theenmark}}%
+   \begingroup
+      \def\next{\hyper@@anchor{Hendnote.\@theenmark}{#1}}%
+      % \@theenmark will be correct when <file>.ent is read in
+      % because \@theenmark is redefined in \theendnotes:
+      % [...] \def\@doanenote##1##2>{\def\@theenmark{##1} [...]
+      % The actual number was written as an argument of \@doanenote
+      % (e.g. \@doanenote {1}) to <file>.ent.
+      \newlinechar='40
+      \immediate\write\@enotes{\meaning\next}%
+   \endgroup
+   \immediate\write\@enotes{\@endanenote}}
+
+\def\@endnotemark{\leavevmode\ifhmode
+  \edef\@x@sf{\the\spacefactor}\fi
+  \stepcounter{Hendnote}%
+  \global\let\Hy@saved@currentHlabel\@currentHlabel
+  \global\let\Hy@saved@currentHref\@currentHref
+  \hyper@makecurrent{Hendnote}%
+  \global\let\Hy@endnote@currentHlabel\@currentHlabel
+  \global\let\Hy@endnote@currentHref\@currentHref
+  \global\let\@currentHlabel\Hy@saved@currentHlabel
+  \global\let\@currentHref\Hy@saved@currentHref
+  \hyper@@anchor{Hendnotepage.\@theenmark}{}%
+  \hyper@linkstart{link}{\Hy@endnote@currentHref}%
+  \@makeenmark
+  \hyper@linkend
+   \ifhmode\spacefactor\@x@sf\fi\relax}
+
+% original def
+\def\enoteformat{\rightskip\z@ \leftskip\z@ \parindent=1.8em
+     \leavevmode\llap{%
+         \hyperlink{Hendnotepage.\@theenmark}{%
+         \hbox{$^{\@theenmark}$}}}}
+% I prefer something like below.
+% One weakness is that a user redefinition is only possible in
+% combination with \makeatletter/\makeatother.
+%\renewcommand{\enoteformat}{\rightskip\z@ \leftskip1em \parindent=0pt
+%   \parskip.5\baselineskip plus .5\baselineskip minus .5\baselineskip
+%   \leavevmode{\makebox[0cm][r]{%
+%   \hyperlink{Hendnotepage.\@theenmark}{%
+%   \hbox to1em{\@theenmark.\hfill}}}}}
+\endinput
+%%% snip %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+

@@ -1,0 +1,413 @@
+%=====================================================
+% Makros
+%=====================================================
+
+
+%-----------------------------------------------------
+% Content Substitutions:
+%-----------------------------------------------------
+
+
+\def\saas{\gls{saas}\index{SaaS}}
+\def\paas{\gls{paas}\index{PaaS}}
+\def\iaas{\gls{iaas}\index{IaaS}}
+
+%-----------------------------------------------------
+% Simple Substitutions:
+%-----------------------------------------------------
+
+\def\ni{\noindent}
+\def\usw{$[\dots]$}
+\def\daher{$\rightarrow$}
+\def\tab{\hspace{2 cm}}
+\def\fn{\footnote}
+\def\en{\endnote}
+\def\Unterschrift{\newline \includegraphics[width=4cm]{fig/unter} \newline}
+\def\unterschrift{\Unterschrift}
+\newcommand{\bs}{$\backslash$}
+
+%
+% Mathematical proofs
+%
+\def\LRA{\Leftrightarrow\mkern40mu}
+\def\RA{\Rightarrow\mkern40mu}
+\newcommand{\qed}{\hfill \ensuremath{\hfill \blacksquare}}
+
+%
+% Currency Symbols
+%
+\def\gbpm{\text{\,M\pounds}}
+\def\gbp{\text{\,\pounds}}
+\def\usdm{\text{\,M\$}}
+\def\usd{\text{\,\$}}
+\def\eurm{\text{\,M\euro}}
+\def\eur{\text{\,\euro}}
+\def\perc{\text{~\%}}
+\newcommand{\Rho}{\mathrm{P}}
+
+%-----------------------------------------------------
+% Safe Equals
+%-----------------------------------------------------
+\makeatletter
+\newcommand{\sequals}[2]{%
+  \ifnum\pdfstrcmp{#1}{#2}=\z@
+    \expandafter\@firstoftwo
+  \else
+    \expandafter\@secondoftwo
+  \fi}
+\makeatother
+
+
+%-----------------------------------------------------
+% dangerous / ddangerous etc. environments a la Knuth:
+%-----------------------------------------------------
+
+\font\manual=manfnt
+\def\dbend{{\manual\char127}}
+\def\d@nger{\medbreak\begingroup\clubpenalty=10000
+  \def\par{\endgraf\endgroup\medbreak}
+\noindent\hang\hangafter=-2  \hbox
+to0pt{\hskip-\hangindent\dbend\hfill}\ninepoint}
+\outer\def\danger{\d@nger}
+\def\dd@nger{\medbreak\begingroup\clubpenalty=10000
+  \def\par{\endgraf\endgroup\medbreak}
+\noindent\hang\hangafter=-2  \hbox
+to0pt{\hskip-
+\hangindent\dbend\kern1pt\dbend\hfill}\ninepoint}
+\outer\def\ddanger{\dd@nger}
+\def\enddanger{\endgraf\endgroup}
+
+%
+% bulletpoint environment:
+%
+% First argument is the content of the bullet. Default: ?
+% Second argument is the vertical alignment. Default: centered
+% Third argument is no if not to run a circle. Default: Yes
+%
+\newsavebox{\fmbox}
+\makeatletter
+\NewDocumentEnvironment{bulletpoint}{O{?} O{c} O{yes}}%
+{
+ \ifthenelse{\isempty{#1}}{\def\m@sign{?}}{\def\m@sign{#1}}%
+ \ifthenelse{\isempty{#2}}{\def\m@align{c}}{\def\m@align{#2}}%
+ \begin{lrbox}{\fmbox}
+ \begin{minipage}[\m@align]{0.2cm}~\end{minipage}
+ \ifthenelse{\equal{#3}{yes}}{
+   \begin{minipage}[\m@align]{1.5cm}\hspace{\fill}\circled{\m@sign}\end{minipage}
+ }{
+   \begin{minipage}[\m@align]{1.5cm}\hspace{\fill}\m@sign\end{minipage}
+ }
+ \vrule width 2pt \begin{minipage}[\m@align]{0.1cm}~\end{minipage}
+ \begin{minipage}[\m@align]{12.8cm}
+}
+{\end{minipage}\end{lrbox}\usebox{\fmbox}
+}
+\makeatother
+\newenvironment{handright}%
+{
+ DEPRECATED! USE bulletpoint with ding(45)
+ \begin{lrbox}{\fmbox}
+ \begin{minipage}[t]{0.2cm}~\end{minipage}
+ \begin{minipage}[t]{1.5cm}\hspace{\fill}\ding{45}\end{minipage}
+ \vrule width 2pt \begin{minipage}[t]{0.1cm}~\end{minipage}
+ \begin{minipage}[t]{10.8cm}
+}
+{\end{minipage}\end{lrbox}\usebox{\fmbox}
+}
+\newenvironment{notdangerous}%
+{
+ \begin{lrbox}{\fmbox}
+ \begin{minipage}[t]{1cm}~\end{minipage}
+ \begin{minipage}[t]{1.5cm}\hspace{\fill}~\end{minipage}
+ \begin{minipage}[t]{0.1cm}~\end{minipage}
+ \begin{minipage}[t]{12.5cm}
+}
+{\end{minipage}\end{lrbox}\usebox{\fmbox}
+}
+\newenvironment{dangerous}%
+{
+ \begin{lrbox}{\fmbox}
+ \begin{minipage}[t]{0.2cm}~\end{minipage}
+ \begin{minipage}[t]{1.5cm}\hspace{\fill}\dbend\end{minipage}
+ \begin{minipage}[t]{0.1cm}~\end{minipage}
+ \begin{minipage}[t]{10.8cm}
+}
+{\end{minipage}\end{lrbox}\usebox{\fmbox}
+}
+\newenvironment{ddangerous}%
+{
+ \begin{lrbox}{\fmbox}
+ \begin{minipage}[t]{0.2cm}~\end{minipage}
+ \begin{minipage}[t]{1.5cm}\hspace{\fill}\dbend\dbend\end{minipage}
+ \begin{minipage}[t]{0.1cm}~\end{minipage}
+ \begin{minipage}[t]{10.8cm}
+}
+{\end{minipage}\end{lrbox}\usebox{\fmbox}
+}
+\newenvironment{dddangerous}%
+{
+ \begin{lrbox}{\fmbox}
+ \begin{minipage}[t]{0.2cm}~\end{minipage}
+ \begin{minipage}[t]{1.5cm}\hspace{\fill}\dbend\dbend\dbend\end{minipage}
+ \begin{minipage}[t]{0.1cm}~\end{minipage}
+ \begin{minipage}[t]{10.8cm}
+}
+{\end{minipage}\end{lrbox}\usebox{\fmbox}
+}
+
+%-----------------------------------------------------
+% Other environments:
+%-----------------------------------------------------
+
+\newcommand{\pfooter} {
+\vspace*{0.2cm}
+\setlength{\tabcolsep}{0.05cm}
+\tiny
+\centerline{
+\begin{tabular}{p{1.5cm}p{4.5cm}p{6.6cm}p{0.5cm}p{2.96cm}}
+\toprule[0.25pt]
+\makebox[1.50cm][l]{Title:} &
+\makebox[4.50cm][l]{\tbook}&
+\makebox[6.00cm][c]{\tsubtitlefooter}&
+\makebox[0.50cm][l]{$\:$Date:}&
+\makebox[2.96cm][r]{\today}
+\\%\midrule[0.15pt]
+\makebox[1.50cm][l]{Author:} &
+\makebox[4.50cm][l]{\tauthor}&
+\makebox[6.00cm][c]{\sequals{\showwordcount}{true}{\input{wc.tex}Words}{}}&
+\makebox[0.50cm][l]{$\:$Version:}&
+\makebox[2.96cm][r]{\tversion}
+\\
+\bottomrule[0.25pt]
+\end {tabular}
+}}
+
+\renewcommand*\copyright{{\usefont{T1}{lmr}{m}{n}\raisebox{1pt}{\textcopyright}}}
+\definecolor{pfhdr}{rgb}{0.17255, 0.18824, 0.3529}
+\definecolor{white}{rgb}{1, 1, 1}
+
+
+
+
+%-----------------------------------------------------
+% Exhibit:
+%
+% Use:
+%
+% \begin{exhibit}[TOCCaption]{Caption}[rRiIlLoO][.5][32]
+%
+% Parameters:
+%
+% 1. Optional parameter TOCCaption gives the
+%     entry into \listofexhibit
+%
+% 2. Mandatory parameter: Caption
+%
+% 3. Optional parameter:  Lines to wrap around.
+%     Not needed unless positioned to the right with e.g.
+%     an itemize to the left. In this case, specify the number
+%     of lines running left of the exhibit.
+%
+% 4. Optional parameter: alignment. One of:
+%     r:		right
+%     R:	right, floating
+%     i:		inner border
+%     I:		inner border, floating
+%     l:		left
+%     L:		left, floating
+%     o:		outer border (default)
+%     O:	outer border, floating
+%
+% 5. Optional parameter: Size as percentage
+%     of line width. Over .8 (80%), no wrapfig will be
+%     used.
+%
+%-----------------------------------------------------
+% Sample:
+%-----------------------------------------------------
+%
+% \begin{exhibit}[CVP, Price Adjusted]{Price Adjusted CVP}[][.41]
+% Nulla malesuada porttitor diam. Donec felis erat, congue non, volutpat at,
+% tincidunt tristique, libero. Vivamus viverra fermentum felis. Donec nonummy
+% pellentesque ante.  \bigskip
+%
+% \centerline{\colorbox{white}{\framebox{\includegraphics[width=0.9 \linewidth]{fig/cvp_variable_pricing.pdf}}}}
+% \captionof{figure}[LabelInTOC]{FigureCaption}
+% \captionsetup{font={footnotesize,it}}
+% \vspace{-0.3cm}
+% \captionof*{figure}{Source: Bla.}
+% \label{fig:Label}
+% \bigskip
+%
+% Donec felis erat, congue non, volutpat at, tincidunt tristique,
+% \end{exhibit}
+% \ref{exhibit:Price_Adjusted_CVP}
+%-----------------------------------------------------
+\ifpdf
+\definecolor{exhibittitlebackground}{rgb}{.698,.780,.7411}
+\definecolor{exhibittitlefont}{rgb}{1.,1,.7}
+\definecolor{exhibitbodybackground}{rgb}{.733,.769,.847}
+\else
+%\Configure{HColor}{exhibittitlebackground}{rgb(.698,.780,.7411)}
+%\Configure{HColor}{exhibittitlefont}{rgb(1.,1,.7)}
+%\Configure{HColor}{exhibitbodybackground}{rgb(.733,.769,.847)}
+\fi
+
+\setlength{\intextsep}{0cm plus1cm minus1cm}
+
+\newcommand{\listexhibitname}{List of Exhibits}
+\newlistof{exhibit}{loe}{\listexhibitname}
+\ifthenelse{\equal{\doctype}{book}}{
+%  \renewcommand{\theexhibit}{\arabic{chapter}.\arabic{exhibit}}
+  \renewcommand{\theexhibit}{\arabic{exhibit}}
+}{
+  \renewcommand{\theexhibit}{\arabic{exhibit}}
+}
+\makeatletter
+\NewDocumentEnvironment{exhibit}{O{} m O{} O{.5} O{o}}{%
+\refstepcounter{exhibit}%
+\StrSubstitute[0]{#2}{ }{-}[\m@label]%
+\label{exhibit:\m@label}%
+%
+% If first parameter is empty, utilize caption for list of exhibits
+%
+\ifthenelse{\isempty{#1}{}}{\def\m@tcapt{#2}}{\def\m@tcapt{#1}}%
+%
+% Create variable for caption
+%
+\def\m@capt{#2}%
+%
+%
+% Test for default value of alignment
+%
+\ifthenelse{\isempty{#5}}{\def\m@align{o}}{\def\m@align{#5}}%
+%
+% Test for width
+%
+\ifthenelse{\isempty{#4}}{\def\m@width{.5}}{%
+  \ifthenelse{\lengthtest{#4 pt  > .973 pt }}{%
+    \def\m@width{.973}%
+  }{%
+    \def\m@width{#4}%
+  }%
+}%
+%
+% Add entry to list of exhibits
+%
+\ifpdf
+\addcontentsline{loe}{exhibit}{\protect\numberline{\theexhibit}\m@tcapt}\par%
+\fi
+%
+% Add wrapfig environment, but only if not too wide
+%
+\wcounte%
+\ifpdf%
+\ifthenelse{\lengthtest{\m@width pt  < .81 pt }}{%
+  \ifthenelse{\isempty{#3}}{%
+    \wrapfigure{\m@align}[0pt]{0pt}% Alignment: rRlLiIoO
+  }{%
+    \wrapfigure[#3]{\m@align}[0pt]{0pt}% Alignment: rRlLiIoO
+  }%
+}{%
+  \center%
+}%
+\else%
+  \center%
+\fi%
+\tabular{p{\m@width\textwidth}}\toprule%
+\ifpdf%
+\rowcolor{exhibittitlebackground}\color{exhibittitlefont}\raisebox{5pt}{%
+\fi%
+\fontsize{11}{13}\selectfont\textsc{Exhibit~\theexhibit: \m@capt}
+\ifpdf%
+}%
+\fi%
+\\\midrule %
+\ifpdf%
+\rowcolor{exhibitbodybackground}%
+\fi%
+\fontsize{10}{13}\selectfont%
+}{%
+\\\bottomrule\\\endtabular%
+\wcounta%
+%
+% Finish wrapfig environment only if not too wide
+%
+\ifpdf%
+\ifthenelse{\lengthtest{\m@width pt < .81 pt}}{%
+  \endwrapfigure%
+}{%
+  \endcenter%
+}%
+\else%
+  \endcenter%
+\fi%
+\vspace*{-\parskip}%
+}%
+\makeatother
+
+
+
+
+%-----------------------------------------------------
+% Epigraph
+%-----------------------------------------------------
+
+
+\definecolor{quotationcolour}{rgb}{0.95,0.95,0.95}
+\definecolor{quotationmarkcolour}{rgb}{0,0.4,0.9}
+
+% Double-line for start and end of epigraph.
+\newcommand{\epiline}{\hrule \vskip -.2em \hrule}
+% Massively humongous opening quotation mark.
+\newcommand{\hugequote}{%
+  \fontsize{42}{48}\selectfont\color{quotationmarkcolour}\textbf{``}%
+  \vskip -.5em%
+}
+
+% Make the box around quotations fit snugly to the epilines.
+%
+% 20161126: mnott
+%           taking this out moving to scrivener: It does remove
+%           all boxes around graphics / frambeox
+%\setlength\fboxrule{0pt}
+%\setlength\fboxsep{0pt}
+
+\newcommand{\epigraphbox}[2]{%
+\wcounte%
+  %\vskip -1.5em%
+  \colorbox{quotationcolour}{%
+    \begin{minipage}{\linewidth}%
+    \dimen0\linewidth
+    \advance\dimen0 by -3.3em
+    \hangindent 1.1em%
+    \epiline \vskip 1em \hspace{1.1em}{\hugequote} \vskip -.5em%
+    \hspace{1.1em}
+    \parbox{\the\dimen0}{
+        \parindent 2.2em%
+        \setlength\marginparsep{-1.1em}%
+        \normalsize\itshape%
+        #1}%
+    \begin{flushright}\color{quotationmarkcolour}\footnotesize\textsc{#2}\hspace*{1em} ~\end{flushright}%
+    \epiline%
+    \end{minipage}%
+  }%
+  \bigskip%
+\wcounta
+}
+
+
+
+%-----------------------------------------------------
+% Table colors
+%-----------------------------------------------------
+
+\definecolor{unfavorable}{rgb}{.949,.804,.804}
+\definecolor{favorable}{rgb}{.804,.949,.804}
+\definecolor{lc}{rgb}{0.918, 0.918, 0.894}  % light cell
+\definecolor{dc}{rgb}{0.757, 0.757, 0.710} % dark cell
+\definecolor{tl}{rgb}{0.161, 0.592, 0.404} % top line
+\definecolor{ml}{rgb}{0.757, 0.757, 0.710} % mid line
+\definecolor{bl}{rgb}{0.600, 0.604, 0.541} % bottom line
+
+

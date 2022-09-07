@@ -1,0 +1,1 @@
+Over the 10 years following [[@Kuratko-1990aa]](t), the researchers conduct a number of empirical studies to collect more data and generate working hypotheses. They also do a study outside the US, in Canada, to capture some cross-cultural effects ([[@Hornsby-1999aa]]).

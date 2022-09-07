@@ -1,0 +1,18 @@
+# Mac Crap
+.DS_Store
+
+# LaTeX Intermediate Files
+/Output
+
+
+# Obsidian Stuff
+#/Obsidian
+.obsidian
+.obsidian/workspace
+- -.md
+
+
+# Generated Files
+document.synctex.gz
+document.pdf
+

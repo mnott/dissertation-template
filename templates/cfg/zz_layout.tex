@@ -1,0 +1,536 @@
+%=====================================================
+% Document Type and Geometry
+%=====================================================
+
+\documentclass[12pt,a4paper,fleqn,twoside]{\doctype}
+
+
+%=====================================================
+% Some Helpers
+%=====================================================
+
+\usepackage{morewrites}								% More write space
+\usepackage{lipsum}										% Lorem Impsum...
+\usepackage{xparse}										% Parsing of Parameters
+\usepackage{xifthen}									% If Then Else
+\usepackage{ifpdf}										% Generating PDF or not
+\ifpdf\usepackage{cmap}\fi						% Makes PDF searchable, for Skim
+\usepackage{xstring}									% String functions
+\usepackage[titles]{tocloft}					% New Listofs...
+\usepackage{subfig}                   % side by side figures
+\usepackage[export]{adjustbox}        % for alignment of subfloats
+\usepackage{lastpage}
+
+% The following three lines remove page numbers from the
+% part page and chapter first page:
+\usepackage{etoolbox}
+\patchcmd{\chapter}{plain}{empty}{}{}
+\patchcmd{\part}{plain}{empty}{}{}
+
+%=====================================================
+% Document Geometry
+%=====================================================
+
+\usepackage[hmarginratio=1:1]{geometry}
+\geometry{
+  left=2.2cm,													% left margin
+  top=3.5cm,													% top  margin
+  textwidth=16.6cm,										% width of text block
+  textheight=21.0cm}									% height of text block 22
+\setlength{\headheight}{1cm}					% height of header
+\setlength{\headsep}{1cm}							% distance of header
+\setlength{\footskip}{0.5cm}					% distance of footer
+\renewcommand{\baselinestretch}{1.0}	% 1line distance
+\clubpenalty10000											% Don't want clubss
+\widowpenalty10000										% Don't want widows
+\hbadness 10000												% Reduce underfull hbox warnings
+\sloppy															  % Allow sloppy layout, reduce hyphenations
+\raggedbottom\topskip=10pt
+
+%=====================================================
+% Language
+%=====================================================
+
+\usepackage[russian,american]{babel}	% Internationalization
+\usepackage[utf8]{inputenc}						% Allow for utf-8 in input files
+\usepackage[OT2,T1]{fontenc}					% Breaks utf-8 in bibliography
+\usepackage{uarial}
+\usepackage{csquotes}  								% Extended quoting
+\selectlanguage{american}							% Select English
+
+
+%=====================================================
+% Fixups for HTML
+%=====================================================
+
+\ifthenelse{\equal{\doctype}{book}}{
+\ifpdf
+\else
+  \renewcommand\markboth{\null}			  % Markboth makes no sense in HTML
+\fi
+}{}
+
+\ifpdf
+	\usepackage[english]{varioref}			% vref and related
+\else
+	\usepackage{tex4ht}
+   \newcommand\vref{\ref}							% varioref doesn't work in HTML
+   \renewcommand\textwidth{\linewidth}
+\fi
+
+
+%=====================================================
+% Word counting
+%=====================================================
+
+\ifpdf
+\else
+  \def\HCode#1{}											% Allow plain HTML output
+\fi
+\newcommand\wcounta{\ifpdf\else\HCode{<!-- COUNT -->}\fi}
+\newcommand\wcounte{\ifpdf\else\HCode{<!-- /COUNT -->}\fi }
+
+
+%=====================================================
+% Headers
+%=====================================================
+
+\usepackage{fancyhdr}									% Fancy Page Headers
+\usepackage[Sonny]{fncychap}					% Fancy Chapter Headers
+\ChNumVar{\fontsize{60}{62}}					% Set Font Size for Chapter Headers
+
+\usepackage{epigraph}
+\setlength{\epigraphwidth}{0.5\linewidth}
+\setlength{\epigraphrule}{0.1pt}
+%\renewcommand*{\textflush}{flushright}
+\renewcommand*{\epigraphsize}{\normalsize\itshape}
+\let\Epigraph\epigraph
+\renewcommand\epigraph[2]{\Epigraph{\slshape\singlespacing ``#1''}{\footnotesize\textsc{#2}}\par}
+% %Change width as follows:
+% %\newlength{\savedepigraphwidth}
+% %\setlength{\savedepigraphwidth}{\epigraphwidth}
+% %\setlength{\epigraphwidth}{0.8\linewidth}
+
+%=====================================================
+% Floats, Tables, Equations, etc.
+%=====================================================
+
+\usepackage{boxedminipage}						% Minipage with a box around it
+\usepackage{wrapfig}									% Allow for floats wrapped by text
+\usepackage{caption}						% captions with hanging indent
+\usepackage{capt-of} 									% caption{figure}[]{}, outside float
+\usepackage[section,above] {placeins}	% Prevent floats floating past the section
+\usepackage{float}										% Improved control over floats
+\usepackage{booktabs}									% Better tables
+\usepackage{threeparttablex}  				% Footnotes in tables
+\usepackage{multicol}                 % Multiple Columns
+\usepackage{multirow}                 % Multiple Rows
+\usepackage{adjustbox}								% Flexible boxes, color, rotate, etc.
+\usepackage{rotating}                 % Landscape Figures
+\usepackage{fancybox}									% Boxes, also for equations
+\usepackage{array}										% Better tabular and array environments
+\usepackage{colortbl}									% Colored Tables
+\usepackage{color}										% Color functionality
+\usepackage[table]{xcolor}						% Extended color functionality (blue!20 etc.)
+\usepackage{marginnote}
+\usepackage[skip=10pt plus1pt, indent=0pt]{parskip}
+%\usepackage[parfill]{parskip}
+\usepackage[titletoc,title]{appendix}
+
+%
+% Alter some LaTeX defaults for better treatment of figures:
+% See p.105 of "TeX Unbound" for suggested values.
+% See pp. 199-200 of Lamport's "LaTeX" book for details.
+%
+% General parameters, for ALL pages:
+%
+\renewcommand{\topfraction}{0.9}			% max fraction of floats at top
+\renewcommand{\bottomfraction}{0.8}		% max fraction of floats at bottom
+%
+% Parameters for TEXT pages (not float pages):
+%
+\setcounter{topnumber}{2}							% max floats at top of page
+\setcounter{bottomnumber}{2}					% max floats at bottom of page
+\setcounter{totalnumber}{4}     			% max floats on page
+\setcounter{dbltopnumber}{2}    			% for 2-column pages
+\renewcommand{\dbltopfraction}{0.9}		% fit big float above 2-col. text
+\renewcommand{\textfraction}{0.07}		% allow minimal text w. figs
+%
+% Parameters for FLOAT pages (not text pages):
+%
+\renewcommand{\floatpagefraction}{0.7}	 % require fuller float pages
+% N.B.: floatpagefraction MUST be less than topfraction !!
+\renewcommand{\dblfloatpagefraction}{0.7}% require fuller float pages
+% Remember to use [htp] or [htpb] for placement
+
+%=====================================================
+% Code Listings
+%=====================================================
+
+\usepackage{listings}
+\definecolor{lstemph}{rgb}{0,0.39,0}
+\definecolor{lstnumbers}{rgb}{0.59,0.57,0.43}
+\definecolor{lstcomments}{rgb}{0.33,0.35,0.69}
+\lstloadlanguages{Java,C++}
+\lstset{language=Java,
+        extendedchars=true,
+        basicstyle=\ttfamily\tiny,
+        keywordstyle=\color{lstnumbers},
+        identifierstyle=\color{black},
+        commentstyle=\color{lstcomments},
+        stringstyle=\ttfamily\color{blue},
+        showstringspaces=true,
+        numbers=left,
+        stepnumber=1,
+        numberstyle=\tiny\ttfamily\color{lstnumbers},
+        numbersep=12pt,
+        frame=single,
+        fontadjust=true,
+        xleftmargin=3.5pt,
+        xrightmargin=3.5pt,
+        escapeinside={(*}{*)}}
+
+%=====================================================
+% Footnotes / Endnotes
+%=====================================================
+
+\usepackage{templates/sty/botfnote/botfnote}				% Force footnotes to the bottom
+%\usepackage[flushmargin,hang]{footmisc}	% More footnote options
+%\usepackage[backref,counter-format=arabic]{templates/sty/enotez/enotez} % Backreferencing Endnotes
+\usepackage{enotez} % Backreferencing Endnotes
+\setenotez{backref,counter-format=arabic}
+
+\ifpdf
+  \usepackage{templates/sty/hyperendnote/hyperendnote} %  Referenced Endnotes
+\fi
+
+\usepackage{setspace}
+
+\DeclareInstance{enotez-list}{itemize}{list}{
+  list-type = itemize,
+  number = \enmark{#1} ,
+  format = \footnotesize,
+}
+
+\renewcommand*{\thefootnote}{[\arabic{footnote}]}
+
+\usepackage[flushmargin,hang]{footmisc}	% More footnote options
+
+%=====================================================
+% Hyperref
+%=====================================================
+
+\ifpdf
+\usepackage[%pdftex,
+            pdfpagemode={UseOutlines},
+            pdfstartview={FitH},
+            colorlinks=true,
+            linkcolor={blue},
+            citecolor={blue},
+            urlcolor={blue},
+            bookmarks=true,
+            bookmarksopen=true,
+            %hyperfootnotes=false,
+            %pdfpagemode=FullScreen,
+            %hyperindex=false,
+            plainpages=false,
+            %hypertexnames=false,
+            pdfpagelabels]{hyperref}
+\else
+\usepackage[tex4ht]{hyperref}
+\fi
+
+\usepackage{footnotebackref}
+\ifpdf\usepackage{tabu}\fi						% Nice tables
+
+
+
+%=====================================================
+% Load Macros
+%=====================================================
+
+\input{templates/cfg/zz_macros}
+
+
+
+%=====================================================
+% Massively ugly workaround of hyperrefs issues with equations in glossaries
+%=====================================================
+
+%===<exclude> for word count
+
+\ifpdf
+  \makeatletter
+  \renewcommand{\theHequation}{\@currentHref.\arabic{equation}}
+  \gdef\equationgrouping{}
+  \makeatother
+\fi
+
+%===</exclude>
+
+
+%=====================================================
+% Glossaries
+%=====================================================
+
+\usepackage[
+nonumberlist, 													% do not show page numbers
+acronym,        												% generate acronym listing
+toc,                										% show listings as entries in table of contents
+section]         												% use section level for toc entries
+{glossaries}
+
+%
+% We keep the usepackage so that we don't bail out on
+% existing \gls... but then for the rest of it, we don't
+% even do it if we don't show glossaries
+%
+
+%
+% Patch Glossaries so that only the first occurrence of a given glossary
+% entry is converted to a hyperlink, in order to avoid cluttering.
+%
+\makeatletter
+\ifnum\pdfstrcmp{\showanyglossary}{true}=\z@
+%% patch first occurence of "\@gls@link[#1]{#2}{\@glo@text}",
+%% as this is the one for \glsused{#2}
+\patchcmd{\@gls@}
+  {\@gls@link[#1]{#2}{\@glo@text}}
+  {\@gls@link[#1,hyper=false]{#2}{\@glo@text}}
+  {}{}
+\patchcmd{\@glspl@}
+  {\@gls@link[#1]{#2}}
+  {\@gls@link[#1,hyper=false]{#2}}
+  {}{}
+\patchcmd{\@Gls@}
+  {\@gls@link[#1]{#2}}
+  {\@gls@link[#1,hyper=false]{#2}}
+  {}{}
+\patchcmd{\@Glspl@}
+  {\@gls@link[#1]{#2}}
+  {\@gls@link[#1,hyper=false]{#2}}
+  {}{}
+  \patchcmd{\@GLS@}
+  {\@gls@link[#1]{#2}{\MakeUppercase{\@glo@text}}}
+  {\@gls@link[#1,hyper=false]{#2}{\MakeUppercase{\@glo@text}}}
+  {}{}
+\fi
+\makeatother
+
+%
+% Generate a list of symbols
+%
+\newglossary[slg]{symbolslist}{syi}{syg}{List of Symbols}
+
+\sequals{\showanyglossary}{true}{
+
+%
+% Make sure first character of glossary entry name is uppercase
+%
+\renewcommand{\glsnamefont}[1]{\makefirstuc{#1}}
+
+%
+% Remove the dot at the end of glossary descriptions
+%
+\renewcommand*{\glspostdescription}{}
+
+%
+% Activate glossary commands
+%
+\makeglossaries
+
+%
+% Load the glossary definitions the user writes
+%
+%\input{chapter_a1_acronyms}
+%\input{chapter_a2_symbols}
+%\input{chapter_a3_glossary}
+
+%
+% These commands actually create / update the different
+% indices / glossaries
+%
+%makeindex -s document.ist -t document.alg -o document.acr document.acn
+%makeindex -s document.ist -t document.glg -o document.gls document.glo
+%makeindex -s document.ist -t document.slg -o document.syi document.syg
+%makeindex document
+
+}{} % <= showanyglossary
+
+%=====================================================
+% Index
+%=====================================================
+
+\usepackage{makeidx}
+
+\makeatletter
+\renewenvironment{theindex}
+   {%
+    \@mkboth{\MakeUppercase\indexname}%
+            {\MakeUppercase\indexname}%
+    \thispagestyle{plain}\parindent\z@
+    \parskip\z@ \@plus .3\p@\relax
+    \columnseprule \z@
+    \columnsep 35\p@
+    \let\item\@idxitem}
+   {}
+\makeatother
+
+%=====================================================
+% Graphics
+%=====================================================
+\usepackage{graphicx}
+\ifpdf
+  \graphicspath{{pdf/}}
+  \pdfcompresslevel=9
+  \DeclareGraphicsExtensions{.pdf}
+  \DeclareGraphicsRule{.pdf}{pdf}{.pdf}{}
+\else
+  \graphicspath{{eps/}}
+  \DeclareGraphicsExtensions{.eps}
+  \DeclareGraphicsRule{.eps}{eps}{.eps}{}
+\fi
+
+
+%=====================================================
+% Media
+%=====================================================
+
+%\renewcommand{\video}[6]{% file xpos ypos width height controls
+%  \vspace{#3}\hspace{#2}{\pdfannot width #4 height #5 depth 0cm {%
+%   /Subtype /Movie
+%   /Movie  << /F (#1) >>
+%   /A << /ShowControls #6 /Rate 1 >>
+%   }}}
+%\fi
+
+\usepackage{templates/sty/easymovie/easymovie}
+
+
+%=====================================================
+% Equations
+%=====================================================
+
+\usepackage[fleqn,tbtags]{mathtools}	% Mathematical Processing
+\usepackage{amssymb}									% Scientific Symbols
+\usepackage{latexsym}									%	Scientific Symbols
+\mathtoolsset{showonlyrefs}						% Label only (eqref) referenced Equations
+%\everymath{\rm}											% Default to roman style
+
+\usepackage[customcolors]{hf-tikz}				% Highlight Formulas
+\usetikzlibrary{calc}
+\tikzstyle{every picture}+=[remember picture]
+\hfsetfillcolor{blue!10}
+\hfsetbordercolor{blue}
+
+% Circled characters
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+%=====================================================
+% Font Settings
+%=====================================================
+
+\usepackage{microtype}								% More precise typography
+\usepackage{fix-cm}										% Permit arbitrary font sizes
+\usepackage[right]{eurosym}		   		  % Euro Symbol
+\usepackage{pifont}                   % Dingbats
+
+%
+% Specify fonts for Captions, Sectionts, etc.
+%
+\renewcommand*\captionlabelfont{\bfseries}
+\renewcommand*\captionsize{\itshape}
+
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{\z@}%
+    {-2.2ex \@plus-1ex \@minus -.2ex}{1.3ex \@plus.2ex}%
+    {\reset@font\large\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{\z@}%
+    {-1.5ex \@plus -1ex \@minus-.2ex}{0.8ex \@plus.2ex}%
+    {\reset@font\normalsize\bfseries}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{\z@}%
+     {-1.2ex\@plus -1ex \@minus -.2ex}{0.5ex \@plus .2ex}%
+     {\reset@font\normalsize}}
+ \renewcommand{\paragraph}{\@startsection{paragraph}{4}{0mm}%
+  {1ex \@plus1ex \@minus.2ex}%
+  {-1em}%
+  {\normalfont\normalsize\it}}
+ \renewcommand{\subparagraph}{\@startsection{subparagraph}{5}{\parindent}%
+  {2.0ex \@plus1ex \@minus .2ex}%
+  {-1em}%
+  {\normalfont\normalsize\it}}
+\makeatother
+
+%
+% And for Glossaries:
+%
+\makeatletter
+\newcommand{\glosection}{\@startsection{section}{1}{\z@}%
+    {-2.2ex \@plus-1ex \@minus -.2ex}{1.3ex \@plus.2ex}%
+    {\reset@font\normalfont\sc}}
+\newcommand{\glosubsection}{\@startsection{subsection}{2}{\z@}%
+    {-1.5ex \@plus -1ex \@minus-.2ex}{0.8ex \@plus.2ex}%
+    {\reset@font\normalsize\itshape}}
+\makeatother
+
+%
+% Itemizes
+%
+\renewcommand{\labelitemi}{$\triangleright$}
+\renewcommand*\descriptionlabel[1]{\hspace\labelsep
+                                \normalfont\itshape #1}
+
+%
+% Save Default Space above Itemize etc., then set it to 0
+%
+% Not resetting, need further investigation.
+%
+% \newlength{\oldabovedisplayskip}
+% \setlength{\oldabovedisplayskip}{\abovedisplayskip}
+% %\setlength{\abovedisplayskip}{0pt}
+% \expandafter\def\expandafter\normalsize\expandafter{%
+% \normalsize\setlength\oldabovedisplayskip{\abovedisplayskip}}
+% \expandafter\def\expandafter\normalsize\expandafter{%
+% \normalsize\setlength\abovedisplayskip{0pt}}
+% \expandafter\def\expandafter\normalsize\expandafter{%
+% \normalsize\setlength\abovedisplayskip{\oldabovedisplayskip}}
+
+
+%=====================================================
+% Table of... / Listofs
+%=====================================================
+
+\usepackage[titles]{tocloft}						% New Listofs...
+\setcounter{secnumdepth}{10}						% Section numbers down to level 10
+\setcounter{tocdepth}{1}								% TOC content down to level 3
+
+%
+% Give some more room for page numbers
+%
+\makeatletter
+\renewcommand{\@pnumwidth}{3em}
+\renewcommand{\@tocrmarg}{4em}
+\makeatother
+
+
+%=====================================================
+% Show Page Frames
+%=====================================================
+
+%\usepackage{showframe}
+
+
+%=====================================================
+% Pandoc Stuff
+%=====================================================
+
+%\providecommand{\tightlist}{\setlength{\itemsep}{4pt}}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{5pt}\setlength{\parskip}{5pt}}
+
+\setlength{\abovedisplayskip}{0pt}
+\setlength{\belowdisplayskip}{0pt}
+

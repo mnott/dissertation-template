@@ -1,0 +1,469 @@
+
+%=====================================================
+% Front Matter
+%
+% Loaded after template.tex.
+%
+% There are many variables defined here. These should
+% be set in a boiler plate template.md
+%=====================================================
+
+
+%=====================================================
+% Specify the document type (book, article)
+%=====================================================
+
+\def\doctype{$if(doctype)$$doctype$$else$book$endif$}
+
+
+%=====================================================
+% Core Configuration
+%=====================================================
+
+\def\emptypages{$if(emptypages)$$emptypages$$else$true$endif$}
+\def\showparts{$if(showparts)$$showparts$$else$false$endif$}
+\def\tbook{$if(booktitle)$$booktitle$$else$booktitle$endif$}
+\def\ttitlecover{$if(titlecover)$$titlecover$$else$titlecover$endif$}
+\def\tsubtitlecover{$if(subtitlecover)$$subtitlecover$$else$subtitlecover$endif$}
+\def\tsubtitlefooter{$if(subtitlefooter)$$subtitlefooter$$else$subtitlefooter$endif$}
+\def\torganization{$if(organization)$$organization$$else$organization$endif$}
+\def\tdegree{$if(degree)$$degree$$else$degree$endif$}
+\def\tsubmissiondate{$if(submissiondate)$$submissiondate$$else$submissiondate$endif$}
+\def\tversion{$if(version)$$version$$else$version$endif$}
+\def\tauthor{$if(author)$$author$$else$author$endif$}
+
+
+%=====================================================
+% Specify which frontmatter things you want
+%=====================================================
+
+\def\showtitlepage{$if(showtitlepage)$$showtitlepage$$else$true$endif$}
+\def\showparts{$if(showparts)$$showparts$$else$true$endif$}
+\def\showlistofs{$if(showlistofs)$$showlistofs$$else$true$endif$}
+\def\showtoc{$if(showtoc)$$showtoc$$else$true$endif$}
+\def\showlot{$if(showlot)$$showlot$$else$false$endif$}
+\def\showlof{$if(showlof)$$showlof$$else$false$endif$}
+\def\showloe{$if(showloe)$$showloe$$else$false$endif$}
+\def\showlod{$if(showlod)$$showlod$$else$false$endif$}
+
+
+%=====================================================
+% Specify which backmatter things you want
+%=====================================================
+
+\def\showreferences{$if(showreferences)$$showreferences$$else$true$endif$}
+\def\showappendix{$if(showappendix)$$showappendix$$else$false$endif$}
+\def\showendnotes{$if(showendnotes)$$showendnotes$$else$false$endif$}
+\def\showanyglossary{$if(showanyglossary)$$showanyglossary$$else$false$endif$}
+\def\showacronyms{$if(showacronyms)$$showacronyms$$else$false$endif$}
+\def\showglossary{$if(showglossary)$$showglossary$$else$false$endif$}
+\def\showindex{$if(showindex)$$showindex$$else$false$endif$}
+
+
+%=====================================================
+% Specify further options
+%=====================================================
+
+%
+% Show Page Headers or Footers
+%
+\def\showpageheaders{$if(showpageheaders)$$showpageheaders$$else$true$endif$}
+\def\showpagefooters{$if(showpagefooters)$$showpagefooters$$else$true$endif$}
+
+
+%
+% Show Word Count in Footer
+%
+\def\showwordcount{$if(showwordcount)$$showwordcount$$else$true$endif$}
+
+
+%=====================================================
+% Inclusion of the Layout, which makes use of the
+% definitions done so far
+%=====================================================
+
+\input{templates/cfg/zz_layout}
+
+
+%=====================================================
+% Overwrite some of the definitions from zz_layouzt
+%=====================================================
+
+%
+% Depth of Table of Contents
+%
+\setcounter{tocdepth}{$if(tocdepth)$$tocdepth$$else$2$endif$}
+
+
+
+%=====================================================
+% Definition of the Bibliography
+%=====================================================
+
+\usepackage[style=apa,citestyle=authoryear,backend=biber,maxnames=3,minnames=1,sorting=nyt,sortcites=true,block=space,safeinputenc,natbib=true,backref=true,uniquename=init]{biblatex}
+\DeclareLanguageMapping{american}{american-apa}
+\addbibresource{Bibliography.bib}
+\input{templates/cfg/zz_config_bib}
+
+
+%=====================================================
+% Announce we want an index
+%=====================================================
+\sequals{\showappendix}{true}{
+\sequals{\showindex}{true}{\makeindex}
+}
+
+
+%=====================================================
+% Further usepackages (or not)
+%=====================================================
+
+\usepackage{indentfirst}
+
+
+%=====================================================
+% Finally, we begin our document
+%=====================================================
+
+\begin{document}
+
+
+%=====================================================
+% Front Matter
+%=====================================================
+
+
+%-----------------------------------------------------
+% Title Page
+%-----------------------------------------------------
+
+\sequals{\showtitlepage}{true}{
+\begin{center}
+\vspace*{0cm}
+\thispagestyle{empty}
+\vspace*{-2cm}
+{\Huge \bf \tbook\ \\[0.5cm]}
+{\sc \Large \tsubtitlecover\ \\[0.2cm]}
+\vspace*{3cm}
+by\\\vspace*{.2cm}
+{\Large \tauthor}\\
+\vspace*{2.5cm}
+{\Large \scshape \ttitlecover}\\
+\vspace*{2.5cm}
+{\large Submitted to}\\\vspace*{0.2cm}
+{\Large \scshape \torganization}\\\vspace*{2.8cm}
+{\large In partial fulfillment of the requirements for the degree of}\\\vspace*{0.5cm}
+{\Large \tdegree}\\\vspace*{2.2cm}
+{\large \tsubmissiondate}\\\vspace*{0.3cm}
+\sequals{\showwordcount}{true}{\sc \footnotesize{(\input{wc.tex}Words)}}{}
+\end{center}
+\clearpage
+}{} % <= showtitlepage
+
+
+
+%-----------------------------------------------------
+% Listofs
+%-----------------------------------------------------
+
+\sequals{\showlistofs}{true}{
+\sequals{\showtoc}{true}{
+\phantomsection
+\sequals{\showpageheaders}{true}{
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[RO,LE]{\thepage}
+\fancyhead[LO]{\slshape TABLE OF CONTENTS}
+\fancyhead[RE]{\slshape TABLE OF CONTENTS}
+}{} % <= showpageheaders
+\sequals{\showpagefooters}{true}{
+\fancyfoot[C]{}
+}{} % <= showpagefooters
+\sequals{\doctype}{book}
+{
+  \addcontentsline{toc}{chapter}{Table of Contents}
+}
+{
+  %\addcontentsline{toc}{section}{Table of Contents}
+}
+\pdfbookmark[-1]{\contentsname}{toc}
+\tableofcontents
+\sequals{\showpagefooters}{true}{
+\sequals{\doctype}{book}{
+  \sequals{\emptypages}{true}{
+   \clearpage{\pagestyle{empty}\cleardoublepage}
+  }{
+   \clearpage
+  }
+}{
+  \clearpage
+}   % <= book
+}{} % <= showpagefooters
+}{} % <= showtoc
+\sequals{\showlot}{true}{
+\phantomsection
+\sequals{\doctype}{book}
+{
+  \addcontentsline{toc}{chapter}{List of Tables}
+}
+{
+  \addcontentsline{toc}{section}{List of Tables}
+}
+\sequals{\showpageheaders}{true}{
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[RO,LE]{\thepage}
+\fancyhead[LO]{\slshape LIST OF TABLES}
+\fancyhead[RE]{\slshape LIST OF TABLES}
+}{} % <= showpageheaders
+\sequals{\showpagefooters}{true}{
+\fancyfoot[C]{}
+}{} % <= showpagefooters
+\listoftables
+\sequals{\showpagefooters}{true}{
+\sequals{\doctype}{book}{
+  \sequals{\emptypages}{true}{
+   \clearpage{\pagestyle{empty}\cleardoublepage}
+  }{
+   \clearpage
+  }
+}{
+  \clearpage
+}   % <= book
+}{} % <= showpagefooters
+}{} % <= showlot
+\sequals{\showlof}{true}{
+\phantomsection
+\sequals{\doctype}{book}
+{
+  \addcontentsline{toc}{chapter}{List of Figures}
+}
+{
+  \addcontentsline{toc}{section}{List of Figures}
+}
+\sequals{\showpageheaders}{true}{
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[RO,LE]{\thepage}
+\fancyhead[LO]{\slshape LIST OF FIGURES}
+\fancyhead[RE]{\slshape LIST OF FIGURES}
+}{} % <= showpageheaders
+\sequals{\showpagefooters}{true}{
+\fancyfoot[C]{}
+}{} % <= showpagefooters
+\listoffigures
+\sequals{\showpagefooters}{true}{
+\sequals{\doctype}{book}{
+  \sequals{\emptypages}{true}{
+   \clearpage{\pagestyle{empty}\cleardoublepage}
+  }{
+   \clearpage
+  }
+}{
+  \clearpage
+}   % <= book
+}{} % <= showpagefooters
+}{} % <= showlof
+\sequals{\showloe}{true}{
+\phantomsection
+\sequals{\doctype}{book}
+{
+  \addcontentsline{toc}{chapter}{List of Exhibits}
+}
+{
+  \addcontentsline{toc}{section}{List of Exhibits}
+}
+\sequals{\showpageheaders}{true}{
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[RO,LE]{\thepage}
+\fancyhead[LO]{\slshape LIST OF EXHIBITS}
+\fancyhead[RE]{\slshape LIST OF EXHIBITS}
+}{} % <= showpageheaders
+\sequals{\showpagefooters}{true}{
+\fancyfoot[C]{}
+}{} % <= showpagefooters
+\listofexhibit
+\sequals{\showpagefooters}{true}{
+\sequals{\doctype}{book}{
+  \sequals{\emptypages}{true}{
+   \clearpage{\pagestyle{empty}\cleardoublepage}
+  }{
+   \clearpage
+  }
+}{
+  \clearpage
+}   % <= book
+}{} % <= showpagefooters
+}{} % <= showloe
+}{} % <= showlistofs
+
+
+\sequals{\showpageheaders}{true}{
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[RE]{\slshape \leftmark}
+\fancyhead[LO]{\slshape \rightmark}
+}{} % <= showpageheaders
+\sequals{\showpagefooters}{true}{
+\fancyfoot[C]{}
+}{} % <= showpagefooters
+
+
+%=====================================================
+% Document Body
+%=====================================================
+
+\wcounta
+
+$body$
+
+\wcounte
+
+
+%=====================================================
+% Backmatter
+%=====================================================
+
+%-----------------------------------------------------
+% References
+%-----------------------------------------------------
+
+\sequals{\showreferences}{true}{
+  \ifthenelse{\equal{\doctype}{book}}{
+    % Don't create an extra chapter heading in book style
+    \chapter{References}
+    \makeatletter
+      \defbibheading{bibliography}[\bibname]{%
+        %\chapter*{#1}%
+        \markboth{#1}{#1}}
+    \makeatother
+  }{}
+  \patchcmd{\bibsetup}{\interlinepenalty=5000}{\interlinepenalty=10000}{}{}
+  \label{sec:bibliography}\printbibliography
+}{}
+
+
+%-----------------------------------------------------
+% Appendix
+%-----------------------------------------------------
+
+%
+% Appendix: Header
+%
+\sequals{\showappendix}{true}{
+
+
+%
+% Appendix: Part
+%
+\makeatletter
+\sequals{\doctype}{book}{
+%\@openrightfalse
+  \sequals{\showparts}{true}{
+    \part{Appendix}\label{part:appendix}
+  }{}
+%\@openrighttrue
+\batchmode
+}{}
+\makeatother
+
+
+%
+% Appendix
+%
+\sequals{\doctype}{book}{
+  \appendix
+}{}
+
+
+%
+% End Notes
+%
+\sequals{\showendnotes}{true}{
+	\DeclareInstance{enotez-list}{custom}{paragraph}{
+	  heading    = {},%\chapter*{#1},%void chapter heading in book style
+	  notes-sep  = \baselineskip,
+	  format     = \normalfont,
+	  number     = \textsuperscript{#1}
+	}
+	\ifthenelse{\equal{\doctype}{book}}{
+	  \chapter{Notes}
+	}{
+		\section*{Notes}
+	}
+	\label{sec:notes}\printendnotes[custom]
+	\clearpage
+}{}
+
+
+
+%
+% Glossary, Acronyms and Symbols
+%
+\sequals{\showanyglossary}{true}{
+\sequals{\showglossary}{true}{
+	\sequals{\showacronyms}{true}{
+		\ifthenelse{\equal{\doctype}{book}}{\chapter{Glossary, Acronyms and Symbols}}{}
+	}{
+		\ifthenelse{\equal{\doctype}{book}}{\chapter{Glossary}}{}
+	}
+}{
+	\sequals{\showacronyms}{true}{
+		\ifthenelse{\equal{\doctype}{book}}{\chapter{Acronyms and Symbols}}{}
+	}{}
+}
+
+
+%
+% Glossary
+%
+\sequals{\showglossary}{true}{
+	\label{sec:glossary}\printglossary[style=altlist,title=Glossary]
+	\clearpage
+}{}
+
+
+%
+% Acronyms and Symbols
+%
+\sequals{\showacronyms}{true}{
+	%Print list of acronyms
+	%\deftranslation[to=German]{Acronyms}{Abkuerzungsverzeichnis}
+	\label{sec:acronyms}\printglossary[type=\acronymtype,style=long]
+	%Print list of symbols
+	\label{sec:symbols}\printglossary[type=symbolslist,style=long]
+	\clearpage
+}{}
+}{} % <= showanyglossary
+
+%
+% Index
+%
+\sequals{\showindex}{true}{
+	% Usage:
+	% \index{Fourier Series}
+	\renewcommand{\indexname}{Index}%
+	\ifthenelse{\equal{\doctype}{book}}{
+	  \chapter{Index}
+	}{
+	  \section*{Index}
+	}
+	\label{sec:index}\printindex
+	\clearpage
+}{}
+
+
+%
+% Appendix: Footer
+%
+} % <= showappendix
+
+
+%-----------------------------------------------------
+% End of Document
+%-----------------------------------------------------
+
+\end{document}
+

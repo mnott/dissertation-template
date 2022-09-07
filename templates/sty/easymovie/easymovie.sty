@@ -1,0 +1,66 @@
+% Copyright 2002-03 Jim Radford <radford@robotics.caltech.edu>
+% Modified 2003 Uli Tuerk for pdflatex compatibility
+% This package allows you to use latex or pdflatex to include movies into PDF files.
+%
+% Version 1.2
+%
+% \easymovie[options]{graphics or an empty box}{movie file}
+%
+% Example usage: (note: hyperref mustbe used *after* easymovie, 
+%                       but only for dvi output)
+%
+% \usepackage{easymovie}
+% \usepackage{hyperref}
+%
+% \easymovie[controls,palindrome]{\includegraphics[width=4in]{static-image}}{three-in-space.mov}
+% \easymovie[poster,once]{\easybox{4in}{4in}}{three-in-space.mov}
+%
+%\PassOptionsToPackage{pdfmark}{hyperref}\RequirePackage{hyperref}
+\RequirePackage{keyval}
+\def\@EMclear{%
+  \def\@EM@controls{}%
+  \def\@EM@fwscale{}%
+  \def\@EM@border{}%
+  \def\@EM@title{}%
+  \def\@EM@mode{}%
+  \def\@EM@aspect{}%
+  \def\@EM@frame{}%
+  \def\@EM@poster{}}%
+\def\easybox#1#2{{\hbox to #1 {\vbox to #2 { }}}}
+\def\easymovie{\@ifnextchar[\@easymovie{\@easymovie[]}}%
+
+\ifx\pdfoutput\undefined
+  \PassOptionsToPackage{pdfmark}{hyperref}
+  \define@key{PDF}{Movie}{\pdf@addtoks{#1}{Movie}}
+  \define@key{PDF}{Annotations}{\pdf@addtoks{#1}{A}}
+  \def\@easymovie[#1]#2#3{\@EMclear\setkeys{easy}{#1}{%
+      \pdfmark[{#2}]{pdfmark=/ANN,Subtype=/Movie,Movie=<< /F (#3) \@EM@aspect \@EM@poster >>,%
+                   Annotations=<<\@EM@controls \@EM@mode \@EM@fwscale >>}}}%
+\else
+% pdftex version by Gerard Degrez, modified for autodetecting the size of link content
+  \newlength{\@EMwidth}
+  \newlength{\@EMheight}
+  \newsavebox{\@EMcontent}
+  \def\@easymovie[#1]#2#3{\@EMclear\setkeys{easy}{#1}{%
+      \sbox{\@EMcontent}{#2}%
+      \settowidth{\@EMwidth}{\usebox{\@EMcontent}}%
+      \settoheight{\@EMheight}{\usebox{\@EMcontent}}%
+      \usebox{\@EMcontent}%
+      \pdfannot  width -\@EMwidth height \@EMheight depth 0cm {%keep this in one line!!
+        /Subtype /Movie
+        /Movie << /F (#3) \@EM@aspect \@EM@poster >>
+        /A << \@EM@controls \@EM@mode \@EM@fwscale  >>}
+}}
+\fi
+\define@key{easy}{controls}[true]{\def\@EM@controls{/ShowControls #1}}%
+\define@key{easy}{poster}[true]{\def\@EM@poster{/Poster #1}}%
+\define@key{easy}{frame}[true]{\def\@EM@frame{/Frame #1}}%
+\define@key{easy}{border}{\def\@EM@border{/Border #1}}%
+\define@key{easy}{aspect}{\def\@EM@aspect{/Aspect [#1]}}%
+\define@key{easy}{fwscale}{\def\@EM@fwscale{/FWScale [#1]}}%
+\define@key{easy}{mode}{\def\@EM@mode{/Mode #1}}
+\define@key{easy}{once}[]{\def\@EM@mode{/Mode /Once}}
+\define@key{easy}{open}[]{\def\@EM@mode{/Mode /Open}}
+\define@key{easy}{repeat}[]{\def\@EM@mode{/Mode /Repeat}}
+\define@key{easy}{palindrome}[]{\def\@EM@mode{/Mode /Palindrome}}
+

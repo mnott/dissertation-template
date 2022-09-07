@@ -1,0 +1,110 @@
+%=====================================================
+% Configuration of the Bibliography.
+%
+% Some configuration taken from:
+%
+% http://www.khirevich.com/latex/biblatex/
+%
+% For sample ways how to cite see:
+%
+% http://ads.harvard.edu/pubs/bibtex/astronat/doc/html/astronat_3.html
+%=====================================================
+
+%\DeclareBibliographyDriver{online}{%
+ % \usebibmacro{bibindex}%
+ % \usebibmacro{begentry}%
+  %\ifnameundef{author}
+  %  {\iflistundef{organization}
+   %   {\BibliographyWarning{No author nor organisation on Online entry}}
+    %  {\printlist{organization}}}
+  %  {\usebibmacro{author/editor+others/translator+others}}
+  %\setunit{\labelnamepunct}
+ % \newblock
+ % \usebibmacro{title}%
+  %\setunit{}%\newunit
+  %\printlist{language}%
+  %\printfield{note}%
+  %\newunit\newblock
+  %\setunit{\bibpagerefpunct}\newblock
+  %\usebibmacro{pageref}%
+  %\usebibmacro{finentry}}
+
+
+
+%\DeclareLanguageMapping{english}{custom-english-ordinal-sscript}
+%\DeclareFieldFormat{edition}{\ifinteger{#1}{\mkbibordedition{#1}\addthinspace{}ed.}{#1\isdot}}
+%\renewcommand{\labelnamepunct}{\addcolon\addspace}
+%\renewcommand{\mkbibnamefirst}[1]{\textsc{#1}}
+%\renewcommand{\mkbibnamelast}[1]{\textsc{#1}}
+%\renewcommand{\mkbibnameprefix}[1]{\textsc{#1}}
+%\renewcommand{\mkbibnameaffix}[1]{\textsc{#1}}
+%\renewcommand{\finentrypunct}{}
+%%\renewcommand{\newunitpunct}{\addspace\midsentence}
+\DeclareFieldFormat{journaltitle}{\mkbibemph{#1},} % italic journal title
+% with comma
+%\DeclareFieldFormat[inbook,thesis]{title}{\mkbibemph{#1}\addperiod} % italic
+% title with period
+%\DeclareFieldFormat[thesis]{title}{`\mkbibemph{#1}'}
+\DeclareFieldFormat[article]{title}{`#1',} % title of journal article is
+\DeclareFieldFormat[misc]{title}{\mkbibemph{#1}	}
+%\DeclareFieldFormat[article]{date}{(#1)}
+% printed as normal text
+%\DeclareFieldFormat[article]{volume}{\textbf{#1}\addcolon\space}
+\DeclareFieldFormat[article]{volume}{#1~}
+%\DeclareFieldFormat[article]{pages}{#1,}
+\DeclareFieldFormat[article]{pages}{#1}
+%\DeclareFieldFormat{pages}{#1}
+ %\usepackage{url}
+
+  \defbibenvironment{bibliography}
+  {\list
+     {}
+     {\setlength{\leftmargin}{\bibhang}%
+      \setlength{\itemindent}{-\leftmargin}%
+      \setlength{\itemsep}{\bibitemsep}%
+      \setlength{\parsep}{\bibparsep}}}
+  {\endlist}
+  {\item}
+
+  \setlength\bibitemsep{1.7\itemsep}
+
+%\ifpdf
+%\renewcommand*{\finentrypunct}{\usebibmacro{pageref}}
+%\fi
+
+\renewbibmacro*{pageref}{%
+  \addperiod% NEW
+  \iflistundef{pageref}
+    {}
+%    {\printtext[parens]{% DELETED
+    {\newline\footnotesize\printtext[parens]{% NEW
+       \ifnumgreater{\value{pageref}}{1}
+         {\bibstring{backrefpages}\ppspace}
+     {\bibstring{backrefpage}\ppspace}%
+ %      \printlist[pageref][-\value{listtotal}]{pageref}}}}% DELETED
+       \printlist[pageref][-\value{listtotal}]{pageref}\addperiod}}}% NEW
+
+
+
+  \DeclareCiteCommand{\citeauthor}
+  {\boolfalse{citetracker}%
+   \boolfalse{pagetracker}%
+   \usebibmacro{prenote}}
+  {\ifciteindex
+     {\indexnames{labelname}}
+     {}%
+   \printtext[bibhyperref]{\printnames{labelname}}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
+
+  \DeclareCiteCommand{\citeyear}
+  {\boolfalse{citetracker}%
+   \boolfalse{pagetracker}%
+   \usebibmacro{prenote}}
+  {\ifciteindex
+     {\indexnames{labelname}}
+     {}%
+   \printtext[bibhyperref]{\printdate}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
+

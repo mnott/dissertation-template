@@ -1,0 +1,1 @@
+Ultimately, [[@Kuratko-2014aa]](t) decided to publish the whole instrument, including the scoring tables and a description of how to use it. This is a key article, as after a decade of using the instrument, it tells _the story behind it_, and _how_ and _why_ to use it.
