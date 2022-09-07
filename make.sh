@@ -919,8 +919,6 @@ show_menus() {
     echo -e "-------------------------------------------"
     echo ""
 
-    echo -e "${GRE}Compose${STD}"
-    echo ""
     echo -e "${GRE}[run]${STD}    Run LaTeX, update PDF"
     echo -e "${GRE}[submit]${STD} Run Submission Target"
     echo ""
