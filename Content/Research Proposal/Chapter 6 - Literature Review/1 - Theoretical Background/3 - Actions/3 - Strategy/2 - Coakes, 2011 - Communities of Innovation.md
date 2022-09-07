@@ -1,0 +1,1 @@
+[[@Coakes-2011aa]](t) propose the concept of Communities of Innovation (CoInv) in absence of formal CE programs and establish the need for these as the best foundation for sustainable innovation as well as the critical element of the CE process.

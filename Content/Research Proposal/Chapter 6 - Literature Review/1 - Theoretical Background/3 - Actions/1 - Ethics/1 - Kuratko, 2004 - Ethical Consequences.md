@@ -1,0 +1,3 @@
+##### Ethics
+
+[[@Kuratko-2004aa]](t) investigate some of the ethical consequences mentioned on page (pr)[[2 - Kuratko 1990, - Intrapreneurship Assessment Instrument - IAI#^ethicalconsequences|Ethical Consequences]]: As managers are challenged with overcoming specific obstacles in their quest for entrepreneurial activity, the authors perceive the need to recognize where the fine line exists between clever resourcefulness and outright rule breaking, in other words, to assess which behavior differentiates the corporate entrepreneur from a rogue middle manager. They propose a framework to serve as a guideline for managers and organizations seeking to impede unethical behaviors in the pursuit of entrepreneurial activity.

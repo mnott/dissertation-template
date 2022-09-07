@@ -21,10 +21,10 @@ doctype          : "book"    # book or article
 #
 # Front Matter
 #
-showtitlepage    : "false"  # Whether you want to show the title page
+showtitlepage    : "true"  # Whether you want to show the title page
 showparts        : "false"  # Whether you want to have parts for the Appendix
-showlistofs      : "false"  # Any ``ListOfs?''
-showtoc          : "false"  # Table of Contents?
+showlistofs      : "true"  # Any ``ListOfs?''
+showtoc          : "true"  # Table of Contents?
 showlot          : "false"  # List of Tables?
 showlof          : "false"  # List of Figures?
 showloe          : "false"  # List of Exhibits?
