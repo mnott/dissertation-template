@@ -370,6 +370,14 @@ _parse () {
   fi
 
   #
+  # If the destination directory is missing, we might
+  # just have cloned from github.
+  #
+  if [[ ! -d "${DEST}" ]]; then
+    mkdir "${DEST}"
+  fi
+
+  #
   # Remove the target file for pandoc
   #
   if [[ -f "${DEST}/${FILE}.md" ]]; then
@@ -385,6 +393,25 @@ _parse () {
     fi
     ln -s "${INPUT}/fig" "${DEST}"
   fi
+
+  #
+  # Re-link the Templates
+  #
+  if [[ -d "${ROOT}/templates" ]]; then
+    if [[ ! -e "${DEST}/templates" && ! -L "${DEST}/templates" ]]; then
+      ln -s "${ROOT}/templates" "${DEST}/templates"
+    fi
+  fi
+
+  #
+  # Re-link the Bibliography
+  #
+  if [[ -f "${ROOT}/${BIBFILE}" ]]; then
+    if [[ ! -e "${DEST}/${BIBFILE}" && ! -L "${DEST}/${BIBFILE}" ]]; then
+      ln -s "${ROOT}/${BIBFILE}" "${DEST}/${BIBFILE}"
+    fi
+  fi
+
 
   #
   # Copy the template content
