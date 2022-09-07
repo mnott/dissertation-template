@@ -11,3 +11,9 @@ The components of their CE strategy model include ([[@Ireland-2009aa]](y)):
 - The _elements_ of CE strategy, i.e., top management's entrepreneurial strategic vision for the firm, organizational architectures that encourage entrepreneurial processes and behavior, and the generic forms of entrepreneurial process that are reflected in entrepreneurial behavior, and
 - the _outcomes_ of CE strategy, i.e., organizational outcomes resulting from entrepreneurial actions, including the development of competitive capability and strategic positioning
 
+
+<!--
+
+TODO: Verify whether this is a direct quote
+
+-->
