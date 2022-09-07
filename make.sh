@@ -463,6 +463,7 @@ _parse () {
 # Default Run
 #
 _run() {
+  export PARSED=""
   _parse
   _pdflatex
 }
@@ -936,7 +937,7 @@ read_options(){
         html)     _html;pause;;
         htlatex)  _htlatex;pause;;
         submit)   _submit;pause;;
-        p)        unset $PARSED;_parse;pause;;
+        p)        export PARSED="";_parse;pause;;
         moc)      _moc;pause;;
         unmoc)    _unmoc;pause;;
         wc)       _wc;pause;;
