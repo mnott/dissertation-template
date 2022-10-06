@@ -48,5 +48,6 @@ showanyglossary  : "false"  # Show any of Acronyms, Symbols, Glossary?
 showacronyms     : "false"  # Show Acronyms and Symbols?
 showglossary     : "false"  # Show Glossary?
 showindex        : "false"  # Show Index?
+---
 
 ```
