@@ -440,19 +440,23 @@ _remotes() {
 }
 
 _remote_add() {
+  _remotes
   read   -p "Enter Remote Name: [$remote_name] " remote_name
   if [[ "$remote_name" != "" ]]; then
     read -p "Enter Remote URL : " remote_url
     if [[ "$remote_url" != "" ]]; then
       git remote add "$remote_name" "$remote_url"
+      _remotes
     fi
   fi
 }
 
 _remote_delete() {
+  _remotes
   read   -p "Enter Remote Name: [$remote_name] " remote_name
   if [[ "$remote_name" != "" ]]; then
     git remote remove "$remote_name"
+    _remotes
   fi
 }
 
