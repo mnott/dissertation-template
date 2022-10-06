@@ -59,6 +59,13 @@ Add the http and user sections and configure accordingly:
 ![latex_win_gitbash_7.png](Attachments/latex_win_gitbash_7.png)
 
 
+Also, execute this command:
+
+```bash
+git config advice.addIgnoredFile false
+```
+
+
 
 ## Clone the Dissertation Template
 

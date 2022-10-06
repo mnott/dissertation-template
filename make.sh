@@ -318,7 +318,7 @@ _undebug() {
 #
 #################################################
 
-_input() {
+_context() {
   ls -1 "${ROOT}/Content/"
 
   if [[ "$ctxname" == "" ]]; then ctxname=$CONTEXT; fi
@@ -330,7 +330,7 @@ _input() {
   if [[ "" == "$ctxname" ]]; then return; fi
   if [[ -d ${ROOT}/Content/$ctxname ]]; then
     export INPUT="${ROOT}/Content/$ctxname"
-    export CONTEXT=$newname
+    export CONTEXT=$ctxname
     log INFO "Working on Content/$ctxname"
   else
     log ERROR "Content/$ctxname not found"
@@ -641,7 +641,7 @@ _parse () {
 # Default Run
 #
 _run() {
-  echo "Working on $CONTEXT"
+  log INFO "Working on $CONTEXT"
   export PARSED=""
   _parse
   _pdflatex
@@ -1098,7 +1098,7 @@ show_menus() {
     echo ""
     echo -e "${BLU}Housekeeping${STD}"
     echo ""
-    echo -e "${GRE}[input]${STD}            Select Document Context"
+    echo -e "${GRE}[context]${STD}          Select Document Context"
     echo -e "${GRE}[create]${STD}           Create Document Context from Template"
     echo -e "${GRE}[delete]${STD}           Delete Document Context"
 
@@ -1135,7 +1135,7 @@ read_options(){
     read -p "$(echo -e ${GRE}"[Enter] "$STD) to run, choice or q to exit: " choice
     case $choice in
         "")            _run;pause;;
-        input)         _input;pause;;
+        context)       _context;pause;;
         create)        _create;pause;;
         delete)        _delete;pause;;
         pdf)           _pdf;pause;;
