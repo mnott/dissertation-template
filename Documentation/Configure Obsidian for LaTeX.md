@@ -15,5 +15,23 @@ Go to Settings, Community Plugins, Browse, search for and install Citations Plug
 
 Configure it as shown here (set the path to where ever you actually put the Bibliography file):
 
-![latex_win_obsidian.png](latex_win_obsidian.png)
+![latex_win_obsidian.png](Attachments/latex_win_obsidian.png)
 
+
+![latex_win_obsidian_2.png](Attachments/latex_win_obsidian_2.png)
+
+
+This is the template that I use for new citations notes:
+
+```
+{{authorString}}
+year: {{year}}
+---
+[See in BibDesk](x-bdsk://{{citekey}})
+
+#source
+
+## Notes and Quotes
+```
+
+Note that the BibDesk link only really works under MacOS; this allows you to jump, from a given citation note, directly to the BibDesk entry in your bibliography.

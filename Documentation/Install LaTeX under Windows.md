@@ -15,7 +15,7 @@ pdflatex --version
 
 ## Install Sublime Text
 
-Download Sublime Text from [here](https://www.sublimetext.com/)
+Download Sublime Text from [here](https://www.sublimetext.com/) Sublime Text is not strictly needed, but very useful.
 
 
 ## Install GitBash
@@ -27,7 +27,7 @@ Select "Add Git Bash Profile to Windows Terminal:"
 ![latex_win_gitbash_1.png](Attachments/latex_win_gitbash_1.png)
 
 
-Use Sublime Text as Git's default editor:
+Use Sublime Text as Git's default editor (or anything else should you so prefer):
 
 ![latex_win_gitbash_2.png](Attachments/latex_win_gitbash_2.png)
 
@@ -49,7 +49,7 @@ Activate experimental options:
 
 ## Configure Git
 
-Use Sublime Text to edit the .gitconfig file in your home directory:
+Use Sublime Text or any other editor to edit the .gitconfig file in your home directory:
 
 ![latex_win_gitbash_6.png](Attachments/latex_win_gitbash_6.png)
 
@@ -70,10 +70,15 @@ Open a GitBash shell and do this:
 
 ## Install Pandoc
 
+The make script uses Pandoc for some of the parsing. 
+
 Install Pandoc from [here](https://pandoc.org/installing.html).
 
 
+
 ## Install wget
+
+Wget does not come with GitBash.
 
 Download wget from [here](https://eternallybored.org/misc/wget/)
 
@@ -86,6 +91,11 @@ mv wget.exe /usr/local/bin
 ln -s /usr/bin/start /usr/bin/open
 ```
 
+You need to be Administrator in order to move the wget executable to `/usr/local/bin` (and to create that directory in the first place). 
+
+The last line above creates a symlink so that you'll have an `open` command available; `open` is the MacOS equivalent for the Windows `start`; the make script uses the `open` command to open e.g. a PDF in the system's default PDF viewer.
+
+
 ## Install some LaTeX Fonts
 
 ```bash
@@ -94,12 +104,6 @@ wget -q https://www.tug.org/fonts/getnonfreefonts/install-getnonfreefonts
 texlua ./install-getnonfreefonts
 getnonfreefonts.exe --sys -a
 ```
-
-
-## Install a PDF Viewer that does Auto-Refresh
-
-Install SumatraPDF from [here](https://www.sumatrapdfreader.org/download-free-pdf-viewer)
-
 
 
 ## Install Strawberry Perl
@@ -120,6 +124,10 @@ Close the shell and re-open it.
 cpanm install DATA::Dump
 ```
 
+
+## Install a PDF Viewer that does Auto-Refresh
+
+Install SumatraPDF from [here](https://www.sumatrapdfreader.org/download-free-pdf-viewer)
 
 ## Install Jabref
 
