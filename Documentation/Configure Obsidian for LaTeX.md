@@ -15,5 +15,5 @@ Go to Settings, Community Plugins, Browse, search for and install Citations Plug
 
 Configure it as shown here (set the path to where ever you actually put the Bibliography file):
 
-![latex_win_obsidian_1.png](Attachments/latex_win_obsidian_1.png)
+![latex_win_obsidian.png](latex_win_obsidian.png)
 
