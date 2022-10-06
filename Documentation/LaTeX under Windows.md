@@ -12,7 +12,7 @@ Test the installation like so:
 pdflatex --version
 ```
 
-![[latex_win_install_test.png]]
+![latex_win_install_test.png](Attachments/latex_win_install_test.png)
 
 
 ## Install Sublime Text
@@ -26,39 +26,39 @@ Install Git Bash from [here](https://gitforwindows.org/)
 
 Select "Add Git Bash Profile to Windows Terminal:"
 
-![[latex_win_gitbash_1.png]]
+![latex_win_gitbash_1.png](Attachments/latex_win_gitbash_1.png)
 
 
 Use Sublime Text as Git's default editor:
 
-![[latex_win_gitbash_2.png]]
+![latex_win_gitbash_2.png](Attachments/latex_win_gitbash_2.png)
 
 
 Select "Checkout as-is, commit as-is":
 
-![[latex_win_gitbash_3.png]]
+![latex_win_gitbash_3.png](Attachments/latex_win_gitbash_3.png)
 
 
 Enable symbolic links:
 
-![[latex_win_gitbash_4.png]]
+![latex_win_gitbash_4.png](Attachments/latex_win_gitbash_4.png)
 
 
 Activate experimental options:
 
-![[latex_win_gitbash_5.png]]
+![latex_win_gitbash_5.png](Attachments/latex_win_gitbash_5.png)
 
 
 ## Configure Git
 
 Use Sublime Text to edit the .gitconfig file in your home directory:
 
-![[latex_win_gitbash_6.png]]
+![latex_win_gitbash_6.png](Attachments/latex_win_gitbash_6.png)
 
 
 Add the http and user sections and configure accordingly:
 
-![[latex_win_gitbash_7.png]]
+![latex_win_gitbash_7.png](Attachments/latex_win_gitbash_7.png)
 
 
 
@@ -66,7 +66,7 @@ Add the http and user sections and configure accordingly:
 
 Open a GitBash shell and do this:
 
-![[latex_win_gitbash_8.png]]
+![latex_win_gitbash_8.png](Attachments/latex_win_gitbash_8.png)
 
 
 
