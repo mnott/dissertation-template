@@ -35,3 +35,18 @@ year: {{year}}
 ```
 
 Note that the BibDesk link only really works under MacOS; this allows you to jump, from a given citation note, directly to the BibDesk entry in your bibliography.
+
+
+## Configure Hotkeys
+Open the Hotkeys configuration for Obsidian, filter for `citations` and set the hotkeys as marked below:
+
+![](Attachments/latex_win_obsidian_3.png)
+
+
+With that, you can
+
+1. Use `Ctrl+Shift+I` to insert a citation
+2. Use `Ctrl+Shift+O` to insert a reference note
+
+
+
