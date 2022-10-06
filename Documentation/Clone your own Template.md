@@ -49,3 +49,11 @@ Just remember that you choose the right working context if you restart the LaTeX
 2. Set the `CONTEXT` environment variable
 3. Change `make.sh` at the top, as shown above.
 
+## Delete a Context
+
+If you want to delete a Context, you can do this:
+
+![](Attachments/latex_make_sh_delete.png)
+
+Note that you'll need to enter the name of the Context twice, in order to prevent accidential deletion.
+
