@@ -2,7 +2,8 @@
 
 ### Overview
 
-![[fig/tree.jpg]]
+
+![[fig/tree.png]]
 ```latex
 \begin{exhibit}[The Four Rings Model]{The Four Rings Model}[16][.51][r]
 \medskip

@@ -4,6 +4,7 @@
 
 A counter-argument to the relevance of this research, that an organization could bring forward, might be that their program is already very efficient at selecting teams and ideas and at improving their quality. As we show in this section, the opposite is the case.
 
+![[fig/costs.png]]
 ```latex
 \begin{exhibit}{Impact of Errors}[20][.465][r]
 \medskip

@@ -1,6 +1,7 @@
 #### Theoretical Framework
 Based on the units of analysis mentioned in the previous section, we are planning to use three analytical frameworks in order to assess each unit of analysis, and to bring them together into one single framework as shown in Exhibit  [vr#exhibit:Theoretical-Framework].
 
+![[fig/Model.png]]
 ```latex
 \bigskip 
 \begin{exhibit}{Theoretical Framework}[21][1][r]

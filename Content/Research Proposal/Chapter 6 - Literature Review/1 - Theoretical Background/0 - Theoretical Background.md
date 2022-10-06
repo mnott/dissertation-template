@@ -2,6 +2,10 @@
 
 From a historical perspective, this literature review contextualizes the key articles about Organizational Entrepreneurship since 1972, showing the main concepts they address and the shifts in perspectives and theory that they induce (see Exhibit [r#exhibit:Historical-Literature-Review]): After first sporadic reviews of the topic ([[@Peterson-1971aa]](c); [[@Hill-1972aa]](c)) in the 1970s, the term "Intrapreneurship" is coined by [[@Pinchot-1985aa]](t), and while [[@Burgelman-1984aa]](t) theorizes that innovative initiatives inside organizations would be driven mainly from lower ranks of the organization (a claim that [[@Hornsby-2009aa]](t) are later able to empirically disprove) the first major contradiction against Pinchot's model comes from [[@Montago-1986aa]](t) who caution that Pinchot's model would ultimately motivate entrepreneurs to leave the organization, thereby creating a brain-drain; in other words, that rather than about structural prescripts, Corporate Entrepreneurship is about the most innovative people that an organization needs to retain. In the 1990s, [[@Kuratko-1990aa]](t) establish their "Intrapreneurship Assessment Instrument (IAI)" quantifying three antecedents that would favor entrepreneurial engagement inside organizations.
 
+
+![[fig/lr-diag.png]]
+
+
 ```latex
 \bigskip 
 \begin{exhibit}{Historical Literature Review}[21][1][r]
