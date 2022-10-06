@@ -660,7 +660,10 @@ _pdf () {
   _run
 
   if [[ -f "${ROOT}/${FILE}.pdf" ]]; then
-    open "${ROOT}/${FILE}.pdf"
+    (
+      cd "${ROOT}"
+      open "${FILE}.pdf"
+    )
   else
     log ERROR "! Could not create ${ROOT}/${FILE}.pdf"
   fi
