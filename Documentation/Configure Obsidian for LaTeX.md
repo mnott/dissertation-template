@@ -84,4 +84,11 @@ As you can see in the above screen shot, the `0 - Literature Review` document is
 
 ## Install the Word Count Plugin
 
-Use the community plugins installer option of Obsidian to install the Novel Word Count plugin; this will give you word counts right in the folder tree.
+Use the community plugins installer option of Obsidian to install the Novel Word Count plugin; this will give you word counts right in the folder tree:
+
+![](Attachments/latex_obsidian_word_count.png)
+
+
+
+
+
