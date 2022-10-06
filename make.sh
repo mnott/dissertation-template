@@ -1083,6 +1083,13 @@ show_menus() {
     echo -e "--------------------------------------------------------"
 
     echo ""
+    echo -e "${BLU}Context${STD}"
+    echo ""
+    echo -e "${GRE}[context]${STD}          Select Document Context"
+    echo -e "${GRE}[create]${STD}           Create Document Context from Template"
+    echo -e "${GRE}[delete]${STD}           Delete Document Context"
+
+    echo ""
     echo -e "${BLU}LaTeX${STD}"
     echo ""
     echo -e "${GRE}[run]${STD}              Run LaTeX, update PDF"
@@ -1101,11 +1108,6 @@ show_menus() {
 
     echo ""
     echo -e "${BLU}Housekeeping${STD}"
-    echo ""
-    echo -e "${GRE}[context]${STD}          Select Document Context"
-    echo -e "${GRE}[create]${STD}           Create Document Context from Template"
-    echo -e "${GRE}[delete]${STD}           Delete Document Context"
-
     echo ""
     echo -e "${GRE}[clean]${STD}            Clean Auxiliary files"
 
