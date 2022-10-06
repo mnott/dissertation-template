@@ -408,13 +408,6 @@ _add() {
   log SUCCESS Done.
 }
 
-_diff() {
-  git diff
-}
-
-_pull() {
-  git pull
-}
 
 _commit() {
   read -p "Enter Commit Message " commit_msg
@@ -424,22 +417,57 @@ _commit() {
   fi
 }
 
+
+_pull() {
+  git pull
+}
+
+
 _push() {
   log INFO Pushing repository...
-  git push
+  git push -v
   log SUCCESS Done.
 }
 
 
-# git remote set-url origin https://github.com/mnott/dba-leadership-wldq1
+_diff() {
+  git diff
+}
 
-_list_remotes() {
+
+_remotes() {
   git remote -v | awk -v GRE=${GRE} -v STD=${STD} {'printf ("%s%s%s\t%s\n", GRE, $1, STD, $2)'} | sort | uniq
 }
 
-#_repository {
-#
-#}
+_remote_add() {
+  read   -p "Enter Remote Name: [$remote_name] " remote_name
+  if [[ "$remote_name" != "" ]]; then
+    read -p "Enter Remote URL : " remote_url
+    if [[ "$remote_url" != "" ]]; then
+      git remote add "$remote_name" "$remote_url"
+    fi
+  fi
+}
+
+_remote_delete() {
+  read   -p "Enter Remote Name: [$remote_name] " remote_name
+  if [[ "$remote_name" != "" ]]; then
+    git remote remove "$remote_name"
+  fi
+}
+
+_remote_rename() {
+  _remotes
+  read   -p "Enter Remote Old Name: " remote_name
+  if [[ "$remote_name" != "" ]]; then
+    read -p "Enter Remote New Name: " newname
+    if [[ "$newname" != "" ]]; then
+      git remote rename "$remote_name" "$newname"
+      remote_name=$newname
+      _remotes
+    fi
+  fi
+}
 
 
 #################################################
@@ -1046,36 +1074,50 @@ _clean () {
 
 show_menus() {
     clear
-    echo -e "-------------------------------------------"
-    echo -e "       ${BLU}L a T e X      C O N T R O L${STD}"
-    echo -e "-------------------------------------------"
+    echo -e "--------------------------------------------------------"
+    echo -e "              ${BLU}L a T e X      C O N T R O L${STD}"
+    echo -e "--------------------------------------------------------"
 
     echo ""
     echo -e "${BLU}LaTeX${STD}"
     echo ""
-    echo -e "${GRE}[run]${STD}     Run LaTeX, update PDF"
-    echo -e "${GRE}[pdf]${STD}     Run LaTeX,   open PDF"
-    echo -e "${GRE}[html]${STD}    Run htLaTeX, open HTML"
-    echo -e "${GRE}[submit]${STD}  Run Submission Target"
+    echo -e "${GRE}[run]${STD}              Run LaTeX, update PDF"
+    echo -e "${GRE}[pdf]${STD}              Run LaTeX,   open PDF"
+    echo -e "${GRE}[html]${STD}             Run htLaTeX, open HTML"
+    echo -e "${GRE}[submit]${STD}           Run Submission Target"
     echo ""
-    echo -e "${GRE}[parse]${STD}   Run parser only"
-    echo -e "${GRE}[wc]${STD}      Word Count"
+    echo -e "${GRE}[parse]${STD}            Run parser only"
+    echo -e "${GRE}[wc]${STD}               Word Count"
 
     echo ""
     echo -e "${BLU}Obsidian${STD}"
     echo ""
-    echo -e "${GRE}[moc]${STD}     Create MOCs"
-    echo -e "${GRE}[unmoc]${STD}   Remove MOCs"
+    echo -e "${GRE}[moc]${STD}              Create MOCs"
+    echo -e "${GRE}[unmoc]${STD}            Remove MOCs"
 
     echo ""
     echo -e "${BLU}Housekeeping${STD}"
     echo ""
-    echo -e "${GRE}[input]${STD}   Select Document Context"
-    echo -e "${GRE}[create]${STD}  Create Document Context from Template"
-    echo -e "${GRE}[delete]${STD}  Delete Document Context"
+    echo -e "${GRE}[input]${STD}            Select Document Context"
+    echo -e "${GRE}[create]${STD}           Create Document Context from Template"
+    echo -e "${GRE}[delete]${STD}           Delete Document Context"
 
     echo ""
-    echo -e "${GRE}[clean]${STD}   Clean Auxiliary files"
+    echo -e "${GRE}[clean]${STD}            Clean Auxiliary files"
+
+    echo ""
+    echo -e "${BLU}Git${STD}"
+    echo ""
+    echo -e "${GRE}[add]${STD}              Add all new files"
+    echo -e "${GRE}[diff]${STD}             Show changes"
+    echo -e "${GRE}[commit]${STD}           Commit changes"
+    echo -e "${GRE}[pull]${STD}             Pull from repository"
+    echo -e "${GRE}[push]${STD}             Push to repository"
+    echo -e "${GRE}[remotes]${STD}          Show remotes"
+    echo -e "${GRE}[remote_add]${STD}       Add remote"
+    echo -e "${GRE}[remote_delete]${STD}    Delete remote"
+    echo -e "${GRE}[remote_rename]${STD}    Rename remote"
+    echo ""
 
     echo ""
     echo -e "${BLU}Internal${STD}"
@@ -1093,37 +1135,47 @@ read_options(){
     #read -p "${BLU}Enter${STD} to run, choice or q to exit: " choice
     read -p "$(echo -e ${GRE}"[Enter] "$STD) to run, choice or q to exit: " choice
     case $choice in
-        "")       _run;pause;;
-        input)    _input;pause;;
-        create)   _create;pause;;
-        delete)   _delete;pause;;
-        pdf)      _pdf;pause;;
-        run)      _pdflatex;pause;;
-        pdflatex) _pdflatex;pause;;
-        html)     _html;pause;;
-        htlatex)  _htlatex;pause;;
-        submit)   _submit;pause;;
-        parse)    export PARSED="";_parse;pause;;
-        moc)      _moc;pause;;
-        unmoc)    _unmoc;pause;;
-        wc)       _wc;pause;;
-        clean)    _clean;pause;;
-        verbose)  if [[ ${VERBOSE} == "verbose" ]]; then
-                    _unverbose;
-                    _undebug;
-                  else
-                    _debug;
-                    _verbose;
-                  fi;
-                  pause;;
-        debug)    if [[ ${LOGLEVEL} != "DEBUG" ]]; then
-                    _debug;
-                  else
-                    _undebug;
-                  fi;
-                  pause;;
-        q|x) exit 0;;
-        *) echo -e "${RED}Error...${STD} [${choice}]" && sleep 1
+        "")            _run;pause;;
+        input)         _input;pause;;
+        create)        _create;pause;;
+        delete)        _delete;pause;;
+        pdf)           _pdf;pause;;
+        run)           _pdflatex;pause;;
+        pdflatex)      _pdflatex;pause;;
+        html)          _html;pause;;
+        htlatex)       _htlatex;pause;;
+        submit)        _submit;pause;;
+        parse)         export PARSED="";_parse;pause;;
+        moc)           _moc;pause;;
+        unmoc)         _unmoc;pause;;
+        wc)            _wc;pause;;
+        clean)         _clean;pause;;
+        add)           _add;pause;;
+        diff)          _diff;pause;;
+        commit)        _commit;pause;;
+        pull)          _pull;pause;;
+        push)          _push;pause;;
+        remotes)       _remotes;pause;;
+        remote_add)    _remote_add;pause;;
+        remote_delete) _remote_delete;pause;;
+        remote_rename) _remote_rename;pause;;
+
+        verbose)       if [[ ${VERBOSE} == "verbose" ]]; then
+                         _unverbose;
+                         _undebug;
+                       else
+                         _debug;
+                         _verbose;
+                       fi;
+                       pause;;
+        debug)         if [[ ${LOGLEVEL} != "DEBUG" ]]; then
+                         _debug;
+                       else
+                         _undebug;
+                       fi;
+                       pause;;
+        q|x)           exit 0;;
+        *)             echo -e "${RED}Error...${STD} [${choice}]" && sleep 1
     esac
 }
 
