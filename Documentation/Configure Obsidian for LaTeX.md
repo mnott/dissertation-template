@@ -50,3 +50,38 @@ With that, you can
 
 
 
+## Install Custom File Sorting Plugin
+
+Obsidian sorts files always after foldes. This is annoying if you want to, e.g., have an overview file in a folder, like `0 - Overview`, and then a number of subfolders. The LaTeX shell will sort them correctly, but you would see a different order in Obsidian. To fix this, we install the sorting plugin.
+
+### Installing the plugin using BRAT
+
+1. Install the BRAT plugin
+	1. Open `Settings` -> `Community Plugins`
+	2. Disable restricted (formerly 'safe') mode, if enabled
+	3. *Browse*, and search for "BRAT"
+	4. Install the latest version of **Obsidian 42 - BRAT**
+2. Open BRAT settings (`Settings` -> `Obsidian42 - BRAT`)
+	1. Scroll to the `Beta Plugin List` section
+	2. `Add Beta Plugin`
+	3. Specify this repository: `SebastianMC/obsidian-custom-sort`
+3. Enable the `Custom File Explorer sorting` plugin (`Settings` -> `Community Plugins`)
+
+### Configuring the Plugin
+
+Configure the plugin as follows:
+
+![](Attachments/latex_obsidian_sorting_1.png)
+
+Next, to activate the plugin, find the plugin section in the ribbon and click on it:
+
+![](Attachments/latex_obsidian_sorting_2.png)
+
+
+As you can see in the above screen shot, the `0 - Literature Review` document is shown *before* all following content even though that content is in subfolders.
+
+
+
+## Install the Word Count Plugin
+
+Use the community plugins installer option of Obsidian to install the Novel Word Count plugin; this will give you word counts right in the folder tree.
