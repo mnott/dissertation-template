@@ -1,8 +1,8 @@
 # Clone your own Template
 
-By default, the `Content` directory contains two folders:
+By default, the `Content` directory contains at least two folders:
 
-1. Research Proposal: This is some stuff I am writing
+1. Research Proposal: This is some stuff I am writing; I'm leaving this in there as you can probably benefit from it for some advanced usage.
 2. Template: A Template that you can use
 
 These are all work contexts for the LaTeX shell.
