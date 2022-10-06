@@ -434,7 +434,7 @@ _parse () {
     find "${INPUT}/$i" -type f -name "*md" ! -name "$MOC" 2>/dev/null |
       sort |
       tr \\n \\0 |
-      xargs -0 -n1 -I % echo '%' >> "${DEST}/files.txt";
+      xargs -0 -I % echo '%' >> "${DEST}/files.txt";
   done < "${INPUT}/${INCLUDE}"
 
   #
@@ -806,7 +806,7 @@ __moc () {
     sort |
     sed 's|^./||' |
     tr \\n \\0 |
-    xargs -0 -n1 -I % echo "![[%]]" >>"$MOC";
+    xargs -0 -I % echo "![[%]]" >>"$MOC";
 }
 typeset -fx __moc
 
@@ -814,7 +814,7 @@ _moc () {
   while read i; do
     find "${INPUT}/$i" -type d 2>/dev/null |
     tr \\n \\0 |
-    xargs -0 -n1 -I % bash -c "__moc \"%\" \"${MOC}\";"
+    xargs -0 -I % bash -c "__moc \"%\" \"${MOC}\";"
   done < "${INPUT}/${INCLUDE}"
 
   while read i; do
@@ -822,7 +822,7 @@ _moc () {
       sed "s#${INPUT}/##g" |
       sort |
       tr \\n \\0 |
-      xargs -0 -n1 -I % perl -e 'my $f="%"; print "[[$f]]\n"; print "![[$f]]\n";' >>"${INPUT}/${MOC}"
+      xargs -0 -I % perl -e 'my $f="%"; print "[[$f]]\n"; print "![[$f]]\n";' >>"${INPUT}/${MOC}"
   #   sed "s#\(.*\)#![[\1]]#g" >>"${INPUT}/${MOC}"
   done < "${INPUT}/${INCLUDE}"
 
@@ -855,7 +855,7 @@ _clean () {
      find . -type f -name "$i" 2>/dev/null |
        sed 's|^./||' |
        tr \\n \\0 |
-       xargs -0 -n1 -I % rm -f "%";
+       xargs -0 -I % rm -f "%";
    # for f in `find "${ROOT}" -name "$i" -type f|grep -v .git|grep -v .png`; do
    #   echo rm -f "$f";
    # done;
