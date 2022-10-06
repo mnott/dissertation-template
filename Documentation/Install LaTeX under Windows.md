@@ -82,7 +82,6 @@ The make script uses Pandoc for some of the parsing.
 Install Pandoc from [here](https://pandoc.org/installing.html).
 
 
-
 ## Install wget
 
 Wget does not come with GitBash.
@@ -111,26 +110,6 @@ wget -q https://www.tug.org/fonts/getnonfreefonts/install-getnonfreefonts
 texlua ./install-getnonfreefonts
 getnonfreefonts.exe --sys -a
 ```
-
-
-## Install Strawberry Perl
-
-Go [here](https://strawberryperl.com/download/5.32.1.1/strawberry-perl-5.32.1.1-64bit.msi) and install Strawberry Perl.
-
-Add Strawberry Perl to the PATH: Open a GitBash shell and do this:
-
-```bash
-echo 'export PATH=/c/Strawberry/perl/bin:$PATH' >>~/.bash_profile
-```
-
-Close the shell and re-open it.
-
-## Install of Perl Modules
-
-```bash
-cpanm install DATA::Dump
-```
-
 
 ## Install a PDF Viewer that does Auto-Refresh
 
