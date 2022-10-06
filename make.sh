@@ -18,7 +18,10 @@
 #
 # Current Target
 
-INPUT="Content/Research Proposal"
+if [[ "$CONTEXT" == "" ]]; then
+  CONTEXT="Research Proposal"
+fi
+
 
 # Other Variables
 INCLUDE=include.md
@@ -56,7 +59,14 @@ if [[ -z $LOGLEVEL ]]; then export LOGLEVEL=INFO; fi
 export ROOT=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 export MAKE="$(cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" && pwd)/$(basename -- "${BASH_SOURCE[0]}")"
 export DEST="${ROOT}/${DEST}"
-export INPUT="${ROOT}/${INPUT}"
+export INPUT="${ROOT}/Content/${CONTEXT}"
+
+if [[ ! -d "$INPUT" ]]; then
+  echo "$CONTEXT not found"
+  exit 1
+fi
+
+
 
 #
 ###################################################
@@ -127,15 +137,6 @@ tex_files=(
 
 pause(){
   read -p "Press [Enter] key to continue..." fackEnterKey
-}
-
-
-#
-# read -i does not exist on Bash 3 on MacOS
-#
-function readinput() {
-  printf "$3[$5] "
-  read vmname && [ -n "$vmname" ] || vmname=$5
 }
 
 
@@ -313,6 +314,136 @@ _undebug() {
 
 #################################################
 #
+# Document Context Management
+#
+#################################################
+
+_input() {
+  ls -1 "${ROOT}/Content/"
+
+  if [[ "$ctxname" == "" ]]; then ctxname=$CONTEXT; fi
+
+  pvalue=$ctxname
+  read -p "Enter Document Context to work on: [$ctxname] " ctxname
+  if [[ "$ctxname" == "" ]]; then ctxname=$pvalue; fi
+
+  if [[ "" == "$ctxname" ]]; then return; fi
+  if [[ -d ${ROOT}/Content/$ctxname ]]; then
+    export INPUT="${ROOT}/Content/$ctxname"
+    export CONTEXT=$newname
+    log INFO "Working on Content/$ctxname"
+  else
+    log ERROR "Content/$ctxname not found"
+  fi
+}
+
+
+_create() {
+  ls -1 "${ROOT}/Content/"
+  pvalue=$oldname
+  read -p "Enter old Document Context to clone from: [$oldname] " oldname
+  if [[ "$oldname" == "" ]]; then oldname=$pvalue; fi
+
+  if [[ "" == "$oldname" ]]; then return; fi
+  if [[ -d ${ROOT}/Content/$oldname ]]; then
+    pvalue=$newname
+    read -p "Enter new Document Context to clone to  : [$newname] " newname
+    if [[ "$newname" == "" ]]; then
+      if [[ "$pvalue" != "" ]]; then
+        newname=$pvalue;
+      else
+        return
+      fi
+    fi
+    if [[ -d ${ROOT}/Content/$newname ]]; then
+      log ERROR "Content/$newname already exists."
+      return
+    else
+      log INFO "Duplicating Content/$oldname to Content/$newname"
+      cp -a "${ROOT}/Content/$oldname" "${ROOT}/Content/$newname"
+      ctxname=$newname
+      export CONTEXT=$newname
+      export INPUT="${ROOT}/Content/$ctxname"
+      log SUCCESS "Content/$ctxname created."
+    fi
+  else
+    log ERROR "Content/$oldname not found"
+  fi
+}
+
+
+_delete() {
+  ls -1 "${ROOT}/Content/"
+  pvalue=$ctxname
+  read -p "Enter Document Context to delete: [$ctxname] " ctxname
+  if [[ "$ctxname" == "" ]]; then ctxname=$pvalue; fi
+
+  if [[ "" == "$ctxname" ]]; then return; fi
+  if [[ ! -d "${ROOT}/Content/$ctxname" ]]; then
+    log ERROR "Content/$ctxname does not exist"
+    return
+  fi
+
+  read -p "Type $ctxname if you are sure to delete it. " response
+  if [[ "$ctxname" != "$response" ]]; then
+    response=""
+    log INFO "Nothing deleted."
+    return
+  fi
+
+  rm -rf "${ROOT}/Content/$ctxname"
+  log SUCCESS "Content/$ctxname was deleted."
+}
+
+
+#################################################
+#
+# Git
+#
+#################################################
+
+_add() {
+  log INFO Adding missing files to git...
+  git add .
+  log SUCCESS Done.
+}
+
+_diff() {
+  git diff
+}
+
+_pull() {
+  git pull
+}
+
+_commit() {
+  read -p "Enter Commit Message " commit_msg
+  if [[ "$commit_msg" != "" ]]; then
+    git commit -a -m "$commit_msg"
+    log SUCCESS Commit done.
+  fi
+}
+
+_push() {
+  log INFO Pushing repository...
+  git push
+  log SUCCESS Done.
+}
+
+
+# git remote set-url origin https://github.com/mnott/dba-leadership-wldq1
+
+_list_remotes() {
+  git remote -v | awk -v GRE=${GRE} -v STD=${STD} {'printf ("%s%s%s\t%s\n", GRE, $1, STD, $2)'} | sort | uniq
+}
+
+#_repository {
+#
+#}
+
+
+#################################################
+#
 # Initial Things we mostly always want to do.
 #
 #################################################
@@ -482,6 +613,7 @@ _parse () {
 # Default Run
 #
 _run() {
+  echo "Working on $CONTEXT"
   export PARSED=""
   _parse
   _pdflatex
@@ -917,25 +1049,39 @@ show_menus() {
     echo -e "-------------------------------------------"
     echo -e "       ${BLU}L a T e X      C O N T R O L${STD}"
     echo -e "-------------------------------------------"
-    echo ""
 
-    echo -e "${GRE}[run]${STD}    Run LaTeX, update PDF"
-    echo -e "${GRE}[submit]${STD} Run Submission Target"
     echo ""
+    echo -e "${BLU}LaTeX${STD}"
+    echo ""
+    echo -e "${GRE}[run]${STD}     Run LaTeX, update PDF"
+    echo -e "${GRE}[pdf]${STD}     Run LaTeX,   open PDF"
+    echo -e "${GRE}[html]${STD}    Run htLaTeX, open HTML"
+    echo -e "${GRE}[submit]${STD}  Run Submission Target"
+    echo ""
+    echo -e "${GRE}[parse]${STD}   Run parser only"
+    echo -e "${GRE}[wc]${STD}      Word Count"
 
-    echo -e "${GRE}[pdf]${STD}    Run LaTeX,   open PDF"
-    echo -e "${GRE}[html]${STD}   Run htLaTeX, open HTML"
     echo ""
-    echo -e "${GRE}[p]${STD}      Run parser only"
+    echo -e "${BLU}Obsidian${STD}"
     echo ""
-    echo -e "${GRE}[moc]${STD}    Create MOCs"
-    echo -e "${GRE}[unmoc]${STD}  Remove MOCs"
+    echo -e "${GRE}[moc]${STD}     Create MOCs"
+    echo -e "${GRE}[unmoc]${STD}   Remove MOCs"
+
     echo ""
-    echo -e "${GRE}[wc]${STD}     Word Count"
-    echo -e "${GRE}[c]${STD}      Clean Auxiliary files"
+    echo -e "${BLU}Housekeeping${STD}"
     echo ""
-    echo -e "${GRE}[d]${STD}      Set/Unset Debug   Mode"
-    echo -e "${GRE}[v]${STD}      Set/Unset Verbose Mode"
+    echo -e "${GRE}[input]${STD}   Select Document Context"
+    echo -e "${GRE}[create]${STD}  Create Document Context from Template"
+    echo -e "${GRE}[delete]${STD}  Delete Document Context"
+
+    echo ""
+    echo -e "${GRE}[clean]${STD}   Clean Auxiliary files"
+
+    echo ""
+    echo -e "${BLU}Internal${STD}"
+    echo ""
+    echo -e "${GRE}[debug]${STD}   Set/Unset Debug   Mode"
+    echo -e "${GRE}[verbose]${STD} Set/Unset Verbose Mode"
     echo ""
 
     echo ""
@@ -948,18 +1094,21 @@ read_options(){
     read -p "$(echo -e ${GRE}"[Enter] "$STD) to run, choice or q to exit: " choice
     case $choice in
         "")       _run;pause;;
+        input)    _input;pause;;
+        create)   _create;pause;;
+        delete)   _delete;pause;;
         pdf)      _pdf;pause;;
         run)      _pdflatex;pause;;
         pdflatex) _pdflatex;pause;;
         html)     _html;pause;;
         htlatex)  _htlatex;pause;;
         submit)   _submit;pause;;
-        p)        export PARSED="";_parse;pause;;
+        parse)    export PARSED="";_parse;pause;;
         moc)      _moc;pause;;
         unmoc)    _unmoc;pause;;
         wc)       _wc;pause;;
-        c)        _clean;pause;;
-        v)        if [[ ${VERBOSE} == "verbose" ]]; then
+        clean)    _clean;pause;;
+        verbose)  if [[ ${VERBOSE} == "verbose" ]]; then
                     _unverbose;
                     _undebug;
                   else
@@ -967,7 +1116,7 @@ read_options(){
                     _verbose;
                   fi;
                   pause;;
-        d)        if [[ ${LOGLEVEL} != "DEBUG" ]]; then
+        debug)    if [[ ${LOGLEVEL} != "DEBUG" ]]; then
                     _debug;
                   else
                     _undebug;
