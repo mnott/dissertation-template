@@ -1132,7 +1132,6 @@ show_menus() {
 read_options(){
     trap 'echo "";exit 0' SIGINT
     local choice
-    #read -p "${BLU}Enter${STD} to run, choice or q to exit: " choice
     read -p "$(echo -e ${GRE}"[Enter] "$STD) to run, choice or q to exit: " choice
     case $choice in
         "")            _run;pause;;
