@@ -3,7 +3,7 @@
 
 See [Basic Usage](Basic%20Usage.md) for how to get into the LaTeX shell that is used below.
 
-The first thing you should do is to create your own directory.  Create your own blank Github repository; assuming your Github user name is `john` and your repository is `dissertation`, then do this within the `make.sh`script:
+The first thing you should do is to create your own Git repository.  Create your own blank Github repository; assuming your Github user name is `john` and your repository is `dissertation`, then do this within the `make.sh`script:
 
 ## List the currently defined Repositories
 
