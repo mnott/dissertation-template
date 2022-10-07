@@ -1,17 +1,20 @@
 use strict;
 use warnings;
-# use Data::Dump "pp"; # Use as pp $var;
 
+my $doctype = "";
+if ($#ARGV + 1 > 0 ) {
+    $doctype = "_".$ARGV[0];
+    shift;
+}
 
 #
 # Load the Parser
 #
-my $parserfile = "templates/parser.cfg";
+my $parserfile = "templates/parser".$doctype.".cfg";
 my $parser = [];
 my $currentitem = "";
 my $itemlevel = '0';
 open my $info, $parserfile or die "Could not open $parserfile: $!";
-
 
 while ( my $line = <$info> ) {
 	$line =~ s/^#.*$//g;            # Lines starting as comments
