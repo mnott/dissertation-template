@@ -63,6 +63,7 @@ Also, execute this command:
 
 ```bash
 git config advice.addIgnoredFile false
+git config --global --add --bool push.autoSetupRemote true
 ```
 
 
