@@ -4,6 +4,8 @@
 # LaTeX Intermediate Files
 /Output
 
+# Python Stuff
+__pycache__
 
 # Obsidian Stuff
 #/Obsidian
