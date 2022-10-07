@@ -111,6 +111,29 @@ texlua ./install-getnonfreefonts
 getnonfreefonts.exe --sys -a
 ```
 
+
+## Install Python
+Execute this in your GitBash shell:
+
+```bash
+winpty python.exe --version
+```
+
+If Python is not installed, it will open a window asking you to install it:
+
+![](Attachments/latex_make_sh_python.png)
+
+
+After Python is installed, execute these commands in your GitBash shell:
+
+```bash
+echo "alias python='winpty python.exe'" >>~/.bash_profile
+echo "PATH=./templates/cfg:\$PATH" >>~/.bash_profile
+. ~/.bash_profile
+pip3 install html2text
+```
+
+
 ## Install a PDF Viewer that does Auto-Refresh
 
 Install SumatraPDF from [here](https://www.sumatrapdfreader.org/download-free-pdf-viewer)
