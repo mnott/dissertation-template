@@ -13,15 +13,6 @@
 # Configuration
 #
 
-#
-# Your work environment
-#
-# Current Target
-
-if [[ "$CONTEXT" == "" ]]; then
-  CONTEXT="Research Proposal"
-fi
-
 
 # Other Variables
 INCLUDE=include.md
@@ -66,6 +57,11 @@ if [[ ! -d "$INPUT" ]]; then
   exit 1
 fi
 
+#
+# Find out the doc type - this defines which
+# actual parser we use
+#
+export DOCTYPE=$(cat "${INPUT}/template.md" | grep doctype | awk '{print $3}' | sed 's/"//g')
 
 
 #
@@ -95,6 +91,7 @@ tex_files=(
   "*.glg"
   "*.glo"
   "*.gls"
+  "*.glsdefs"
   "*.htm*"
   "*.idv"
   "*.idx"
@@ -117,6 +114,8 @@ tex_files=(
   "*.svg"
   "*.syg"
   "*.syi"
+  "*.synctex.gz"
+  "*.tex"
   "*.tmp"
   "*.toc"
   "*.xref"
@@ -319,8 +318,10 @@ _undebug() {
 #################################################
 
 _context() {
-  ls -1 "${ROOT}/Content/"
-
+  (
+    cd "${ROOT}/Content/"
+    find "." -type d -name fig | perl -pe 's/\.\/(.*)\/.*/\1/g' | sort
+  )
   if [[ "$ctxname" == "" ]]; then ctxname=$CONTEXT; fi
 
   pvalue=$ctxname
@@ -331,7 +332,7 @@ _context() {
   if [[ -d ${ROOT}/Content/$ctxname ]]; then
     export INPUT="${ROOT}/Content/$ctxname"
     export CONTEXT=$ctxname
-    log INFO "Working on Content/$ctxname"
+    log INFO "+ Working on Content/$ctxname"
   else
     log ERROR "Content/$ctxname not found"
   fi
@@ -339,12 +340,16 @@ _context() {
 
 
 _create() {
-  ls -1 "${ROOT}/Content/"
+  cd "${ROOT}/Content/"
+  find "." -type d -name fig | perl -pe 's/\.\/(.*)\/.*/\1/g' | sort
   pvalue=$oldname
   read -p "Enter old Document Context to clone from: [$oldname] " oldname
   if [[ "$oldname" == "" ]]; then oldname=$pvalue; fi
 
-  if [[ "" == "$oldname" ]]; then return; fi
+  if [[ "" == "$oldname" ]]; then
+     cd "${ROOT}"
+      return;
+  fi
   if [[ -d ${ROOT}/Content/$oldname ]]; then
     pvalue=$newname
     read -p "Enter new Document Context to clone to  : [$newname] " newname
@@ -352,15 +357,18 @@ _create() {
       if [[ "$pvalue" != "" ]]; then
         newname=$pvalue;
       else
+        cd "${ROOT}"
         return
       fi
     fi
     if [[ -d ${ROOT}/Content/$newname ]]; then
       log ERROR "Content/$newname already exists."
+      cd "${ROOT}"
       return
     else
       log INFO "Duplicating Content/$oldname to Content/$newname"
-      cp -a "${ROOT}/Content/$oldname" "${ROOT}/Content/$newname"
+      mkdir -p "${ROOT}/Content/$newname"
+      cp -a "${ROOT}/Content/$oldname/"* "${ROOT}/Content/$newname"
       ctxname=$newname
       export CONTEXT=$newname
       export INPUT="${ROOT}/Content/$ctxname"
@@ -369,11 +377,13 @@ _create() {
   else
     log ERROR "Content/$oldname not found"
   fi
+  cd "${ROOT}"
 }
 
 
 _delete() {
-  ls -1 "${ROOT}/Content/"
+  cd "${ROOT}/Content/"
+  find "." -type d -name fig | perl -pe 's/\.\/(.*)\/.*/\1/g' | sort
   pvalue=$ctxname
   read -p "Enter Document Context to delete: [$ctxname] " ctxname
   if [[ "$ctxname" == "" ]]; then ctxname=$pvalue; fi
@@ -381,6 +391,7 @@ _delete() {
   if [[ "" == "$ctxname" ]]; then return; fi
   if [[ ! -d "${ROOT}/Content/$ctxname" ]]; then
     log ERROR "Content/$ctxname does not exist"
+    cd "${ROOT}"
     return
   fi
 
@@ -388,11 +399,13 @@ _delete() {
   if [[ "$ctxname" != "$response" ]]; then
     response=""
     log INFO "Nothing deleted."
+    cd "${ROOT}"
     return
   fi
 
   rm -rf "${ROOT}/Content/$ctxname"
   log SUCCESS "Content/$ctxname was deleted."
+  cd "${ROOT}"
 }
 
 
@@ -533,6 +546,14 @@ _parse () {
   fi
 
   #
+  # Check that we have a context
+  #
+  if [[ "$CONTEXT" == "" ]]; then
+    log ERROR "Enter context first."
+    return
+  fi
+
+  #
   # If the destination directory is missing, we might
   # just have cloned from github.
   #
@@ -555,6 +576,24 @@ _parse () {
       rm -rf "${DEST}/fig"
     fi
     ln -s "${INPUT}/fig" "${DEST}"
+  else
+    if [[ -e "${DEST}/fig" || -L "${DEST}/fig" ]]; then
+      rm -rf "${DEST}/fig"
+    fi
+  fi
+
+  #
+  # Re-link the tex directory for graphics
+  #
+  if [[ -d "${INPUT}/tex" ]]; then
+    if [[ -e "${DEST}/tex" || -L "${DEST}/tex" ]]; then
+      rm -rf "${DEST}/tex"
+    fi
+    ln -s "${INPUT}/tex" "${DEST}"
+  else
+    if [[ -e "${DEST}/tex" || -L "${DEST}/tex" ]]; then
+      rm -rf "${DEST}/tex"
+    fi
   fi
 
   #
@@ -603,11 +642,13 @@ _parse () {
   #
   # Parse the files
   #
+  #
+  export DOCTYPE=$(cat "${INPUT}/template.md" | grep doctype | awk '{print $3}' | sed 's/"//g')
   cat "${DEST}/files.txt" |
   while read in; do
     cat "$in" |
     perl -e 'while(<>) { print; }; print "\n\n";' |
-    perl "${ROOT}/templates/${PARSER}" >>"${DEST}/${FILE}.md";
+    perl "${ROOT}/templates/${PARSER}" "$DOCTYPE" >>"${DEST}/${FILE}.md";
   done
 
   #
@@ -645,7 +686,15 @@ _parse () {
 # Default Run
 #
 _run() {
-  log INFO "Working on $CONTEXT"
+  #
+  # Check that we have a context
+  #
+  if [[ "$CONTEXT" == "" ]]; then
+    log ERROR "Enter context first."
+    return
+  fi
+
+  log INFO "+ Working on $CONTEXT"
   export PARSED=""
   _parse
   _pdflatex
@@ -676,6 +725,14 @@ _pdf () {
 # Just update the PDF
 #
 _pdflatex () {
+  #
+  # Check that we have a context
+  #
+  if [[ "$CONTEXT" == "" ]]; then
+    log ERROR "Enter context first."
+    return
+  fi
+
   log DEBUG "> pdflatex"
   _check
 
@@ -687,12 +744,16 @@ _pdflatex () {
   fi;
   remake=0;
 
-  if grep -Fq "No file ${FILE}.acr"  "${DEST}/${FILE}.log"; then "${MAKE}" $VERBOSE acronyms; remake=1; fi;
-  if grep -Fq "No file ${FILE}.gls"  "${DEST}/${FILE}.log"; then "${MAKE}" $VERBOSE glossary; remake=1; fi;
-  if grep -Fq "No file ${FILE}.syi"  "${DEST}/${FILE}.log"; then "${MAKE}" $VERBOSE symbols;  remake=1; fi;
-  if grep -Fq "No file ${FILE}.ind"  "${DEST}/${FILE}.log"; then "${MAKE}" $VERBOSE index;    remake=1; fi;
-  if grep -Fq "Please (re)run Biber" "${DEST}/${FILE}.log"; then "${MAKE}" $VERBOSE biber;    remake=1; fi;
-  if grep -Fq "Please rerun LaTeX"   "${DEST}/${FILE}.log"; then remake=1; fi;
+  if [[ -f "${DEST}/${FILE}.log" ]]; then
+    if grep -Fq "No file ${FILE}.acr"  "${DEST}/${FILE}.log"; then "${MAKE}" $VERBOSE acronyms; remake=1; fi;
+    if grep -Fq "No file ${FILE}.gls"  "${DEST}/${FILE}.log"; then "${MAKE}" $VERBOSE glossary; remake=1; fi;
+    if grep -Fq "No file ${FILE}.syi"  "${DEST}/${FILE}.log"; then "${MAKE}" $VERBOSE symbols;  remake=1; fi;
+    if grep -Fq "No file ${FILE}.ind"  "${DEST}/${FILE}.log"; then "${MAKE}" $VERBOSE index;    remake=1; fi;
+    if grep -Fq "Please (re)run Biber" "${DEST}/${FILE}.log"; then "${MAKE}" $VERBOSE biber;    remake=1; fi;
+    if grep -Fq "Please rerun LaTeX"   "${DEST}/${FILE}.log"; then remake=1; fi;
+  else
+    remake=1;
+  fi
   if [[ "$remake" == "1" ]] ; then "${MAKE}" $VERBOSE pdflatex; fi;
 
   if [ -f "${DEST}/${FILE}.pdf" ]; then mv "${DEST}/${FILE}.pdf" "$ROOT/" >/dev/null 2>&1; fi;
@@ -717,6 +778,14 @@ _pdflatex () {
 # Create and open HTML
 #
 _html () {
+  #
+  # Check that we have a context
+  #
+  if [[ "$CONTEXT" == "" ]]; then
+    log ERROR "Enter context first."
+    return
+  fi
+
   log DEBUG "> html"
   _parse
   _htlatex
@@ -735,6 +804,14 @@ _html () {
 # Just update the HTML
 #
 _htlatex () {
+  #
+  # Check that we have a context
+  #
+  if [[ "$CONTEXT" == "" ]]; then
+    log ERROR "Enter context first."
+    return
+  fi
+
   log DEBUG "> htlatex $VERBOSE"
   _check
 
@@ -752,12 +829,16 @@ _htlatex () {
 
   mv "${FILE}.sav.tex" "${FILE}.tex"
 
-  if grep -Fq "No file ${FILE}.acr"  "$DEST/${FILE}.log"; then "${MAKE}" $VERBOSE acronyms; remake=1; log INFO "+ Needed to make Acronyms."; fi;
-  if grep -Fq "No file ${FILE}.gls"  "$DEST/${FILE}.log"; then "${MAKE}" $VERBOSE glossary; remake=1; log INFO "+ Needed to make Glossary."; fi;
-  if grep -Fq "No file ${FILE}.syi"  "$DEST/${FILE}.log"; then "${MAKE}" $VERBOSE symbols;  remake=1; log INFO "+ Needed to make Symbols. "; fi;
-  if grep -Fq "No file ${FILE}.ind"  "$DEST/${FILE}.log"; then "${MAKE}" $VERBOSE index;    remake=1; log INFO "+ Needed to make Index.   "; fi;
-  if grep -Fq "Please (re)run Biber" "$DEST/${FILE}.log"; then "${MAKE}" $VERBOSE biber;    remake=1; log INFO "+ Needed to make Biber.   "; fi;
-  if grep -Fq "Please rerun LaTeX"   "$DEST/${FILE}.log"; then remake=1; fi;
+  if [[ -f "${DEST}/${FILE}.log" ]]; then
+    if grep -Fq "No file ${FILE}.acr"  "$DEST/${FILE}.log"; then "${MAKE}" $VERBOSE acronyms; remake=1; log INFO "+ Needed to make Acronyms."; fi;
+    if grep -Fq "No file ${FILE}.gls"  "$DEST/${FILE}.log"; then "${MAKE}" $VERBOSE glossary; remake=1; log INFO "+ Needed to make Glossary."; fi;
+    if grep -Fq "No file ${FILE}.syi"  "$DEST/${FILE}.log"; then "${MAKE}" $VERBOSE symbols;  remake=1; log INFO "+ Needed to make Symbols. "; fi;
+    if grep -Fq "No file ${FILE}.ind"  "$DEST/${FILE}.log"; then "${MAKE}" $VERBOSE index;    remake=1; log INFO "+ Needed to make Index.   "; fi;
+    if grep -Fq "Please (re)run Biber" "$DEST/${FILE}.log"; then "${MAKE}" $VERBOSE biber;    remake=1; log INFO "+ Needed to make Biber.   "; fi;
+    if grep -Fq "Please rerun LaTeX"   "$DEST/${FILE}.log"; then remake=1; fi;
+  else
+    remake=1;
+  fi
   if [[ "$remake" == "1" ]] ;        then "${MAKE}" $VERBOSE pdflatex; fi;
   if [[ -f "$DEST/${FILE}.pdf" ]];   then mv "${DEST}/${FILE}.pdf" "${ROOT}" >/dev/null 2>&1; fi;
 
@@ -776,6 +857,14 @@ _htlatex () {
 #################################################
 
 _submit () {
+  #
+  # Check that we have a context
+  #
+  if [[ "$CONTEXT" == "" ]]; then
+    log ERROR "Enter context first."
+    return
+  fi
+
   log DEBUG "> submit $VERBOSE"
   _check
   _clean
@@ -794,6 +883,14 @@ _submit () {
 #################################################
 
 _makeindex () {
+  #
+  # Check that we have a context
+  #
+  if [[ "$CONTEXT" == "" ]]; then
+    log ERROR "Enter context first."
+    return
+  fi
+
   log DEBUG "> makeindex"
   _check
 
@@ -806,7 +903,6 @@ _makeindex () {
         makeindex "${FILE}.idx";
       fi;
       makeindex -s "${FILE}.ist" -t "${FILE}.${LOGFILE}" -o "${FILE}.${OUTFILE}" "${FILE}.${INDEXFILE}";
-      exit
       if [ "${INDEXFILE}" == "idx" ] ; then
         makeindex "${FILE}.idx";
       fi;
@@ -829,6 +925,14 @@ _makeindex () {
 # Sort Acronyms
 #
 _acronyms () {
+  #
+  # Check that we have a context
+  #
+  if [[ "$CONTEXT" == "" ]]; then
+    log ERROR "Enter context first."
+    return
+  fi
+
   log DEBUG "> acronyms"
   _check
 
@@ -842,6 +946,14 @@ _acronyms () {
 # Sort Glossary
 #
 _glossary () {
+  #
+  # Check that we have a context
+  #
+  if [[ "$CONTEXT" == "" ]]; then
+    log ERROR "Enter context first."
+    return
+  fi
+
   log DEBUG "> glossary"
   _check
 
@@ -855,6 +967,14 @@ _glossary () {
 # Sort Symbols
 #
 _symbols () {
+  #
+  # Check that we have a context
+  #
+  if [[ "$CONTEXT" == "" ]]; then
+    log ERROR "Enter context first."
+    return
+  fi
+
   log DEBUG "> symbols"
   _check
 
@@ -868,6 +988,14 @@ _symbols () {
 # Sort Index
 #
 _index () {
+  #
+  # Check that we have a context
+  #
+  if [[ "$CONTEXT" == "" ]]; then
+    log ERROR "Enter context first."
+    return
+  fi
+
   log DEBUG "> index"
   _check
 
@@ -885,6 +1013,14 @@ _index () {
 #################################################
 
 _biber () {
+  #
+  # Check that we have a context
+  #
+  if [[ "$CONTEXT" == "" ]]; then
+    log ERROR "Enter context first."
+    return
+  fi
+
   log DEBUG "> biber"
   _check
 
@@ -907,10 +1043,12 @@ _biber () {
   #
   # Conditionally remake indices
   #
-  if grep -Fq "pdfTeX warning (dest): name{acn:" "$DEST/${FILE}.log"; then "${MAKE}" $VERBOSE acronyms; fi;
-  if grep -Fq "pdfTeX warning (dest): name{glo:" "$DEST/${FILE}.log"; then "${MAKE}" $VERBOSE glossary; fi;
-  if grep -Fq "pdfTeX warning (dest): name{syg:" "$DEST/${FILE}.log"; then "${MAKE}" $VERBOSE symbols;  fi;
-  if grep -Fq "pdfTeX warning (dest): name{idx:" "$DEST/${FILE}.log"; then "${MAKE}" $VERBOSE index;    fi;
+  if [[ -f "${DEST}/${FILE}.log" ]]; then
+    if grep -Fq "pdfTeX warning (dest): name{acn:" "$DEST/${FILE}.log"; then "${MAKE}" $VERBOSE acronyms; fi;
+    if grep -Fq "pdfTeX warning (dest): name{glo:" "$DEST/${FILE}.log"; then "${MAKE}" $VERBOSE glossary; fi;
+    if grep -Fq "pdfTeX warning (dest): name{syg:" "$DEST/${FILE}.log"; then "${MAKE}" $VERBOSE symbols;  fi;
+    if grep -Fq "pdfTeX warning (dest): name{idx:" "$DEST/${FILE}.log"; then "${MAKE}" $VERBOSE index;    fi;
+  fi
 
   log DEBUG "< biber"
 }
@@ -924,6 +1062,14 @@ _biber () {
 #################################################
 
 _wc () {
+  #
+  # Check that we have a context
+  #
+  if [[ "$CONTEXT" == "" ]]; then
+    log ERROR "Enter context first."
+    return
+  fi
+
   log DEBUG "> wc"
   _check
   _parse
@@ -943,7 +1089,7 @@ _wc () {
     cat "${FILE}.html" | perl -p -e 'BEGIN{undef$/};s%<!-- COUNT -->%##COUNT##%sg'| perl -p -e 'BEGIN{undef$/};s%<!-- /COUNT -->%##/COUNT##%sg' | html2text | perl -0777 -ne 'print "$1\n" while /##COUNT##(.*?)##\/COUNT##/gs' | perl -p -e 'BEGIN{undef$/};s%##COUNT##%%sg' | perl -p -e 'BEGIN{undef$/};s%##/COUNT##%%sg' | perl -p -e "s%#{1,} %%gm"| perl -p -e "s%\* %%gm" | perl -p -e "s%\\[\\[.*?\\)%%gm";
   fi;
   cat   "${FILE}.html" | perl -p -e 'BEGIN{undef$/};s%<!-- COUNT -->%##COUNT##%sg'| perl -p -e 'BEGIN{undef$/};s%<!-- /COUNT -->%##/COUNT##%sg' | html2text | perl -0777 -ne 'print "$1\n" while /##COUNT##(.*?)##\/COUNT##/gs' | perl -p -e 'BEGIN{undef$/};s%##COUNT##%%sg' | perl -p -e 'BEGIN{undef$/};s%##/COUNT##%%sg' | perl -p -e "s%#{1,} %%gm"| perl -p -e "s%\* %%gm" | perl -p -e "s%\\[\\[.*?\\)%%gm" >"${DEST}/wc.log";
-  cat   "${FILE}.html" | perl -p -e 'BEGIN{undef$/};s%<!-- COUNT -->%##COUNT##%sg'| perl -p -e 'BEGIN{undef$/};s%<!-- /COUNT -->%##/COUNT##%sg' | html2text | perl -0777 -ne 'print "$1\n" while /##COUNT##(.*?)##\/COUNT##/gs' | perl -p -e 'BEGIN{undef$/};s%##COUNT##%%sg' | perl -p -e 'BEGIN{undef$/};s%##/COUNT##%%sg' | perl -p -e "s%#{1,} %%gm"| perl -p -e "s%\* %%gm" | perl -p -e "s%\\[\\[.*?\\)%%gm" | wc -w | sed 's/ //g' >"${DEST}/wc.tex";
+  cat   "${FILE}.html" | perl -p -e 'BEGIN{undef$/};s%<!-- COUNT -->%##COUNT##%sg'| perl -p -e 'BEGIN{undef$/};s%<!-- /COUNT -->%##/COUNT##%sg' | html2text | perl -0777 -ne 'print "$1\n" while /##COUNT##(.*?)##\/COUNT##/gs' | perl -p -e 'BEGIN{undef$/};s%##COUNT##%%sg' | perl -p -e 'BEGIN{undef$/};s%##/COUNT##%%sg' | perl -p -e "s%#{1,} %%gm"| perl -p -e "s%\* %%gm" | perl -p -e "s%\\[\\[.*?\\)%%gm" | wc -w | sed 's/ //g' | tr '\n' ' ' >"${DEST}/wc.tex";
   words=`cat "$DEST/wc.tex"`
   log SUCCESS "+ The document contains ${words} words."
 
@@ -960,6 +1106,14 @@ _wc () {
 
 
 __moc () {
+  #
+  # Check that we have a context
+  #
+  if [[ "$CONTEXT" == "" ]]; then
+    log ERROR "Enter context first."
+    return
+  fi
+
   DIR=$1
   MOC=$2
 
@@ -978,6 +1132,14 @@ __moc () {
 typeset -fx __moc
 
 _moc () {
+  #
+  # Check that we have a context
+  #
+  if [[ "$CONTEXT" == "" ]]; then
+    log ERROR "Enter context first."
+    return
+  fi
+
   while read i; do
     find "${INPUT}/$i" -type d 2>/dev/null |
     tr \\n \\0 |
@@ -997,6 +1159,14 @@ _moc () {
 }
 
 _unmoc () {
+  #
+  # Check that we have a context
+  #
+  if [[ "$CONTEXT" == "" ]]; then
+    log ERROR "Enter context first."
+    return
+  fi
+
   find "${INPUT}/" -name "${MOC}" -type f 2>/dev/null |
     tr \\n \\0 |
     xargs -0 rm -f;
@@ -1012,6 +1182,14 @@ _unmoc () {
 #################################################
 
 _clean () {
+  #
+  # Check that we have a context
+  #
+  if [[ "$CONTEXT" == "" ]]; then
+    log ERROR "Enter context first."
+    return
+  fi
+
   log DEBUG "> clean"
   _check
 

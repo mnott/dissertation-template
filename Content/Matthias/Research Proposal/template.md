@@ -3,6 +3,7 @@
 #
 # Content Variables
 #
+titlepage        : "tex/titlepage.tex"
 booktitle        : "Intrapreneurship at SAP"
 titlecover       : "Research Proposal"
 degree           : "Doctor of Business Administration"

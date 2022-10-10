@@ -166,17 +166,18 @@ to0pt{\hskip-
 \centerline{
 \begin{tabular}{p{1.5cm}p{4.5cm}p{6.6cm}p{0.5cm}p{2.96cm}}
 \toprule[0.25pt]
-\makebox[1.50cm][l]{Title:} &
-\makebox[4.50cm][l]{\tbook}&
-\makebox[6.00cm][c]{\tsubtitlefooter}&
-\makebox[0.50cm][l]{$\:$Date:}&
-\makebox[2.96cm][r]{\today}
+\makebox[1.50cm][l]{\tfooterleftlabelup:} &
+\makebox[4.50cm][l]{\tfooterleftup}&
+\makebox[6.00cm][c]{\tfootermiddleup}&
+\makebox[0.50cm][l]{$\:$\tfooterrightlabelup:}&
+\makebox[2.96cm][r]{\tfooterrightup}
 \\%\midrule[0.15pt]
-\makebox[1.50cm][l]{Author:} &
-\makebox[4.50cm][l]{\tauthor}&
-\makebox[6.00cm][c]{\sequals{\showwordcount}{true}{\input{wc.tex}Words}{}}&
-\makebox[0.50cm][l]{$\:$Version:}&
-\makebox[2.96cm][r]{\tversion}
+\makebox[1.50cm][l]{\tfooterleftlabeldown:} &
+\makebox[4.50cm][l]{\tfooterleftdown}&
+%\makebox[6.00cm][c]{\tsubtitlecover\ (\tsubsubtitlecover)}&
+\makebox[6.00cm][c]{\tfootermiddledown}&
+\makebox[0.50cm][l]{$\:$\tfooterrightlabeldown:}&
+\makebox[2.96cm][r]{\tfooterrightdown}
 \\
 \bottomrule[0.25pt]
 \end {tabular}
@@ -370,11 +371,12 @@ to0pt{\hskip-
 % 20161126: mnott
 %           taking this out moving to scrivener: It does remove
 %           all boxes around graphics / frambeox
-%\setlength\fboxrule{0pt}
-%\setlength\fboxsep{0pt}
+\setlength\fboxrule{0pt}
+\setlength\fboxsep{0pt}
 
 \newcommand{\epigraphbox}[2]{%
 \wcounte%
+  \bigskip\ni
   %\vskip -1.5em%
   \colorbox{quotationcolour}{%
     \begin{minipage}{\linewidth}%
@@ -388,7 +390,9 @@ to0pt{\hskip-
         \setlength\marginparsep{-1.1em}%
         \normalsize\itshape%
         #1}%
-    \begin{flushright}\color{quotationmarkcolour}\footnotesize\textsc{#2}\hspace*{1em} ~\end{flushright}%
+    \begin{flushright}\color{quotationmarkcolour}\vskip .5em%
+    \footnotesize\textsc{#2}\hspace*{1em} ~\end{flushright}%
+    \vskip .5em%
     \epiline%
     \end{minipage}%
   }%

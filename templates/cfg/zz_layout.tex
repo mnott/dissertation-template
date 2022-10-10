@@ -220,6 +220,7 @@
 % Hyperref
 %=====================================================
 
+\providecommand\phantomsection{}
 \ifpdf
 \usepackage[%pdftex,
             pdfpagemode={UseOutlines},
@@ -290,32 +291,15 @@ section]         												% use section level for toc entries
 % Patch Glossaries so that only the first occurrence of a given glossary
 % entry is converted to a hyperlink, in order to avoid cluttering.
 %
-\makeatletter
-\ifnum\pdfstrcmp{\showanyglossary}{true}=\z@
-%% patch first occurence of "\@gls@link[#1]{#2}{\@glo@text}",
-%% as this is the one for \glsused{#2}
-\patchcmd{\@gls@}
-  {\@gls@link[#1]{#2}{\@glo@text}}
-  {\@gls@link[#1,hyper=false]{#2}{\@glo@text}}
-  {}{}
-\patchcmd{\@glspl@}
-  {\@gls@link[#1]{#2}}
-  {\@gls@link[#1,hyper=false]{#2}}
-  {}{}
-\patchcmd{\@Gls@}
-  {\@gls@link[#1]{#2}}
-  {\@gls@link[#1,hyper=false]{#2}}
-  {}{}
-\patchcmd{\@Glspl@}
-  {\@gls@link[#1]{#2}}
-  {\@gls@link[#1,hyper=false]{#2}}
-  {}{}
-  \patchcmd{\@GLS@}
-  {\@gls@link[#1]{#2}{\MakeUppercase{\@glo@text}}}
-  {\@gls@link[#1,hyper=false]{#2}{\MakeUppercase{\@glo@text}}}
-  {}{}
-\fi
-\makeatother
+\sequals{\showanyglossary}{true}{
+\renewcommand*{\glslinkcheckfirsthyperhook}{%
+  \ifglsused{\glslabel}%
+  {%
+    \setkeys{glslink}{hyper=false}%
+  }%
+  {}%
+}
+}{}
 
 %
 % Generate a list of symbols
@@ -342,9 +326,11 @@ section]         												% use section level for toc entries
 %
 % Load the glossary definitions the user writes
 %
-%\input{chapter_a1_acronyms}
-%\input{chapter_a2_symbols}
-%\input{chapter_a3_glossary}
+\sequals{\showacronyms}{true}{%
+  \input{tex/zz_appendix_acronyms}%
+  \input{tex/zz_appendix_symbols}%
+}{}
+\sequals{\showglossary}{true}{\input{tex/zz_appendix_glossary}}{}
 
 %
 % These commands actually create / update the different

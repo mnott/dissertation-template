@@ -3,14 +3,14 @@ use warnings;
 
 my $doctype = "";
 if ($#ARGV + 1 > 0 ) {
-    $doctype = "_".$ARGV[0];
+    $doctype = $ARGV[0];
     shift;
 }
 
 #
 # Load the Parser
 #
-my $parserfile = "templates/parser".$doctype.".cfg";
+my $parserfile = "templates/parser.cfg";
 my $parser = [];
 my $currentitem = "";
 my $itemlevel = '0';
@@ -81,6 +81,18 @@ sub parse {
 
         $content =~ s/!NOCOMMENT!/\%/g;
         $comment =~ s/!NOCOMMENT!/\%/g;
+
+        #
+        # Automatically downgrade parts to sections etc.
+        # when changing from book to article
+        #
+        if ( $doctype ne "book" ) {
+            $content =~ s/^\\subsubsection/\\subparagraph/g;
+            $content =~ s/^\\subsection/\\paragraph/g;
+            $content =~ s/^\\section/\\subsubsection/g;
+            $content =~ s/^\\chapter/\\subsection/g;
+            $content =~ s/^\\part/\\section/g;
+        }
 
         #
         # Test for itemizes
@@ -352,6 +364,14 @@ while (<>) {
 $file =~ s/```latex(.*?)```/$1/gms;
 
 $file =~ s/```(.*?)```/$1/gms;
+
+$file =~ s/`(.*?)`/$1/gms;
+
+#
+# Endnotes and Footnotes
+#
+$file =~ s/\s*__\(e\)(.*?)__/\\endnote{$1}/gms;
+$file =~ s/\s*__(.*?)__/\\footnote{$1}/gms;
 
 #
 # Print Output
