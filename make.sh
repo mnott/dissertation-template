@@ -1164,6 +1164,26 @@ _wc () {
   log DEBUG "< wc"
 }
 
+_swc() {
+  if [[ $# -gt 0 ]]; then
+    words=$*
+  else
+    if [ -s "${DEST}/wc.tex" ] ; then
+      if [ "$(cat "$DEST/wc.tex")" != "." ] ; then
+        words=`cat "$DEST/wc.tex"`
+      fi;
+    fi;
+    pwords=$words
+    pr="Enter Document Word Count: [$words] "
+    read -p "$pr" words
+    if [[ "$words" == "" ]]; then words=$pwords; fi
+  fi
+
+  if [[ "$words" == "" ]]; then words=0; fi
+
+  echo "$words" > "$DEST/wc.tex"
+}
+
 
 
 #################################################
@@ -1339,7 +1359,7 @@ show_menus() {
     echo -e "${GRE}[submit]${STD}                 Run Submission Target"
     echo ""
     echo -e "${GRE}[parse]${STD}                  Run parser only"
-    echo -e "${GRE}[wc]${STD}                     Word Count"
+    echo -e "${GRE}[(s)wc]${STD}                  (Set) Word Count"
 
     echo ""
     echo -e "${BLU}Obsidian${STD}"
@@ -1394,14 +1414,30 @@ read_options(){
     fi
 
     #
-    # Get first word; special handling for push / pull
+    # Get first word; special handling for commands that
+    # can take arguments
     #
     first=$(echo $choice | awk '{print $1;}')
-    if [[ "$first" == "push" || "$first" == "pull" || "$first" == "commit" || "$first" == "add" ]]; then
+    if [[    "$first" == "push"
+          || "$first" == "pull"
+          || "$first" == "commit"
+          || "$first" == "add"
+       ]]; then
         rest=$(echo $choice | awk '{for (i=2; i<=NF; i++) print $i}')
         _$first $rest
-        pause;
+        pause
         return
+    fi
+
+    #
+    # Some commands take just exactly one parameter
+    #
+    if [[    "$first" == "swc"
+       ]]; then
+        parm=$(echo $choice | awk '{for (i=2; i<3; i++) print $i}')
+        rest=$(echo $choice | awk '{for (i=3; i<=NF; i++) print $i}')
+        _$first $parm
+        choice=$rest
     fi
 
     if [[ "$choice" == "" ]]; then
