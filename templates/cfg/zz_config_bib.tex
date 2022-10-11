@@ -29,7 +29,30 @@
   %\usebibmacro{pageref}%
   %\usebibmacro{finentry}}
 
-
+%
+% This change became necessary in 2022 when for
+% some reason the apa style was suddenly putting
+% brackets around each note field.
+%
+% Redefine the addinfo2 to avoid square brackets
+% being printed in apa style around the note field
+%
+% To understand where e.g. the original definition
+% of the apa style is, execute this command:
+%
+% kpsewhich apa.bbx
+%
+\renewbibmacro*{addinfo2}{%
+   %\printtexte[brackets]{% DELETED
+   \iffieldequalstr{entrysubtype}{nonacademic}
+     {}
+     {\iffieldbibstring{entrysubtype}
+        {\bibcplstring{\thefield{entrysubtype}}}
+        {\printfield{entrysubtype}}}%
+    \setunit*{\addsemicolon\addspace}%
+    \ifentrytype{report}{}{\printfield{note}}%
+    %} % DELETED
+    }
 
 %\DeclareLanguageMapping{english}{custom-english-ordinal-sscript}
 %\DeclareFieldFormat{edition}{\ifinteger{#1}{\mkbibordedition{#1}\addthinspace{}ed.}{#1\isdot}}
@@ -56,17 +79,17 @@
 %\DeclareFieldFormat{pages}{#1}
  %\usepackage{url}
 
-  \defbibenvironment{bibliography}
-  {\list
-     {}
-     {\setlength{\leftmargin}{\bibhang}%
-      \setlength{\itemindent}{-\leftmargin}%
-      \setlength{\itemsep}{\bibitemsep}%
-      \setlength{\parsep}{\bibparsep}}}
-  {\endlist}
-  {\item}
+\defbibenvironment{bibliography}
+{\list
+ {}
+ {\setlength{\leftmargin}{\bibhang}%
+  \setlength{\itemindent}{-\leftmargin}%
+  \setlength{\itemsep}{\bibitemsep}%
+  \setlength{\parsep}{\bibparsep}}}
+{\endlist}
+{\item}
 
-  \setlength\bibitemsep{1.7\itemsep}
+\setlength\bibitemsep{1.7\itemsep}
 
 %\ifpdf
 %\renewcommand*{\finentrypunct}{\usebibmacro{pageref}}
