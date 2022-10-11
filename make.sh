@@ -1374,10 +1374,8 @@ show_menus() {
 
     echo -e "${BLU}Internal${STD}"
     echo ""
-    echo -e "${GRE}[debug]${STD}            Set   Debug   Mode"
-    echo -e "${GRE}[verbose]${STD}          Set   Verbose Mode"
-    echo -e "${GRE}[undebug]${STD}          Unset Debug   Mode"
-    echo -e "${GRE}[unverbose]${STD}        Unset Verbose Mode"
+    echo -e "${GRE}[(un)debug]${STD}        Set   Debug   Mode"
+    echo -e "${GRE}[(un)verbose]${STD}      Set   Verbose Mode"
     echo ""
 }
 
