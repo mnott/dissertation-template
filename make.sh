@@ -344,10 +344,10 @@ _context() {
   if [[ "$RLWRAP" == true ]]; then
     echo -e $pr
     ctxname=$(rlwrap -D 2 -H "${ROOT}/.context_history" sh -c 'read REPLY && echo $REPLY')
-    rm "${ROOT}/.context_history"
   else
     read -p "$pr" ctxname
   fi
+  rm -f "${ROOT}/.context_history"
 
   if [[ "$ctxname" == "" ]]; then ctxname=$pvalue; fi
 
@@ -373,10 +373,10 @@ _create() {
   if [[ "$RLWRAP" == true ]]; then
     echo -e $pr
     oldname=$(rlwrap -D 2 -H "${ROOT}/.context_history" sh -c 'read REPLY && echo $REPLY')
-    rm "${ROOT}/.context_history"
   else
     read -p "$pr" oldname
   fi
+  rm -f "${ROOT}/.context_history"
 
   if [[ "$oldname" == "" ]]; then oldname=$pvalue; fi
 
@@ -426,10 +426,10 @@ _delete() {
   if [[ "$RLWRAP" == true ]]; then
     echo -e $pr
     ctxname=$(rlwrap -D 2 -H "${ROOT}/.context_history" sh -c 'read REPLY && echo $REPLY')
-    rm "${ROOT}/.context_history"
   else
     read -p "$pr" ctxname
   fi
+  rm -f "${ROOT}/.context_history"
 
   if [[ "$ctxname" == "" ]]; then ctxname=$pvalue; fi
 
@@ -461,8 +461,14 @@ _delete() {
 #################################################
 
 _add() {
+  if [[ $# -gt 0 ]]; then
+    files=$*
+  else
+    files=.
+  fi
+
   log INFO Adding missing files to git...
-  git add .
+  git add -v $files
   log SUCCESS Done.
 }
 
@@ -1393,7 +1399,7 @@ read_options(){
     # Get first word; special handling for push / pull
     #
     first=$(echo $choice | awk '{print $1;}')
-    if [[ "$first" == "push" || "$first" == "pull" || "$first" == "commit" ]]; then
+    if [[ "$first" == "push" || "$first" == "pull" || "$first" == "commit" || "$first" == "add" ]]; then
         rest=$(echo $choice | awk '{for (i=2; i<=NF; i++) print $i}')
         _$first $rest
         pause;
