@@ -423,7 +423,11 @@ _add() {
 }
 
 _commit() {
-  read -p "Enter Commit Message " commit_msg
+  if [[ $# -gt 0 ]]; then
+    commit_msg=$*
+  else
+    read -p "Enter Commit Message " commit_msg
+  fi
   if [[ "$commit_msg" != "" ]]; then
     git commit -a -m "$commit_msg"
     log SUCCESS "+ Commit done."
@@ -431,12 +435,14 @@ _commit() {
 }
 
 _pull() {
-  git pull
+  log INFO "+ Pulling repository $*..."
+  git pull -v $*
+  log SUCCESS "+ Done."
 }
 
 _push() {
-  log INFO "+ Pushing repository..."
-  git push -v
+  log INFO "+ Pushing repository $*..."
+  git push -v $*
   log SUCCESS "+ Done."
 }
 
@@ -1340,13 +1346,22 @@ read_options(){
     pr="$(echo -e ${GRE}"[Enter] "$STD) to run, choice or q to exit: "
     echo -e $pr
     if [[ -f $(which rlwrap) ]]; then
-      choice=$(rlwrap -D 2 -H  $HISTORY sh -c 'read REPLY && echo $REPLY')
-      #choice=$(rlwrap -H $HISTORY bash -c "read -p \"$pr\" REPLY && echo $REPLY")
-      #echo " a $choice b "
-      #exit
+      choice=$(rlwrap -D 2 -H $HISTORY sh -c 'read REPLY && echo $REPLY')
     else
       read -p "$pr" choice
     fi
+
+    #
+    # Get first word; special handling for push / pull
+    #
+    first=$(echo $choice | awk '{print $1;}')
+    if [[ "$first" == "push" || "$first" == "pull" || "$first" == "commit" ]]; then
+        rest=$(echo $choice | awk '{for (i=2; i<=NF; i++) print $i}')
+        _$first $rest
+        pause;
+        return
+    fi
+
     for i in $choice; do
       case $i in
           "")               _run;pause;;
