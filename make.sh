@@ -72,7 +72,9 @@ fi
 # Find out the doc type - this defines which
 # actual parser we use
 #
-export DOCTYPE=$(cat "${INPUT}/template.md" | grep doctype | awk '{print $3}' | sed 's/"//g')
+if [[ -f "${INPUT}/template.md" ]]; then
+  export DOCTYPE=$(cat "${INPUT}/template.md" | grep doctype | awk '{print $3}' | sed 's/"//g')
+fi
 
 
 #
@@ -670,7 +672,6 @@ _parse () {
 
   #
   # Parse the files
-  #
   #
   export DOCTYPE=$(cat "${INPUT}/template.md" | grep doctype | awk '{print $3}' | sed 's/"//g')
   cat "${DEST}/files.txt" |
