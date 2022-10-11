@@ -1152,8 +1152,10 @@ _wc () {
   if [ -s "${DEST}/wc.tex" ] ; then
     if [ "$(cat "$DEST/wc.tex")" != "." ] ; then
       words=`cat "$DEST/wc.tex"`
-      log SUCCESS "+ The document contains ${words} words."
-      return;
+      if [[ "$words" != "" ]]; then
+        log SUCCESS "+ The document contains ${words} words."
+        return;
+      fi
     fi;
   fi;
   log INFO "+ Running wc..."
@@ -1186,7 +1188,8 @@ _swc() {
     if [[ "$words" == "" ]]; then words=$pwords; fi
   fi
 
-  if [[ "$words" == "" ]]; then words=0; fi
+  if [[ "$words" == ""    ]]; then words=0; fi
+  if [[ "$words" = "\"\"" ]]; then unset words; fi
 
   echo "$words" > "$DEST/wc.tex"
 }
