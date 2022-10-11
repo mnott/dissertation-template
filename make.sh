@@ -20,6 +20,7 @@ MOC="- -.md"
 DEST=Output
 FILE=document
 PARSER=parser.pl
+HISTORY=$HOME/.make_history
 
 #
 # LaTeX
@@ -304,7 +305,7 @@ _debug() {
 }
 
 _undebug() {
-  log SUCCESS "Unsetting Debug Mode"
+  log SUCCESS "+ Unsetting Debug Mode"
   export LOGLEVEL=INFO
   loglevels
 }
@@ -334,7 +335,7 @@ _context() {
     export CONTEXT=$ctxname
     log INFO "+ Working on Content/$ctxname"
   else
-    log ERROR "Content/$ctxname not found"
+    log ERROR "! Content/$ctxname not found"
   fi
 }
 
@@ -362,20 +363,20 @@ _create() {
       fi
     fi
     if [[ -d ${ROOT}/Content/$newname ]]; then
-      log ERROR "Content/$newname already exists."
+      log ERROR "! Content/$newname already exists."
       cd "${ROOT}"
       return
     else
-      log INFO "Duplicating Content/$oldname to Content/$newname"
+      log INFO "+ Duplicating Content/$oldname to Content/$newname"
       mkdir -p "${ROOT}/Content/$newname"
       cp -a "${ROOT}/Content/$oldname/"* "${ROOT}/Content/$newname"
       ctxname=$newname
       export CONTEXT=$newname
       export INPUT="${ROOT}/Content/$ctxname"
-      log SUCCESS "Content/$ctxname created."
+      log SUCCESS "+ Content/$ctxname created."
     fi
   else
-    log ERROR "Content/$oldname not found"
+    log ERROR "! Content/$oldname not found"
   fi
   cd "${ROOT}"
 }
@@ -390,7 +391,7 @@ _delete() {
 
   if [[ "" == "$ctxname" ]]; then return; fi
   if [[ ! -d "${ROOT}/Content/$ctxname" ]]; then
-    log ERROR "Content/$ctxname does not exist"
+    log ERROR "! Content/$ctxname does not exist"
     cd "${ROOT}"
     return
   fi
@@ -398,13 +399,13 @@ _delete() {
   read -p "Type $ctxname if you are sure to delete it. " response
   if [[ "$ctxname" != "$response" ]]; then
     response=""
-    log INFO "Nothing deleted."
+    log INFO "+ Nothing deleted."
     cd "${ROOT}"
     return
   fi
 
   rm -rf "${ROOT}/Content/$ctxname"
-  log SUCCESS "Content/$ctxname was deleted."
+  log SUCCESS "+ Content/$ctxname was deleted."
   cd "${ROOT}"
 }
 
@@ -421,32 +422,31 @@ _add() {
   log SUCCESS Done.
 }
 
-
 _commit() {
   read -p "Enter Commit Message " commit_msg
   if [[ "$commit_msg" != "" ]]; then
     git commit -a -m "$commit_msg"
-    log SUCCESS Commit done.
+    log SUCCESS "+ Commit done."
   fi
 }
-
 
 _pull() {
   git pull
 }
 
-
 _push() {
-  log INFO Pushing repository...
+  log INFO "+ Pushing repository..."
   git push -v
-  log SUCCESS Done.
+  log SUCCESS "+ Done."
 }
 
+_status() {
+  git status -s
+}
 
 _diff() {
   git diff
 }
-
 
 _remotes() {
   git remote -v | awk -v GRE=${GRE} -v STD=${STD} {'printf ("%s%s%s\t%s\n", GRE, $1, STD, $2)'} | sort | uniq
@@ -484,6 +484,19 @@ _remote_rename() {
       _remotes
     fi
   fi
+}
+
+_upstream() {
+  _remotes
+  read -p "Enter Remote Name  : " remote_name
+  if [[ "$remote_name" != "" ]]; then
+    git remote show "$remote_name"
+    read -p "Enter Remote Branch: " remote_branch
+    if [[ "$remote_branch" != "" ]]; then
+      git branch --set-upstream-to="$remote_name" "$remote_branch"
+    fi
+  fi
+  _remotes
 }
 
 
@@ -549,7 +562,7 @@ _parse () {
   # Check that we have a context
   #
   if [[ "$CONTEXT" == "" ]]; then
-    log ERROR "Enter context first."
+    log ERROR "! Enter context first."
     return
   fi
 
@@ -690,7 +703,7 @@ _run() {
   # Check that we have a context
   #
   if [[ "$CONTEXT" == "" ]]; then
-    log ERROR "Enter context first."
+    log ERROR "! Enter context first."
     return
   fi
 
@@ -729,7 +742,7 @@ _pdflatex () {
   # Check that we have a context
   #
   if [[ "$CONTEXT" == "" ]]; then
-    log ERROR "Enter context first."
+    log ERROR "! Enter context first."
     return
   fi
 
@@ -808,7 +821,7 @@ _htlatex () {
   # Check that we have a context
   #
   if [[ "$CONTEXT" == "" ]]; then
-    log ERROR "Enter context first."
+    log ERROR "! Enter context first."
     return
   fi
 
@@ -861,7 +874,7 @@ _submit () {
   # Check that we have a context
   #
   if [[ "$CONTEXT" == "" ]]; then
-    log ERROR "Enter context first."
+    log ERROR "! Enter context first."
     return
   fi
 
@@ -887,7 +900,7 @@ _makeindex () {
   # Check that we have a context
   #
   if [[ "$CONTEXT" == "" ]]; then
-    log ERROR "Enter context first."
+    log ERROR "! Enter context first."
     return
   fi
 
@@ -929,7 +942,7 @@ _acronyms () {
   # Check that we have a context
   #
   if [[ "$CONTEXT" == "" ]]; then
-    log ERROR "Enter context first."
+    log ERROR "! Enter context first."
     return
   fi
 
@@ -950,7 +963,7 @@ _glossary () {
   # Check that we have a context
   #
   if [[ "$CONTEXT" == "" ]]; then
-    log ERROR "Enter context first."
+    log ERROR "! Enter context first."
     return
   fi
 
@@ -971,7 +984,7 @@ _symbols () {
   # Check that we have a context
   #
   if [[ "$CONTEXT" == "" ]]; then
-    log ERROR "Enter context first."
+    log ERROR "! Enter context first."
     return
   fi
 
@@ -992,7 +1005,7 @@ _index () {
   # Check that we have a context
   #
   if [[ "$CONTEXT" == "" ]]; then
-    log ERROR "Enter context first."
+    log ERROR "! Enter context first."
     return
   fi
 
@@ -1017,7 +1030,7 @@ _biber () {
   # Check that we have a context
   #
   if [[ "$CONTEXT" == "" ]]; then
-    log ERROR "Enter context first."
+    log ERROR "! Enter context first."
     return
   fi
 
@@ -1066,7 +1079,7 @@ _wc () {
   # Check that we have a context
   #
   if [[ "$CONTEXT" == "" ]]; then
-    log ERROR "Enter context first."
+    log ERROR "! Enter context first."
     return
   fi
 
@@ -1077,7 +1090,7 @@ _wc () {
   if [ -s "${DEST}/wc.tex" ] ; then
     if [ "$(cat "$DEST/wc.tex")" != "." ] ; then
       words=`cat "$DEST/wc.tex"`
-      log SUCCESS "The document contains ${words} words."
+      log SUCCESS "+ The document contains ${words} words."
       return;
     fi;
   fi;
@@ -1110,7 +1123,7 @@ __moc () {
   # Check that we have a context
   #
   if [[ "$CONTEXT" == "" ]]; then
-    log ERROR "Enter context first."
+    log ERROR "! Enter context first."
     return
   fi
 
@@ -1136,7 +1149,7 @@ _moc () {
   # Check that we have a context
   #
   if [[ "$CONTEXT" == "" ]]; then
-    log ERROR "Enter context first."
+    log ERROR "! Enter context first."
     return
   fi
 
@@ -1163,7 +1176,7 @@ _unmoc () {
   # Check that we have a context
   #
   if [[ "$CONTEXT" == "" ]]; then
-    log ERROR "Enter context first."
+    log ERROR "! Enter context first."
     return
   fi
 
@@ -1182,14 +1195,6 @@ _unmoc () {
 #################################################
 
 _clean () {
-  #
-  # Check that we have a context
-  #
-  if [[ "$CONTEXT" == "" ]]; then
-    log ERROR "Enter context first."
-    return
-  fi
-
   log DEBUG "> clean"
   _check
 
@@ -1292,14 +1297,20 @@ show_menus() {
     echo ""
     echo -e "${GRE}[clean]${STD}            Clean Auxiliary files"
 
+    if [[ -f $(which rlwrap) && -f "${HISTORY}" ]]; then
+    echo -e "${GRE}[cleanhistory]${STD}     Clean Command History"
+    fi
+
     echo ""
     echo -e "${BLU}Git${STD}"
     echo ""
     echo -e "${GRE}[add]${STD}              Add all new files"
+    echo -e "${GRE}[status]${STD}           Show status"
     echo -e "${GRE}[diff]${STD}             Show changes"
     echo -e "${GRE}[commit]${STD}           Commit changes"
     echo -e "${GRE}[pull]${STD}             Pull from repository"
     echo -e "${GRE}[push]${STD}             Push to repository"
+    echo -e "${GRE}[upstream]${STD}         Choose upstream repository"
     echo -e "${GRE}[remotes]${STD}          Show remotes"
     echo -e "${GRE}[remote_add]${STD}       Add remote"
     echo -e "${GRE}[remote_delete]${STD}    Delete remote"
@@ -1309,61 +1320,92 @@ show_menus() {
     echo ""
     echo -e "${BLU}Internal${STD}"
     echo ""
-    echo -e "${GRE}[debug]${STD}            Set/Unset Debug   Mode"
-    echo -e "${GRE}[verbose]${STD}          Set/Unset Verbose Mode"
+    echo -e "${GRE}[debug]${STD}            Set   Debug   Mode"
+    echo -e "${GRE}[verbose]${STD}          Set   Verbose Mode"
+    echo -e "${GRE}[undebug]${STD}          Unset Debug   Mode"
+    echo -e "${GRE}[unverbose]${STD}        Unset Verbose Mode"
     echo ""
 
     echo ""
 }
 
+GRE='\033[0;32m'
+STD='\033[0;0;39m'
+
 read_options(){
     export MAKELEVEL=1
+    sleeptime=0.3
     trap 'echo "";exit 0' SIGINT
     local choice
-    read -p "$(echo -e ${GRE}"[Enter] "$STD) to run, choice or q to exit: " choice
-    case $choice in
-        "")            _run;pause;;
-        context|ctx)   _context;pause;;
-        create)        _create;pause;;
-        delete)        _delete;pause;;
-        pdf)           _pdf;pause;;
-        run)           _pdflatex;pause;;
-        pdflatex)      _pdflatex;pause;;
-        html)          _html;pause;;
-        htlatex)       _htlatex;pause;;
-        submit)        _submit;pause;;
-        parse)         export PARSED="";_parse;pause;;
-        moc)           _moc;pause;;
-        unmoc)         _unmoc;pause;;
-        wc)            _wc;pause;;
-        clean|c)       _clean;pause;;
-        add)           _add;pause;;
-        diff)          _diff;pause;;
-        commit)        _commit;pause;;
-        pull)          _pull;pause;;
-        push)          _push;pause;;
-        remotes)       _remotes;pause;;
-        remote_add)    _remote_add;pause;;
-        remote_delete) _remote_delete;pause;;
-        remote_rename) _remote_rename;pause;;
+    pr="$(echo -e ${GRE}"[Enter] "$STD) to run, choice or q to exit: "
+    echo -e $pr
+    if [[ -f $(which rlwrap) ]]; then
+      choice=$(rlwrap -D 2 -H  $HISTORY sh -c 'read REPLY && echo $REPLY')
+      #choice=$(rlwrap -H $HISTORY bash -c "read -p \"$pr\" REPLY && echo $REPLY")
+      #echo " a $choice b "
+      #exit
+    else
+      read -p "$pr" choice
+    fi
+    for i in $choice; do
+      case $i in
+          "")               _run;pause;;
+          context|ctx)      _context;sleep $sleeptime;;
+          create)           _create;pause;;
+          delete)           _delete;pause;;
+          pdf)              _pdf;pause;;
+          run)              _pdflatex;pause;;
+          pdflatex)         _pdflatex;pause;;
+          html)             _html;pause;;
+          htlatex)          _htlatex;pause;;
+          submit)           _submit;pause;;
+          parse)            export PARSED="";_parse;pause;;
+          moc)              _moc;pause;;
+          unmoc)            _unmoc;pause;;
+          wc)               _wc;pause;;
+          clean|c)          _clean;sleep $sleeptime;;
+          add)              _add;pause;;
+          status)           _status;pause;;
+          diff)             _diff;pause;;
+          commit)           _commit;pause;;
+          pull)             _pull;pause;;
+          push)             _push;pause;;
+          upstream)         _upstream;pause;;
+          remotes)          _remotes;pause;;
+          remote_add)       _remote_add;pause;;
+          remote_delete)    _remote_delete;pause;;
+          remote_rename)    _remote_rename;pause;;
 
-        verbose|v)     if [[ ${VERBOSE} == "verbose" ]]; then
-                         _unverbose;
-                         _undebug;
-                       else
-                         _debug;
-                         _verbose;
-                       fi;
-                       pause;;
-        debug|d)       if [[ ${LOGLEVEL} != "DEBUG" ]]; then
-                         _debug;
-                       else
-                         _undebug;
-                       fi;
-                       pause;;
-        q|x)           exit 0;;
-        *)             echo -e "${RED}Error...${STD} [${choice}]" && sleep 1
-    esac
+          verbose|v)        if [[ "${VERBOSE}" == "" ]]; then
+                              _debug;
+                              _verbose;
+                            fi;
+                            sleep $sleeptime;;
+          unverbose|uv)     if [[ "${VERBOSE}" == "verbose" ]]; then
+                              _undebug;
+                              _unverbose;
+                            fi;
+                            sleep $sleeptime;;
+          debug|d)          if [[ ${LOGLEVEL} != "DEBUG" ]]; then
+                              _debug;
+                            fi
+                            sleep $sleeptime;;
+          undebug|ud)       if [[ ${LOGLEVEL} == "DEBUG" ]]; then
+                              _undebug;
+                            fi;
+                            sleep $sleeptime;;
+          cleanhistory|ch)  if [[ -f $(which rlwrap) && -f "${HISTORY}" ]]; then
+                            rm -f "${HISTORY}";
+                            fi;;
+          q|x)              exit 0;;
+          *)                if [[ -f $(which rlwrap) && -f "${HISTORY}" ]]; then
+                               cat "$HISTORY" | grep -v "$choice" > "${HISTORY}.sav"
+                               mv "${HISTORY}.sav" "${HISTORY}"
+                            fi
+                            echo -e "${RED}Error...${STD} [${choice}]" && sleep $sleeptime
+
+      esac;
+    done
 }
 
 
@@ -1386,7 +1428,7 @@ if [[ "$#" -gt 0 ]]; then
     if [[ $(type -t _$var) == function && _$var != "" ]]; then
       _$var;
     else
-      log ERROR "$var is not a known command."
+      log ERROR "! $var is not a known command."
     fi
   done
 else
