@@ -1317,12 +1317,13 @@ show_menus() {
 }
 
 read_options(){
+    export MAKELEVEL=1
     trap 'echo "";exit 0' SIGINT
     local choice
     read -p "$(echo -e ${GRE}"[Enter] "$STD) to run, choice or q to exit: " choice
     case $choice in
         "")            _run;pause;;
-        context)       _context;pause;;
+        context|ctx)   _context;pause;;
         create)        _create;pause;;
         delete)        _delete;pause;;
         pdf)           _pdf;pause;;
@@ -1335,7 +1336,7 @@ read_options(){
         moc)           _moc;pause;;
         unmoc)         _unmoc;pause;;
         wc)            _wc;pause;;
-        clean)         _clean;pause;;
+        clean|c)       _clean;pause;;
         add)           _add;pause;;
         diff)          _diff;pause;;
         commit)        _commit;pause;;
@@ -1346,7 +1347,7 @@ read_options(){
         remote_delete) _remote_delete;pause;;
         remote_rename) _remote_rename;pause;;
 
-        verbose)       if [[ ${VERBOSE} == "verbose" ]]; then
+        verbose|v)     if [[ ${VERBOSE} == "verbose" ]]; then
                          _unverbose;
                          _undebug;
                        else
@@ -1354,7 +1355,7 @@ read_options(){
                          _verbose;
                        fi;
                        pause;;
-        debug)         if [[ ${LOGLEVEL} != "DEBUG" ]]; then
+        debug|d)       if [[ ${LOGLEVEL} != "DEBUG" ]]; then
                          _debug;
                        else
                          _undebug;
