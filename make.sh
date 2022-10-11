@@ -20,7 +20,17 @@ MOC="- -.md"
 DEST=Output
 FILE=document
 PARSER=parser.pl
-HISTORY=$HOME/.make_history
+
+#
+# Check if we have rlwrap
+#
+if command -v rlwrap &>/dev/null; then
+  HISTORY=$HOME/.make_history;
+  RLWRAP=true;
+else
+  RLWRAP=false;
+fi
+
 
 #
 # LaTeX
@@ -1303,7 +1313,7 @@ show_menus() {
     echo ""
     echo -e "${GRE}[clean]${STD}            Clean Auxiliary files"
 
-    if [[ -f $(which rlwrap) && -f "${HISTORY}" ]]; then
+    if [[ "$RLWRAP" == true && -f "${HISTORY}" ]]; then
     echo -e "${GRE}[cleanhistory]${STD}     Clean Command History"
     fi
 
@@ -1345,7 +1355,7 @@ read_options(){
     local choice
     pr="$(echo -e ${GRE}"[Enter] "$STD) to run, choice or q to exit: "
     echo -e $pr
-    if [[ -f $(which rlwrap) ]]; then
+    if [[ "$RLWRAP" == true ]]; then
       choice=$(rlwrap -D 2 -H $HISTORY sh -c 'read REPLY && echo $REPLY')
     else
       read -p "$pr" choice
