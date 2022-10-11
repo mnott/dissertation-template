@@ -1351,7 +1351,7 @@ STD='\033[0;0;39m'
 
 read_options(){
     export MAKELEVEL=1
-    sleeptime=0.3
+    sleeptime=0.5
     trap 'echo "";exit 0' SIGINT
     local choice
     pr="$(echo -e ${GRE}"[Enter] "$STD) to run, choice or q to exit: "
