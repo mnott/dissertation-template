@@ -13,9 +13,6 @@ __pycache__
 .obsidian/workspace
 - -.md
 
-# Placeholder for empty directories like fig
-_ignore_
-
 # Generated Files
 document.synctex.gz
 document.pdf
