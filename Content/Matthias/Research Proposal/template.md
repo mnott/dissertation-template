@@ -46,8 +46,8 @@ showtoc                 : "true"  # Table of Contents?
 showlot                 : "false" # List of Tables?
 showlof                 : "false" # List of Figures?
 showloe                 : "false" # List of Exhibits?
-showwordcount           : "true"  # Put word count from wc.tex
-showwordcountback       : "true"  # Put word count at the back of the text
+showwordcount           : "false" # Put word count from wc.tex
+showwordcountback       : "false" # Put word count at the back of the text
 tocdepth                : "3"     # Depth of Table of Contents (default: 2)
 
 #
