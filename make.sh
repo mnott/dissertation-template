@@ -1354,8 +1354,8 @@ read_options(){
     trap 'echo "";exit 0' SIGINT
     local choice
     pr="$(echo -e ${GRE}"[Enter] "$STD) to run, choice or q to exit: "
-    echo -e $pr
     if [[ "$RLWRAP" == true ]]; then
+      echo -e $pr
       choice=$(rlwrap -D 2 -H $HISTORY sh -c 'read REPLY && echo $REPLY')
     else
       read -p "$pr" choice
