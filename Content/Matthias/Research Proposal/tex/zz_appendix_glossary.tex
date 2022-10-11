@@ -1,0 +1,112 @@
+%=====================================================
+% Glossary
+%=====================================================
+
+%-----------------------------------------------------
+% Samples
+%-----------------------------------------------------
+
+% Usage:
+% \gls{glos:AD} is pretty interesting. If we have a cross reference from
+% the acronyms, we can also directly go to that using \gls{AD}; this
+% requires then that over there, we have something like
+%  description=\glslink{glos:AD}{Active Directory}
+
+% \newglossaryentry{glos:AD}{
+% name=Active Directory,
+% description={Active Directory is the directory service for
+% Windows based networks, that allows central organization and
+% administration of any network resource.
+% It allows a single-sign-on concept independent from network
+% topologies or network protocols. As a prerequisite you need
+% a Windows Server acting as Domain Controller. This computer
+% stores all necessary data, e.\,g.~usernames and corresponding
+% passwords.}
+% }
+
+
+%-----------------------------------------------------
+% Content
+%-----------------------------------------------------
+
+
+\setlength{\abovedisplayskip}{0pt}
+
+%<content>%
+% \renewcommand{\theHequation}{\theHsection.\equationgrouping\arabic{equation}}
+
+%=================================================================================
+% Break Even Point
+%=================================================================================
+
+\def\glosdescbep{
+The Break Even Point, or BEP, is the point where through a cost volume analysis, the total revenue
+equals the total costs: %\citep[304]{Atrill-2008qf}:
+\begin{subequations}
+\begin{align}
+\text{Total Sales Revenue} &\overset{!}{=} \text{Total Costs} \label{eqn:bep}
+\intertext{and, with}
+\text{Total Sales Revenue} &= \text{Fixed Costs} + \text{Total Variable Costs}
+\intertext{we get, for the number $n$ of produced units at BEP:}
+n \times \text{Sales Revenue per Unit} &= \text{Fixed Costs} + n \times  \text{Variable Costs per Unit}
+\intertext{and solving for $n$, we get the number of units to sell at BEP:}
+\end{align}
+\end{subequations}
+\begin{equation}\label{eqn:bep_contribution}
+\tikzmarkin{bep2}(1.0,-0.75)(-1.0,0.85)
+        \tikz[baseline]{
+            \node[fill=red!20,anchor=base] (t1)
+            {$ n $};
+        } =
+        \frac{\tikz[baseline]{
+           \node[fill=blue!10, anchor=base] (t2)
+            {$\text{Fixed Costs}$};
+        }}{
+        \tikz[baseline]{
+            \node[fill=green!20,anchor=base] (t3)
+            {$\text{Sales Revenue per Unit} - \text{Variable Cost per Unit}$};
+        }}
+\tikzmarkend{bep2}
+\end{equation}
+
+\begin{tikzpicture}[overlay]
+\coordinate (col-aa) at ($(bep2)+(2.5,0.4)$);
+\coordinate (col-ab) at ($(bep2)+(5.5,-2.0)$);
+\node[align=left,right] at (col-aa) {\small{\emph{Number of units produced at BEP}}};
+\node[align=left,left] at (col-ab) {\small{\emph{Contribution}}};
+        \path[red,-stealth,->] (col-aa) edge [bend right] (t1);
+        \path[red,-stealth,->] (col-ab) edge [out=0, in=-90] (t3);
+\end{tikzpicture}
+
+\bigskip \emph{Note:} As the fixed costs are time based, the BEP must be expressed with regards to a period of time.
+}
+\newglossaryentry{glos:bep}{
+  name=Break Even Point (BEP),
+  description={\glosdescbep}
+}
+
+
+%</content>%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -11,9 +11,9 @@ titlepagetitlemiddle    : "Data Collection"
 titlepagesubtitlemiddle : "Week 4"
 
 author                  : "Christian Sarres"
+organization            : "University of Liverpool"
 contact                 : "c.sarres@liverpool.ac.uk"
 contactid               : "H00012345"
-subtitlefooter          : "Christian Sarres, University of Liverpool"
 submissiondate          : "November 1st, 2022"
 version                 : "1.0"
 
