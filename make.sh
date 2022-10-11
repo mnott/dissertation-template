@@ -1394,8 +1394,8 @@ show_menus() {
 
     echo -e "${BLU}Internal${STD}"
     echo ""
-    echo -e "${GRE}[(un)debug]${STD}    / ${GRE}[(u)d]${STD}  Set   Debug   Mode"
-    echo -e "${GRE}[(un)verbose]${STD}  / ${GRE}[(u)v]${STD}  Set   Verbose Mode"
+    echo -e "${GRE}[(un)debug]${STD}    / ${GRE}[(u)d]${STD}  (Un)Set Debug   Mode"
+    echo -e "${GRE}[(un)verbose]${STD}  / ${GRE}[(u)v]${STD}  (Un)Set Verbose Mode"
     echo ""
 }
 
