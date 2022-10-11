@@ -17,3 +17,7 @@ __pycache__
 document.synctex.gz
 document.pdf
 
+# Other files
+.context_history
+
+

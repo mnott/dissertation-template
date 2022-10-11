@@ -333,12 +333,22 @@ _undebug() {
 _context() {
   (
     cd "${ROOT}/Content/"
-    find "." -type d -name fig | perl -pe 's/\.\/(.*)\/.*/\1/g' | sort
+    find "." -type d -name fig | perl -pe 's/\.\/(.*)\/.*/\1/g' | sort >"${ROOT}/.context_history"
+    cat "${ROOT}/.context_history"
   )
   if [[ "$ctxname" == "" ]]; then ctxname=$CONTEXT; fi
 
   pvalue=$ctxname
-  read -p "Enter Document Context to work on: [$ctxname] " ctxname
+
+  pr="Enter Document Context to work on: [$ctxname] "
+  if [[ "$RLWRAP" == true ]]; then
+    echo -e $pr
+    ctxname=$(rlwrap -D 2 -H "${ROOT}/.context_history" sh -c 'read REPLY && echo $REPLY')
+    rm "${ROOT}/.context_history"
+  else
+    read -p "$pr" ctxname
+  fi
+
   if [[ "$ctxname" == "" ]]; then ctxname=$pvalue; fi
 
   if [[ "" == "$ctxname" ]]; then return; fi
@@ -354,14 +364,25 @@ _context() {
 
 _create() {
   cd "${ROOT}/Content/"
-  find "." -type d -name fig | perl -pe 's/\.\/(.*)\/.*/\1/g' | sort
+  find "." -type d -name fig | perl -pe 's/\.\/(.*)\/.*/\1/g' | sort >"${ROOT}/.context_history"
+  cat "${ROOT}/.context_history"
+
   pvalue=$oldname
-  read -p "Enter old Document Context to clone from: [$oldname] " oldname
+
+  pr="Enter old Document Context to clone from: [$oldname] "
+  if [[ "$RLWRAP" == true ]]; then
+    echo -e $pr
+    oldname=$(rlwrap -D 2 -H "${ROOT}/.context_history" sh -c 'read REPLY && echo $REPLY')
+    rm "${ROOT}/.context_history"
+  else
+    read -p "$pr" oldname
+  fi
+
   if [[ "$oldname" == "" ]]; then oldname=$pvalue; fi
 
   if [[ "" == "$oldname" ]]; then
      cd "${ROOT}"
-      return;
+     return;
   fi
   if [[ -d ${ROOT}/Content/$oldname ]]; then
     pvalue=$newname
@@ -396,9 +417,20 @@ _create() {
 
 _delete() {
   cd "${ROOT}/Content/"
-  find "." -type d -name fig | perl -pe 's/\.\/(.*)\/.*/\1/g' | sort
+  find "." -type d -name fig | perl -pe 's/\.\/(.*)\/.*/\1/g' | sort >"${ROOT}/.context_history"
+  cat "${ROOT}/.context_history"
+
   pvalue=$ctxname
-  read -p "Enter Document Context to delete: [$ctxname] " ctxname
+
+  pr="Enter Document Context to delete: [$ctxname] "
+  if [[ "$RLWRAP" == true ]]; then
+    echo -e $pr
+    ctxname=$(rlwrap -D 2 -H "${ROOT}/.context_history" sh -c 'read REPLY && echo $REPLY')
+    rm "${ROOT}/.context_history"
+  else
+    read -p "$pr" ctxname
+  fi
+
   if [[ "$ctxname" == "" ]]; then ctxname=$pvalue; fi
 
   if [[ "" == "$ctxname" ]]; then return; fi
