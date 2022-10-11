@@ -1346,8 +1346,6 @@ show_menus() {
     echo ""
 }
 
-GRE='\033[0;32m'
-STD='\033[0;0;39m'
 
 read_options(){
     export MAKELEVEL=1
