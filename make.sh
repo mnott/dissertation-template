@@ -802,6 +802,11 @@ _pdflatex () {
   fi
 
   log DEBUG "> pdflatex"
+
+  if [[ "$PARSED" == "" ]]; then
+    _parse
+  fi
+
   _check
 
   log INFO "+ Running pdflatex..."
@@ -853,6 +858,8 @@ _html () {
     log ERROR "Enter context first."
     return
   fi
+
+  log INFO "+ Working on $CONTEXT"
 
   log DEBUG "> html"
   _parse
@@ -1149,7 +1156,7 @@ _wc () {
       return;
     fi;
   fi;
-  log INFO "+ Running htlatex..."
+  log INFO "+ Running wc..."
 
   "${MAKE}" $VERBOSE htlatex;
 
@@ -1158,7 +1165,7 @@ _wc () {
   fi;
   cat   "${FILE}.html" | perl -p -e 'BEGIN{undef$/};s%<!-- COUNT -->%##COUNT##%sg'| perl -p -e 'BEGIN{undef$/};s%<!-- /COUNT -->%##/COUNT##%sg' | html2text | perl -0777 -ne 'print "$1\n" while /##COUNT##(.*?)##\/COUNT##/gs' | perl -p -e 'BEGIN{undef$/};s%##COUNT##%%sg' | perl -p -e 'BEGIN{undef$/};s%##/COUNT##%%sg' | perl -p -e "s%#{1,} %%gm"| perl -p -e "s%\* %%gm" | perl -p -e "s%\\[\\[.*?\\)%%gm" >"${DEST}/wc.log";
   cat   "${FILE}.html" | perl -p -e 'BEGIN{undef$/};s%<!-- COUNT -->%##COUNT##%sg'| perl -p -e 'BEGIN{undef$/};s%<!-- /COUNT -->%##/COUNT##%sg' | html2text | perl -0777 -ne 'print "$1\n" while /##COUNT##(.*?)##\/COUNT##/gs' | perl -p -e 'BEGIN{undef$/};s%##COUNT##%%sg' | perl -p -e 'BEGIN{undef$/};s%##/COUNT##%%sg' | perl -p -e "s%#{1,} %%gm"| perl -p -e "s%\* %%gm" | perl -p -e "s%\\[\\[.*?\\)%%gm" | wc -w | sed 's/ //g' | tr '\n' ' ' >"${DEST}/wc.tex";
-  words=`cat "$DEST/wc.tex"`
+  words=`cat "$DEST/wc.tex" | sed 's/ //g'`
   log SUCCESS "+ The document contains ${words} words."
 
   log DEBUG "< wc"
@@ -1170,7 +1177,7 @@ _swc() {
   else
     if [ -s "${DEST}/wc.tex" ] ; then
       if [ "$(cat "$DEST/wc.tex")" != "." ] ; then
-        words=`cat "$DEST/wc.tex"`
+        words=`cat "$DEST/wc.tex" | sed 's/ //g'`
       fi;
     fi;
     pwords=$words
@@ -1453,7 +1460,7 @@ read_options(){
           create|cre)       _create;pause;;
           delete|del)       _delete;pause;;
           pdf)              _pdf;pause;;
-          run)              _pdflatex;pause;;
+          run)              _run;pause;;
           pdflatex)         _pdflatex;pause;;
           html)             _html;pause;;
           htlatex)          _htlatex;pause;;
