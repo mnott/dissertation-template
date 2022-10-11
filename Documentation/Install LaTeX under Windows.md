@@ -59,20 +59,20 @@ Add the http and user sections and configure accordingly:
 ![latex_win_gitbash_7.png](Attachments/latex_win_gitbash_7.png)
 
 
+## Clone the Dissertation Template
+
+Open a GitBash shell and do this:
+
+![latex_win_gitbash_8.png](Attachments/latex_win_gitbash_8.png)
+
+
+
 Also, execute this command:
 
 ```bash
 git config advice.addIgnoredFile false
 git config --global --add --bool push.autoSetupRemote true
 ```
-
-
-
-## Clone the Dissertation Template
-
-Open a GitBash shell and do this:
-
-![latex_win_gitbash_8.png](Attachments/latex_win_gitbash_8.png)
 
 
 
