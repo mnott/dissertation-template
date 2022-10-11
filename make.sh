@@ -1366,15 +1366,12 @@ show_menus() {
     echo -e "${GRE}[remote_rename]${STD}    Rename remote"
     echo ""
 
-    echo ""
     echo -e "${BLU}Internal${STD}"
     echo ""
     echo -e "${GRE}[debug]${STD}            Set   Debug   Mode"
     echo -e "${GRE}[verbose]${STD}          Set   Verbose Mode"
     echo -e "${GRE}[undebug]${STD}          Unset Debug   Mode"
     echo -e "${GRE}[unverbose]${STD}        Unset Verbose Mode"
-    echo ""
-
     echo ""
 }
 
