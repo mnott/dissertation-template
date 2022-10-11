@@ -1420,11 +1420,11 @@ read_options(){
                               _undebug;
                             fi;
                             sleep $sleeptime;;
-          cleanhistory|ch)  if [[ -f $(which rlwrap) && -f "${HISTORY}" ]]; then
+          cleanhistory|ch)  if [[ "$RLWRAP" == true && -f "${HISTORY}" ]]; then
                             rm -f "${HISTORY}";
                             fi;;
           q|x)              exit 0;;
-          *)                if [[ -f $(which rlwrap) && -f "${HISTORY}" ]]; then
+          *)                if [[ "$RLWRAP" == true && -f "${HISTORY}" ]]; then
                                cat "$HISTORY" | grep -v "$choice" > "${HISTORY}.sav"
                                mv "${HISTORY}.sav" "${HISTORY}"
                             fi
