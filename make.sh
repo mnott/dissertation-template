@@ -1326,56 +1326,56 @@ show_menus() {
     echo ""
     echo -e "${BLU}Context${STD}"
     echo ""
-    echo -e "${GRE}[context]${STD}          Select Document Context"
-    echo -e "${GRE}[create]${STD}           Create Document Context from Template"
-    echo -e "${GRE}[delete]${STD}           Delete Document Context"
+    echo -e "${GRE}[context]${STD}      / ${GRE}[ctx]${STD}   Select Document Context"
+    echo -e "${GRE}[create]${STD}       / ${GRE}[cre]${STD}   Create Document Context"
+    echo -e "${GRE}[delete]${STD}       / ${GRE}[del]${STD}   Delete Document Context"
 
     echo ""
     echo -e "${BLU}LaTeX${STD}"
     echo ""
-    echo -e "${GRE}[run]${STD}              Run LaTeX, update PDF"
-    echo -e "${GRE}[pdf]${STD}              Run LaTeX,   open PDF"
-    echo -e "${GRE}[html]${STD}             Run htLaTeX, open HTML"
-    echo -e "${GRE}[submit]${STD}           Run Submission Target"
+    echo -e "${GRE}[run]${STD}                    Run LaTeX, update PDF"
+    echo -e "${GRE}[pdf]${STD}                    Run LaTeX,   open PDF"
+    echo -e "${GRE}[html]${STD}                   Run htLaTeX, open HTML"
+    echo -e "${GRE}[submit]${STD}                 Run Submission Target"
     echo ""
-    echo -e "${GRE}[parse]${STD}            Run parser only"
-    echo -e "${GRE}[wc]${STD}               Word Count"
+    echo -e "${GRE}[parse]${STD}                  Run parser only"
+    echo -e "${GRE}[wc]${STD}                     Word Count"
 
     echo ""
     echo -e "${BLU}Obsidian${STD}"
     echo ""
-    echo -e "${GRE}[moc]${STD}              Create MOCs"
-    echo -e "${GRE}[unmoc]${STD}            Remove MOCs"
+    echo -e "${GRE}[moc]${STD}                    Create MOCs"
+    echo -e "${GRE}[unmoc]${STD}                  Remove MOCs"
 
     echo ""
     echo -e "${BLU}Housekeeping${STD}"
     echo ""
-    echo -e "${GRE}[clean]${STD}            Clean Auxiliary files"
+    echo -e "${GRE}[clean]${STD}        / ${GRE}[c]${STD}     Clean Auxiliary files"
 
     if [[ "$RLWRAP" == true && -f "${HISTORY}" ]]; then
-    echo -e "${GRE}[cleanhistory]${STD}     Clean Command History"
+    echo -e "${GRE}[cleanhistory]${STD} / ${GRE}[ch]${STD}    Clean Command History"
     fi
 
     echo ""
     echo -e "${BLU}Git${STD}"
     echo ""
-    echo -e "${GRE}[add]${STD}              Add all new files"
-    echo -e "${GRE}[status]${STD}           Show status"
-    echo -e "${GRE}[diff]${STD}             Show changes"
-    echo -e "${GRE}[commit]${STD}           Commit changes"
-    echo -e "${GRE}[pull]${STD}             Pull from repository"
-    echo -e "${GRE}[push]${STD}             Push to repository"
-    echo -e "${GRE}[upstream]${STD}         Choose upstream repository"
-    echo -e "${GRE}[remotes]${STD}          Show remotes"
-    echo -e "${GRE}[remote_add]${STD}       Add remote"
-    echo -e "${GRE}[remote_delete]${STD}    Delete remote"
-    echo -e "${GRE}[remote_rename]${STD}    Rename remote"
+    echo -e "${GRE}[add]${STD}                    Add all new files"
+    echo -e "${GRE}[status]${STD}                 Show status"
+    echo -e "${GRE}[diff]${STD}                   Show changes"
+    echo -e "${GRE}[commit]${STD}                 Commit changes"
+    echo -e "${GRE}[pull]${STD}                   Pull from repository"
+    echo -e "${GRE}[push]${STD}                   Push to repository"
+    echo -e "${GRE}[upstream]${STD}               Choose upstream repository"
+    echo -e "${GRE}[remotes]${STD}                Show remotes"
+    echo -e "${GRE}[remote_add]${STD}             Add remote"
+    echo -e "${GRE}[remote_delete]${STD}          Delete remote"
+    echo -e "${GRE}[remote_rename]${STD}          Rename remote"
     echo ""
 
     echo -e "${BLU}Internal${STD}"
     echo ""
-    echo -e "${GRE}[(un)debug]${STD}        Set   Debug   Mode"
-    echo -e "${GRE}[(un)verbose]${STD}      Set   Verbose Mode"
+    echo -e "${GRE}[(un)debug]${STD}    / ${GRE}[(u)d]${STD}  Set   Debug   Mode"
+    echo -e "${GRE}[(un)verbose]${STD}  / ${GRE}[(u)v]${STD}  Set   Verbose Mode"
     echo ""
 }
 
@@ -1404,12 +1404,16 @@ read_options(){
         return
     fi
 
+    if [[ "$choice" == "" ]]; then
+      _run
+      return
+    fi
+
     for i in $choice; do
       case $i in
-          "")               _run;pause;;
           context|ctx)      _context;sleep $sleeptime;;
-          create)           _create;pause;;
-          delete)           _delete;pause;;
+          create|cre)       _create;pause;;
+          delete|del)       _delete;pause;;
           pdf)              _pdf;pause;;
           run)              _pdflatex;pause;;
           pdflatex)         _pdflatex;pause;;
