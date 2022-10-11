@@ -1435,9 +1435,11 @@ read_options(){
     if [[    "$first" == "swc"
        ]]; then
         parm=$(echo $choice | awk '{for (i=2; i<3; i++) print $i}')
-        rest=$(echo $choice | awk '{for (i=3; i<=NF; i++) print $i}')
+        choice=$(echo $choice | awk '{for (i=3; i<=NF; i++) print $i}')
         _$first $parm
-        choice=$rest
+        if [[ "$choice" == "" ]]; then
+          return
+        fi
     fi
 
     if [[ "$choice" == "" ]]; then
