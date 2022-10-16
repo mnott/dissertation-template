@@ -2,7 +2,7 @@
 
 ## The LaTeX Shell
 
-Open a Bash shell (e.g., GitBash under Windows, if you followed the installation [here](README.md)) and change into the directory into which you had cloned the dissertation template:
+Open a Bash shell (e.g., GitBash under Windows, if you followed the installation [here](Dissertation/Documentation/README.md)) and change into the directory into which you had cloned the dissertation template:
 
 ```bash
 cd ~/My\ Documents/dissertation-template
