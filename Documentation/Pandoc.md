@@ -1,1 +1,0 @@
-Pandoc strives to close that gap by allowing you to pre-process your Markdown files. It is a very powerful tool that can achieve everything that I am doing with this dissertation template (because it uses a programming language, lua, to implement missing functionality). I found it somewhat hard for what I wanted to do, and use it only for some basic processing.
