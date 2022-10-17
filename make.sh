@@ -1224,12 +1224,18 @@ __moc () {
 
   DIR=$1
   MOC=$2
+  TITLE=$(echo $DIR|sed "s#.*/##g")
 
   cd "$DIR";
 
   if [[ -f "$MOC" ]]; then
     rm -- "$MOC"
   fi
+
+  echo "---" >>"$MOC"
+  echo "title: $TITLE" >>"$MOC"
+  echo "---" >>"$MOC"
+  echo "" >>"$MOC"
 
   find . -type f -name "*md" ! -name "$MOC" 2>/dev/null |
     sort |
