@@ -81,6 +81,16 @@ See [Initial Steps](Documentation/Initial%20Steps.md) for the initial steps you 
 
 See [here](Documentation/Basic%20Usage.md) for some basic usage.
 
+# Donation
 
+Are you enjoying this project ? 👋
+
+You can express your ❤️ by buying me a coffee ☕️ to keep this project maintained and stay alive, I would ❤️ to dedicate more time and effort on it!
+
+However you could just sharing this project with your friends, that would help me a lot as well! 👊
+
+Thanks for your support in advance! ☀️
+
+<a href="https://www.buymeacoffee.com/mnott" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-blue.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
 
 
