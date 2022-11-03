@@ -54,6 +54,16 @@
     %} % DELETED
     }
 
+\DeclareSourcemap{
+  \maps[datatype=bibtex]{
+    \map{
+      \step[fieldsource=note, final]
+      \step[fieldset=addendum, origfieldval, final]
+      \step[fieldset=note, null]
+    }
+  }
+}
+
 %\DeclareLanguageMapping{english}{custom-english-ordinal-sscript}
 %\DeclareFieldFormat{edition}{\ifinteger{#1}{\mkbibordedition{#1}\addthinspace{}ed.}{#1\isdot}}
 %\renewcommand{\labelnamepunct}{\addcolon\addspace}
