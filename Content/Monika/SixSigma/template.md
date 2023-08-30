@@ -4,37 +4,37 @@
 # Content Variables
 #
 titlepage               : "titlepage.tex"
-titlepagetitletop       : "Development as a Manager and Leader"
-titlepagesubtitletop    : "Discussion Question"
+titlepagetitletop       : "Tenant Cleanup at SAP"
+titlepagesubtitletop    : "How to Apply Six Sigma to Effectively Manage Tenant Data for a large Cloud Company"
 
-titlepagetitlemiddle    : "Data Collection"
-titlepagesubtitlemiddle : "Week 4"
+titlepagetitlemiddle    : "Research Proposal"
+titlepagesubtitlemiddle : "Six Sigma Green Belt"
 
-author                  : "Christian Sarres"
-organization            : "University of Liverpool"
-contact                 : "c.sarres@liverpool.ac.uk"
-contactid               : "08003769"
-submissiondate          : "November 1st, 2022"
+author                  : "Monika Ackermann"
+organization            : "SAP"
+contact                 : "monika.ackermann@sap.com"
+contactid               : "D056138"
+submissiondate          : "September 2023"
 version                 : "1.0"
 
 #
 # Document Footer
 #
 footerleftlabelup       : "Title"
-footerleftlabeldown     : "Document"
-footerleftup            : "Development as a Manager and Leader"
-footerleftdown          : "Discussion Question"
-footermiddleup          : "Christian Sarres, University of Liverpool"
-footermiddledown        : "Data Collection (Week 4)"
+footerleftlabeldown     : "Author"
+footerleftup            : "Applying Six Sigma"
+footerleftdown          : "Monika Ackermann"
+footermiddleup          : "How to get Tenants under Control"
+footermiddledown        : "Research Proposal"
 footerrightlabelup      : "Date"
 footerrightlabeldown    : "Version"
-footerrightup           : "November 1st, 2022"
+footerrightup           : "September 2023"
 footerrightdown         : "1.0"
 
 #
 # Document Setup
 #
-doctype                 : "article"    # book or article
+doctype                 : "book"  # book or article
 
 #
 # Front Matter
@@ -46,8 +46,8 @@ showtoc                 : "true"  # Table of Contents?
 showlot                 : "false" # List of Tables?
 showlof                 : "false" # List of Figures?
 showloe                 : "false" # List of Exhibits?
-showwordcount           : "true"  # Put word count from wc.tex
-showwordcountback       : "true"  # Put word count at the back of the text
+showwordcount           : "false" # Put word count from wc.tex
+showwordcountback       : "false" # Put word count at the back of the text
 tocdepth                : "3"     # Depth of Table of Contents (default: 2)
 
 #
@@ -60,9 +60,9 @@ emptypages              : "true"  # Whether to start each chapter on a new page
 #
 # Back Matter
 #
-showendnotes            : "false" # Show End Notes?
+showendnotes            : "true"  # Show End Notes?
 showreferences          : "true"  # Show References?
-showappendix            : "true" # Show any Appendix?
+showappendix            : "false" # Show any Appendix?
 showanyglossary         : "true"  # Show any of Acronyms, Symbols, Glossary?
 showacronyms            : "true"  # Show Acronyms and Symbols?
 showglossary            : "true"  # Show Glossary?

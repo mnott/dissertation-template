@@ -1,0 +1,217 @@
+%=====================================================
+% Glossary
+%=====================================================
+
+%-----------------------------------------------------
+% Samples
+%-----------------------------------------------------
+
+% Usage:
+% \gls{glos:AD} is pretty interesting. If we have a cross reference from
+% the acronyms, we can also directly go to that using \gls{AD}; this
+% requires then that over there, we have something like
+%  description=\glslink{glos:AD}{Active Directory}
+
+% \newglossaryentry{glos:AD}{
+% name=Active Directory,
+% description={Active Directory is the directory service for
+% Windows based networks, that allows central organization and
+% administration of any network resource.
+% It allows a single-sign-on concept independent from network
+% topologies or network protocols. As a prerequisite you need
+% a Windows Server acting as Domain Controller. This computer
+% stores all necessary data, e.\,g.~usernames and corresponding
+% passwords.}
+% }
+
+
+%-----------------------------------------------------
+% Content
+%-----------------------------------------------------
+
+
+\setlength{\abovedisplayskip}{0pt}
+
+%<content>%
+% \renewcommand{\theHequation}{\theHsection.\equationgrouping\arabic{equation}}
+
+%=================================================================================
+% Break Even Point
+%=================================================================================
+
+%\def\glosdescbep{
+%The Break Even Point, or BEP, is the point where through a cost volume analysis, the total revenue
+%equals the total costs: %\citep[304]{Atrill-2008qf}:
+%\begin{subequations}
+%\begin{align}
+%\text{Total Sales Revenue} &\overset{!}{=} \text{Total Costs} \label{eqn:bep}
+%\intertext{and, with}
+%\text{Total Sales Revenue} &= \text{Fixed Costs} + \text{Total Variable Costs}
+%\intertext{we get, for the number $n$ of produced units at BEP:}
+%n \times \text{Sales Revenue per Unit} &= \text{Fixed Costs} + n \times  \text{Variable Costs per Unit}
+%\intertext{and solving for $n$, we get the number of units to sell at BEP:}
+%\end{align}
+%\end{subequations}
+%\begin{equation}\label{eqn:bep_contribution}
+%\tikzmarkin{bep2}(1.0,-0.75)(-1.0,0.85)
+%        \tikz[baseline]{
+%            \node[fill=red!20,anchor=base] (t1)
+%            {$ n $};
+%        } =
+%        \frac{\tikz[baseline]{
+%           \node[fill=blue!10, anchor=base] (t2)
+%            {$\text{Fixed Costs}$};
+%        }}{
+%        \tikz[baseline]{
+%            \node[fill=green!20,anchor=base] (t3)
+%            {$\text{Sales Revenue per Unit} - \text{Variable Cost per Unit}$};
+%        }}
+%\tikzmarkend{bep2}
+%\end{equation}
+%
+%\begin{tikzpicture}[overlay]
+%\coordinate (col-aa) at ($(bep2)+(2.5,0.4)$);
+%\coordinate (col-ab) at ($(bep2)+(5.5,-2.0)$);
+%\node[align=left,right] at (col-aa) {\small{\emph{Number of units produced at BEP}}};
+%\node[align=left,left] at (col-ab) {\small{\emph{Contribution}}};
+%        \path[red,-stealth,->] (col-aa) edge [bend right] (t1);
+%        \path[red,-stealth,->] (col-ab) edge [out=0, in=-90] (t3);
+%\end{tikzpicture}
+%
+%\bigskip \emph{Note:} As the fixed costs are time based, the BEP must be expressed with regards to a period of time.
+%}
+%\newglossaryentry{glos:bep}{
+%  name=Break Even Point (BEP),
+%  description={\glosdescbep}
+%}
+
+%\def\glosdescprofitability{The attribute of yielding gains or profits. Businesses typically operate with the main objective of generating wealth for their %owners. Profitability ratios offer a glimpse into the extent of success in accomplishing this goal. They illustrate the profit earned (or relevant figures %impacting profit, such as sales revenue or specific expenses like labor costs) in comparison to other vital numbers in the financial statements or a %particular business resource.'' \citep[141]{Atrill:2010ys}
+%It is measured as \glslink[hyper=true]{glos:rosf}{\gls{glos:rosf}},  \glslink[hyper=true]{glos:roce}{\gls{glos:roce}},
+% \glslink[hyper=true]{glos:netprofitmargin}{\gls{glos:netprofitmargin}} and
+%  \glslink[hyper=true]{glos:grossprofitmargin}{\gls{glos:grossprofitmargin}}. 
+%}
+%\newglossaryentry{glos:profitability}{
+%  name=profitability,
+%  firstplural=profitabilities,
+%  plural=profitabilities,
+%  description={\glosdescprofitability}
+%}
+%
+%
+%%=================================================================================
+%% Gross Profit Margin
+%%=================================================================================
+%\def\glosdescgrossprofitmargin{``The gross profit margin ratio relates
+%the gross profit of the business to the sales revenue generated over the same period
+%\dots\, The ratio is therefore a measure of profitability in buying (or producing)
+%and selling goods before any other expenses:'' \citep[178]{Atrill:2006ly}
+%
+%\begin{subequations}
+%\begin{align}
+%  \text{Gross Profit Margin} &= \frac{\text{Gross Profit}}{\text{Sales Revenue}} 
+%  \intertext{and with}
+%  \text{Gross Profit} &= \text{Sales Revenue} - \text{\glslink{cogs}{COGS}}
+%  \intertext{it follows}
+%\tikzmarkin{a}(5.4,-0.5)(-1.0,0.75)\text{Gross Profit Margin} &=  1 - \frac{\text{\gls{cogs}}}{\text{Sales Revenue}} \label{eqn:grossprofitmargin}\tikzmarkend{%a}
+%\end{align}
+%\end{subequations}
+%
+%
+%Equation \eqref{eqn:grossprofitmargin} features the relation of cost of goods sold to revenue,
+%also known as \glslink{glos:costofgoodstosales}{cost of goods sold ratio}. The gross profit
+%margin is normally expressed as a percentage.
+%}
+%\newglossaryentry{glos:grossprofitmargin}{
+%  name=Gross profit margin,
+%  firstplural=Gross profit margins,
+%  plural=Gross profit margins,
+%  description={\glosdescgrossprofitmargin}
+%}
+%
+%\def\glosdescliquidity{Liquidity is the ability to pay short-term obligations
+%when they fall due. ``The availability of adequate liquid assets is crucial for a business's survival, as these resources are necessary to fulfill upcoming %obligations (i.e., debts that need to be settled in the near future).'
+%\citep[141]{Atrill:2010ys} It is measured as
+%\glslink[hyper=true]{glos:currentratio}{\gls{glos:currentratio}} or
+%\gls[hyper=true]{glos:acidtestratio}.
+%}
+%\newglossaryentry{glos:liquidity}{
+%  name=liquidity,
+%  firstplural=liquidities,
+%  plural=liquidities,
+%  description={\glosdescliquidity}
+%}
+
+%=================================================================================
+% Operating Profit Margin
+%=================================================================================
+
+
+\def\glosdescoperatingprofitmargin{
+The operating profit margin is defined as
+\begin{subequations}
+\begin{align}
+\text{Operating Profit Margin} &= \frac{\text{Operating Profit}}{\text{Sales Revenue}}
+\intertext{where}
+\text{Operating Profit} &= \text{Gross Profit} - \text{SG\&A} - \text{R\&D}
+\intertext{hence}
+\begin{split}\text{Operating Profit Margin} &= \text{Gross Profit Margin}\\ & - \frac{\text{SG\&A}}{\text{Sales Revenue}} - \frac{\text{R\&D}}{\text{Sales Revenue}} \label{eqn:opm}\end{split}
+\end{align}
+\end{subequations}
+
+Looking at equation \eqref{eqn:opm}, the operating margin, also called EBITDA margin, can be identified
+as the gross profit margin less the \gls{sga} to sales ratio---the cost of doing business per revenue---and the
+R\&D to sales ratio---also referred to as ``research intensity" (see \citeauthor{Hundley:1996kx} with regards
+to the relationship between research intensity, profitability and liquidity).
+}
+\newglossaryentry{glos:operatingprofitmargin}{
+  name=Operating Profit Margin,
+  firstplural=Operating Profit Margins,
+  plural=Operating Profit Margins,
+  description={\glosdescoperatingprofitmargin}
+}
+
+%=================================================================================
+% Gearing
+%=================================================================================
+
+
+%\def\glosdescgearingratio{
+%``The gearing ratio measures the contribution of long-term lenders to the
+%long-term capital structure of the business:" \citep[192]{Atrill:2006ly}
+%
+%\begin{equation}
+%\text{Gearing ratio} = \frac{\text{Long-term Liabilities}}{\text{Share Capital} + \text{Reserves} + \text{Long-term Liabilities}}
+%\end{equation}
+%}
+%\newglossaryentry{glos:gearingratio}{
+%  name=Gearing Ratio,
+%  description={\glosdescgearingratio}
+%}
+
+
+
+
+%</content>%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

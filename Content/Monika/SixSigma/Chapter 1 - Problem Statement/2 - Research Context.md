@@ -1,0 +1,3 @@
+### Research Context
+
+The impetus for this research comes from the author's involvement in a unique project that aims to apply Six Sigma methodologies to tenant data cleanup. The project is theoretical in nature, as no organization has yet applied Six Sigma in this specific context. The research will draw upon three years of quantitative data analysis, serving as a pilot study, to validate the proposed Six Sigma approaches for tenant data cleanup.

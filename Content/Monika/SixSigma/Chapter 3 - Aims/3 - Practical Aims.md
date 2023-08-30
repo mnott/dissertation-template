@@ -1,0 +1,3 @@
+### Practical Aims
+
+Practically, tenant data cleanup is often plagued by inefficiencies, redundancies, and errors, leading to significant operational costs and potential legal risks. One of the practical contributions of this study is to streamline the data cleanup process through the structured application of Six Sigma methodologies. This will not only improve efficiency but also reduce the risk of errors, thereby saving both time and resources.

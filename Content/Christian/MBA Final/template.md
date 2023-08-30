@@ -4,17 +4,17 @@
 # Content Variables
 #
 titlepage               : "titlepage.tex"
-titlepagetitletop       : "Development as a Manager and Leader"
+titlepagetitletop       : "Managing Financial Resources"
 titlepagesubtitletop    : "Discussion Question"
 
-titlepagetitlemiddle    : "Data Collection"
-titlepagesubtitlemiddle : "Week 4"
+titlepagetitlemiddle    : "Individual Report"
+titlepagesubtitlemiddle : "Week 6"
 
 author                  : "Christian Sarres"
 organization            : "University of Liverpool"
 contact                 : "c.sarres@liverpool.ac.uk"
-contactid               : "08003769"
-submissiondate          : "November 1st, 2022"
+contactid               : "H00012345"
+submissiondate          : "April 10, 2023"
 version                 : "1.0"
 
 #
@@ -25,10 +25,10 @@ footerleftlabeldown     : "Document"
 footerleftup            : "Development as a Manager and Leader"
 footerleftdown          : "Discussion Question"
 footermiddleup          : "Christian Sarres, University of Liverpool"
-footermiddledown        : "Data Collection (Week 4)"
+footermiddledown        : "Individual Report (Week 6)"
 footerrightlabelup      : "Date"
 footerrightlabeldown    : "Version"
-footerrightup           : "November 1st, 2022"
+footerrightup           : "April 10, 2023"
 footerrightdown         : "1.0"
 
 #
@@ -60,7 +60,7 @@ emptypages              : "true"  # Whether to start each chapter on a new page
 #
 # Back Matter
 #
-showendnotes            : "false" # Show End Notes?
+showendnotes            : "true"  # Show End Notes?
 showreferences          : "true"  # Show References?
 showappendix            : "true" # Show any Appendix?
 showanyglossary         : "true"  # Show any of Acronyms, Symbols, Glossary?
