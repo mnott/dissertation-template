@@ -1,3 +1,7 @@
+---
+links: "[[University/Dissertation/Content/Christian/MBA - Week 2 - Introduction - 1st Assignment/MBA - Week 2 - Introduction - 1st Assignment|MBA - Week 2 - Introduction - 1st Assignment]]"
+---
+
 ```yaml
 ---
 #
@@ -71,3 +75,6 @@ showindex               : "true"  # Show Index?
 ---
 
 ```
+
+---
+*Links:* [[University/Dissertation/Content/Christian/MBA - Week 2 - Introduction - 1st Assignment/MBA - Week 2 - Introduction - 1st Assignment|MBA - Week 2 - Introduction - 1st Assignment]]

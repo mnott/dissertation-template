@@ -1,3 +1,7 @@
+---
+links: "[[University/Dissertation/Content/Monika/SixSigma/Chapter 2 - Audiences/Chapter 2 - Audiences|Chapter 2 - Audiences]]"
+---
+
 ## Audiences
 
 There are distinct audiences to which this research intends to contribute value:
@@ -29,3 +33,6 @@ There are distinct audiences to which this research intends to contribute value:
 ```
 
 By addressing the needs and gaps relevant to these audiences, this research aims to make a multi-dimensional contribution to the field of process improvement and data management, particularly in the context of tenant data cleanup.
+
+---
+*Links:* [[University/Dissertation/Content/Monika/SixSigma/Chapter 2 - Audiences/Chapter 2 - Audiences|Chapter 2 - Audiences]]

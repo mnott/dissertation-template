@@ -1,3 +1,7 @@
+---
+links: "[[University/Dissertation/Content/Christian/MBA Final/MBA Final|MBA Final]]"
+---
+
 ```yaml
 ---
 #
@@ -71,3 +75,6 @@ showindex               : "true"  # Show Index?
 ---
 
 ```
+
+---
+*Links:* [[University/Dissertation/Content/Christian/MBA Final/MBA Final|MBA Final]]

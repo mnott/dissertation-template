@@ -1,3 +1,7 @@
+---
+links: "[[University/Dissertation/Documentation/Documentation|Documentation]]"
+---
+
 # Clone your own Template
 
 By default, the `Content` directory contains at least two folders:
@@ -57,3 +61,5 @@ If you want to delete a Context, you can do this:
 
 Note that you'll need to enter the name of the Context twice, in order to prevent accidential deletion.
 
+---
+*Links:* [[University/Dissertation/Documentation/Documentation|Documentation]]

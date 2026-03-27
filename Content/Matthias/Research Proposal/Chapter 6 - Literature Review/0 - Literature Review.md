@@ -1,3 +1,7 @@
+---
+up: "[[Chapter 6 - Literature Review]]"
+---
+
 ## Literature Review
 
 ### Overview

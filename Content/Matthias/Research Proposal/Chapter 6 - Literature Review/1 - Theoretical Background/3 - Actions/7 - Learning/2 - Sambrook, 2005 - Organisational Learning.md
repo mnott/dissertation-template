@@ -1,1 +1,5 @@
+---
+up: "[[7 - Learning]]"
+---
+
 [[@Sambrook-2005aa]](t) give an extensive literature review on different models of Corporate Entrepreneurship in the context of and Organisational Learning. No analysis is made of the actual inner workings of Corporate Entrepreneurship programs, but their work is useful to understand the influencers of Corporate Entrepreneurship.

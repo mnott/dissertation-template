@@ -1,3 +1,7 @@
+---
+links: "[[University/Dissertation/Content/Monika/SixSigma/Chapter 6 - Literature Review/Chapter 6 - Literature Review|Chapter 6 - Literature Review]]"
+---
+
 ## Literature Review
 
 ### Overview
@@ -25,3 +29,6 @@ Recent research by Smith and Johnson (2020) has shown the effectiveness of machi
 For binary classification problems, such as determining the effectiveness of a particular cleanup method, SVM has been shown to have high predictability (Chang & Lin, 2011). Logistic Regression (LR) models also offer good predictive capabilities but may suffer from overfitting (Hosmer Jr et al., 2013). Bayesian Networks (BN; Koller & Friedman, 2009) have the added advantage of handling missing data and avoiding overfitting but are based on the assumption of independence among predictor variables.
 
 In summary, while machine learning techniques have been applied in various domains for process improvement and predictive analytics, their application in tenant cleanup programs using Six Sigma methodologies remains an area ripe for exploration.
+
+---
+*Links:* [[University/Dissertation/Content/Monika/SixSigma/Chapter 6 - Literature Review/Chapter 6 - Literature Review|Chapter 6 - Literature Review]]

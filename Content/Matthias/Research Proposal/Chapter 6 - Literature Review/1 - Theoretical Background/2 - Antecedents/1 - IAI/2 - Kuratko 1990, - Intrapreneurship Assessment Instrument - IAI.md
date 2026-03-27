@@ -1,3 +1,7 @@
+---
+up: "[[1 - IAI]]"
+---
+
 ##### The Intrapreneurial Assessment Instrument (IAI)
 
 In line with [[@Jennings-1990aa]](a), and building on their critique of  [[@Pinchot-1985aa]](a), [[@Kuratko-1990aa]](t) concentrate their research on the "managerial" part of Corporate Entrepreneurship and find that the middle managers are the key inside those organizations. As a result, they focus on perceptions, actions, outcomes and ethical consequences [l# ethical consequences] of corporate entrepreneurship. ^ethicalconsequences

@@ -1,3 +1,7 @@
+---
+links: "[[University/Dissertation/Content/Christian/MBA Final/0 - Content/0 - Content|0 - Content]]"
+---
+
 # Practical Experience
 
 ```latex
@@ -13,7 +17,5 @@
 
 `\lipsum[16]`
 
-
-
-
-
+---
+*Links:* [[University/Dissertation/Content/Christian/MBA Final/0 - Content/0 - Content|0 - Content]]

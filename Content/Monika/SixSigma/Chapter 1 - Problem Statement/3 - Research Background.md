@@ -1,3 +1,7 @@
+---
+links: "[[University/Dissertation/Content/Monika/SixSigma/Chapter 1 - Problem Statement/Chapter 1 - Problem Statement|Chapter 1 - Problem Statement]]"
+---
+
 ### Research Background
 
 
@@ -5,3 +9,5 @@ A comprehensive analysis of tenant data spanning three years serves as the pilot
 
 The findings from this three-year analysis, coupled with the absence of Six Sigma applications in tenant data cleanup, have led to a reorientation of the research question. The focus has shifted from merely identifying data inconsistencies to also include the structured application of Six Sigma methodologies for both data quality improvement and process efficiency.
 
+---
+*Links:* [[University/Dissertation/Content/Monika/SixSigma/Chapter 1 - Problem Statement/Chapter 1 - Problem Statement|Chapter 1 - Problem Statement]]

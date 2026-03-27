@@ -1,3 +1,7 @@
+---
+links: "[[University/Dissertation/Content/Monika/SixSigma/Chapter 0 - Abstract/Chapter 0 - Abstract|Chapter 0 - Abstract]]"
+---
+
 ### * Research Focus
 
 This research delves into the intricacies of Six Sigma methodologies applied to Tenant Data Cleanup and Optimization. While there is a wealth of research on the implementation and outcomes of Six Sigma in various industries, there is a noticeable gap in studies focusing on its application in tenant data management. Specifically, no research has systematically, longitudinally, and both quantitatively and qualitatively examined how Six Sigma can help a project aimed at tenant data optimization.

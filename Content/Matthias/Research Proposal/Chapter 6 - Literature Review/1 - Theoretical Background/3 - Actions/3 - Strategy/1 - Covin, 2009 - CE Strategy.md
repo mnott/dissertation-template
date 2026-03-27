@@ -1,3 +1,7 @@
+---
+up: "[[3 - Strategy]]"
+---
+
   
 
 [[@Kuratko-2009ac]](t) and [[@Ireland-2009aa]](t) conceptualize the components of a Corporate Entrepreneurship strategy. Building on the middle manager model, the authors develop it to a larger scale for organizations in general, at all levels, broken down by *antecedents*, *elements*, and *outcomes* of Corporate Entrepreneurship strategy:

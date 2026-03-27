@@ -1,3 +1,7 @@
+---
+links: "[[University/Dissertation/Content/Monika/SixSigma/Chapter 7 - Methodology/1 - Research Methodology/2 - Measures/2 - Measures|2 - Measures]]"
+---
+
 ##### Team Level
 
 On the level of the team, there are five measures to assess the team performance ([[@Cammann-1983aa]](c); [[@Kickul-2001aa]](c))

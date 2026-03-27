@@ -1,1 +1,5 @@
+---
+up: "[[7 - Learning]]"
+---
+
 [[@Zahra-2015aa]](t) asks how CE creates knowledge, what knowledge does it create, and what is the role of entrepreneurial hubs---such as formal CE programs---in capturing, accumulating, translating and integrating that knowledge.

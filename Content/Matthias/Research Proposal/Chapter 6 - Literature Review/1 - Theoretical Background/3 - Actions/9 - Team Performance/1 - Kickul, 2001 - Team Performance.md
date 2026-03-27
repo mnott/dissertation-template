@@ -1,3 +1,7 @@
+---
+up: "[[9 - Team Performance]]"
+---
+
 Using [[@Hackman-1987aa]](a)'s ([[@Hackman-1987aa]](y)) Input-Process-Output (IPO) model, [[@Kickul-2001aa]](t) investigates the theoretical relationship between individual personality factors and group performance that are mediated by five group variables:
 
 1. Group Homogeneity

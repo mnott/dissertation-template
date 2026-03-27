@@ -1,3 +1,7 @@
+---
+links: "[[University/Dissertation/Content/Monika/SixSigma/Chapter 3 - Aims/Chapter 3 - Aims|Chapter 3 - Aims]]"
+---
+
 ## Aims
 
 The primary aim of this research is to address the following fundamental questions:

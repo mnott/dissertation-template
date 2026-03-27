@@ -1,3 +1,7 @@
+---
+links: "[[University/Dissertation/Documentation/Documentation|Documentation]]"
+---
+
 This dissertation template builds on an earlier development that I had built for LaTeX: [TeXDown](https://github.com/mnott/texdown). The idea there is to create a parser that converts markdown into the most commonly used LaTeX commands. TeXDown was written for [Scrivener](https://www.literatureandlatte.com/scrivener/overview), a tool commonly used by authors writing novels and such. I liked the approach of a "Zettelkasten" and wrote a great deal of papers with it, routing them through my TeXDown, then through LaTeX, to get my output documents.
 
 Yet Scrivener being very Mac centric and more so proprietory, I looked for another solution. Enter Obsidian. It can do everything that Scrivener can do, and so much more. The only thing I had to do is to rewrite my LaTeX make scripts, and my TeXDown along with it, to get Obsidian to do what I was doing with Scrivener.
@@ -11,3 +15,6 @@ It comes with a command shell that wraps all things I commonly need, like choosi
 Having said all of this, I'm going to describe a simple installation. It runs under MacOS, Windows, and there's no reason why it shouldn't run under Linux; in fact, it is just a bash script and some Perl.
 
 Have fun with it, and bear with me while I'm adding more and more documentation.
+
+---
+*Links:* [[University/Dissertation/Documentation/Documentation|Documentation]]

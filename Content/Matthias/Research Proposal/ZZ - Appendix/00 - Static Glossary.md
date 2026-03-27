@@ -1,3 +1,7 @@
+---
+up: "[[ZZ - Appendix]]"
+---
+
 ```latex
 %=====================================================
 % Static Glossary etc. entries

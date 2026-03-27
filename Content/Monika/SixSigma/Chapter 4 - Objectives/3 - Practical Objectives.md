@@ -1,3 +1,7 @@
+---
+links: "[[University/Dissertation/Content/Monika/SixSigma/Chapter 4 - Objectives/Chapter 4 - Objectives|Chapter 4 - Objectives]]"
+---
+
 ### Practical Objectives
 
 ```latex

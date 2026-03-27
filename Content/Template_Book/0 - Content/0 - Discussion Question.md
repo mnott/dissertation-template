@@ -1,3 +1,7 @@
+---
+links: "[[University/Dissertation/Content/Template_Book/0 - Content/0 - Content|0 - Content]]"
+---
+
 # Discussion
 
 ## * Discussion Question

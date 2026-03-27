@@ -1,3 +1,7 @@
+---
+links: "[[University/Dissertation/Content/Monika/SixSigma/Chapter 0 - Abstract/Chapter 0 - Abstract|Chapter 0 - Abstract]]"
+---
+
 # Thesis
 
 ## * Abstract
@@ -15,5 +19,5 @@
 }{}
 ```
 
-
-
+---
+*Links:* [[University/Dissertation/Content/Monika/SixSigma/Chapter 0 - Abstract/Chapter 0 - Abstract|Chapter 0 - Abstract]]

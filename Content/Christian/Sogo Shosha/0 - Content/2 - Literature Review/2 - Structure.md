@@ -1,3 +1,7 @@
+---
+links: "[[University/Dissertation/Content/Christian/Sogo Shosha/0 - Content/2 - Literature Review/2 - Literature Review|2 - Literature Review]]"
+---
+
 ## Structure of Sogo Shosha
 
 In such large companies there is a head who speaks for all companies. But all companies place their own spokesman of the company.
@@ -13,3 +17,6 @@ In Japan, is this a common feature of sogo shosha. It is allowed for several rea
 The Japanese government also recoginzes the high efficency and synergy effect, for example, each company has a stake in the other financial areas of the company and the company concentrates its own resources to realize that.
 
 They are not anti competitive. There are more conglomerates in Japan with the same system of sogo shosha. Each of them is highly diversified and compete in specific industrial sectors against the other sogo sosha and independent companies. It was established because if expansion in one business field would lead to a concentration it would bring frustration to the competitors and the government would be forced to reduce its presence in that market. It can be seen from the high moral standart in Japan. While in Japan the welfare of the competitors is important but not in the United Staes and Europe. It is based on the Japanese tradition.
+
+---
+*Links:* [[University/Dissertation/Content/Christian/Sogo Shosha/0 - Content/2 - Literature Review/2 - Literature Review|2 - Literature Review]]

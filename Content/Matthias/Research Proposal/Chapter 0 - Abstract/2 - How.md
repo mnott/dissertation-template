@@ -1,3 +1,7 @@
+---
+up: "[[Chapter 0 - Abstract]]"
+---
+
 ### * Research Approach
 
 We undertake a longitudinal study over three years following several intrapreneurship cohorts, based both on quantitative data analysis using machine learning of structured and unstructured data, as well as qualitative data analysis leveraging expert interviews and Delphi panels of members of the winning teams, as well as the program members, at the end of the program.

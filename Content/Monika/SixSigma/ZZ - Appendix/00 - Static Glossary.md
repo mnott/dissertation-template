@@ -1,3 +1,7 @@
+---
+links: "[[University/Dissertation/Content/Monika/SixSigma/ZZ - Appendix/ZZ - Appendix|ZZ - Appendix]]"
+---
+
 ```latex
 %=====================================================
 % Static Glossary etc. entries
@@ -30,3 +34,5 @@
 
 ```
 
+---
+*Links:* [[University/Dissertation/Content/Monika/SixSigma/ZZ - Appendix/ZZ - Appendix|ZZ - Appendix]]

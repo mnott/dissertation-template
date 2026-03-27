@@ -1,4 +1,10 @@
-# Other Content
+---
+related:
+- '[[University/Dissertation/Content/Christian/MBA - Week 2 - Introduction - 1st Assignment/Other Content/2 - Literature Review|2 - Literature Review]]'
+links:
+- '[[University/Dissertation/Content/Christian/MBA - Week 2 - Introduction - 1st Assignment/MBA - Week 2 - Introduction - 1st Assignment|MBA - Week 2 - Introduction - 1st Assignment]]'
+---
+ther Content
 
 
 

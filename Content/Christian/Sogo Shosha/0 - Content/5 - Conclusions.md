@@ -1,3 +1,7 @@
+---
+links: "[[University/Dissertation/Content/Christian/Sogo Shosha/0 - Content/0 - Content|0 - Content]]"
+---
+
 # Conclusions
 I do not think that trading companies like sogo sosha in japan will become common in the European Union or the United States. The reasons for that is that here in the European Union we are much to focused on the United States vice versa. See (vr)[[2 - Structure#^us]].
 

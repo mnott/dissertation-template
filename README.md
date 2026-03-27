@@ -1,3 +1,7 @@
+---
+links: "[[University/Dissertation/Dissertation|Dissertation]]"
+---
+
 # dissertation-template
 
 A LaTeX Template for Dissertations that works well with Obsidian.
@@ -72,7 +76,7 @@ Have fun with it, and bear with me while I'm adding more and more documentation.
 
 # Installation
 
-The installation is described [here](Documentation/README.md).
+The installation is described [here](University/Dissertation/Documentation/README.md).
 
 See [Initial Steps](Documentation/Initial%20Steps.md) for the initial steps you need to do.
 
@@ -93,4 +97,5 @@ Thanks for your support in advance! ☀️
 
 <a href="https://www.buymeacoffee.com/mnott" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-blue.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
 
-
+---
+*Links:* [[University/Dissertation/Dissertation|Dissertation]]

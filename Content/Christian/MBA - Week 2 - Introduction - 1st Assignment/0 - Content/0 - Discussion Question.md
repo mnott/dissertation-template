@@ -1,3 +1,7 @@
+---
+links: "[[University/Dissertation/Content/Christian/MBA - Week 2 - Introduction - 1st Assignment/0 - Content/0 - Content|0 - Content]]"
+---
+
 # * Discussion Question
 ```latex
 \markboth{\MakeUppercase{\slshape Discussion Question}}{}
@@ -16,3 +20,5 @@ Discuss advantages and disadvantages of studying online and critically reflect o
 
 # * Discussion Question Answer
 
+---
+*Links:* [[University/Dissertation/Content/Christian/MBA - Week 2 - Introduction - 1st Assignment/0 - Content/0 - Content|0 - Content]]

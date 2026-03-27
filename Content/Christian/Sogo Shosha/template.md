@@ -1,3 +1,7 @@
+---
+links: "[[University/Dissertation/Content/Christian/Sogo Shosha/Sogo Shosha|Sogo Shosha]]"
+---
+
 ```yaml
 ---
 #
@@ -71,3 +75,6 @@ showindex               : "true"  # Show Index?
 ---
 
 ```
+
+---
+*Links:* [[University/Dissertation/Content/Christian/Sogo Shosha/Sogo Shosha|Sogo Shosha]]

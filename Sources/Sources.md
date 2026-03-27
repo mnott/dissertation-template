@@ -1,0 +1,110 @@
+---
+related:
+- '[[University/Dissertation/Sources/@Audretsch-2015aa|@Audretsch-2015aa]]'
+- '[[University/Dissertation/Sources/@Bijker-1993aa|@Bijker-1993aa]]'
+- '[[University/Dissertation/Sources/@Blaikie-2010aa|@Blaikie-2010aa]]'
+- '[[University/Dissertation/Sources/@Burgelman-1983ab|@Burgelman-1983ab]]'
+- '[[University/Dissertation/Sources/@Burgelman-1984aa|@Burgelman-1984aa]]'
+- '[[University/Dissertation/Sources/@Cammann-1983aa|@Cammann-1983aa]]'
+- '[[University/Dissertation/Sources/@Chan-2012aa|@Chan-2012aa]]'
+- '[[University/Dissertation/Sources/@Chan-2017aa|@Chan-2017aa]]'
+- '[[University/Dissertation/Sources/@Coakes-2011aa|@Coakes-2011aa]]'
+- '[[University/Dissertation/Sources/@Coase-1937fk|@Coase-1937fk]]'
+- '[[University/Dissertation/Sources/@Covin-1991aa|@Covin-1991aa]]'
+- '[[University/Dissertation/Sources/@Covin-2015aa|@Covin-2015aa]]'
+- '[[University/Dissertation/Sources/@Covin-2016aa|@Covin-2016aa]]'
+- '[[University/Dissertation/Sources/@Dyduch-2008aa|@Dyduch-2008aa]]'
+- '[[University/Dissertation/Sources/@Easterby-Smith-2015aa|@Easterby-Smith-2015aa]]'
+- '[[University/Dissertation/Sources/@Fisher-2017aa|@Fisher-2017aa]]'
+- '[[University/Dissertation/Sources/@Goodale-2011aa|@Goodale-2011aa]]'
+- '[[University/Dissertation/Sources/@Grint-2005cr|@Grint-2005cr]]'
+- '[[University/Dissertation/Sources/@Hackman-1987aa|@Hackman-1987aa]]'
+- '[[University/Dissertation/Sources/@Hanan-1976aa|@Hanan-1976aa]]'
+- '[[University/Dissertation/Sources/@Hill-1972aa|@Hill-1972aa]]'
+- '[[University/Dissertation/Sources/@Hornsby-1999aa|@Hornsby-1999aa]]'
+- '[[University/Dissertation/Sources/@Hornsby-2002aa|@Hornsby-2002aa]]'
+- '[[University/Dissertation/Sources/@Hornsby-2009aa|@Hornsby-2009aa]]'
+- '[[University/Dissertation/Sources/@Huarng-2016aa|@Huarng-2016aa]]'
+- '[[University/Dissertation/Sources/@Ireland-2009aa|@Ireland-2009aa]]'
+- '[[University/Dissertation/Sources/@Jennings-1990aa|@Jennings-1990aa]]'
+- '[[University/Dissertation/Sources/@Kavzoglu-2014aa|@Kavzoglu-2014aa]]'
+- '[[University/Dissertation/Sources/@Kickul-2001aa|@Kickul-2001aa]]'
+- '[[University/Dissertation/Sources/@Kuratko-1990aa|@Kuratko-1990aa]]'
+- '[[University/Dissertation/Sources/@Kuratko-2004aa|@Kuratko-2004aa]]'
+- '[[University/Dissertation/Sources/@Kuratko-2005aa|@Kuratko-2005aa]]'
+- '[[University/Dissertation/Sources/@Kuratko-2009ac|@Kuratko-2009ac]]'
+- '[[University/Dissertation/Sources/@Kuratko-2013ab|@Kuratko-2013ab]]'
+- '[[University/Dissertation/Sources/@Kuratko-2014aa|@Kuratko-2014aa]]'
+- '[[University/Dissertation/Sources/@Kuratko-2015aa|@Kuratko-2015aa]]'
+- '[[University/Dissertation/Sources/@Lohrke-2016aa|@Lohrke-2016aa]]'
+- '[[University/Dissertation/Sources/@Montago-1986aa|@Montago-1986aa]]'
+- '[[University/Dissertation/Sources/@Peterson-1971aa|@Peterson-1971aa]]'
+- '[[University/Dissertation/Sources/@Pham-2016aa|@Pham-2016aa]]'
+- '[[University/Dissertation/Sources/@Pinchot-1985aa|@Pinchot-1985aa]]'
+- '[[University/Dissertation/Sources/@Pinchot-2001aa|@Pinchot-2001aa]]'
+- '[[University/Dissertation/Sources/@Sambrook-2005aa|@Sambrook-2005aa]]'
+- '[[University/Dissertation/Sources/@Sathe-1989aa|@Sathe-1989aa]]'
+- '[[University/Dissertation/Sources/@Shepherd-2009aa|@Shepherd-2009aa]]'
+- '[[University/Dissertation/Sources/@Strauss-1987aa|@Strauss-1987aa]]'
+- '[[University/Dissertation/Sources/@Turner-2015aa|@Turner-2015aa]]'
+- '[[University/Dissertation/Sources/@Zahra-1993aa|@Zahra-1993aa]]'
+- '[[University/Dissertation/Sources/@Zahra-2015aa|@Zahra-2015aa]]'
+links:
+- '[[University/Dissertation/Dissertation|Dissertation]]'
+---
+ources
+
+- [@Audretsch-2015aa](./@Audretsch-2015aa.md)
+- [@Bijker-1993aa](./@Bijker-1993aa.md)
+- [@Blaikie-2010aa](./@Blaikie-2010aa.md)
+- [@Burgelman-1983ab](./@Burgelman-1983ab.md)
+- [@Burgelman-1984aa](./@Burgelman-1984aa.md)
+- [@Cammann-1983aa](./@Cammann-1983aa.md)
+- [@Chan-2012aa](./@Chan-2012aa.md)
+- [@Chan-2017aa](./@Chan-2017aa.md)
+- [@Coakes-2011aa](./@Coakes-2011aa.md)
+- [@Coase-1937fk](./@Coase-1937fk.md)
+- [@Covin-1991aa](./@Covin-1991aa.md)
+- [@Covin-2015aa](./@Covin-2015aa.md)
+- [@Covin-2016aa](./@Covin-2016aa.md)
+- [@Dyduch-2008aa](./@Dyduch-2008aa.md)
+- [@Easterby-Smith-2015aa](./@Easterby-Smith-2015aa.md)
+- [@Fisher-2017aa](./@Fisher-2017aa.md)
+- [@Goodale-2011aa](./@Goodale-2011aa.md)
+- [@Grint-2005cr](./@Grint-2005cr.md)
+- [@Hackman-1987aa](./@Hackman-1987aa.md)
+- [@Hanan-1976aa](./@Hanan-1976aa.md)
+- [@Hill-1972aa](./@Hill-1972aa.md)
+- [@Hornsby-1999aa](./@Hornsby-1999aa.md)
+- [@Hornsby-2002aa](./@Hornsby-2002aa.md)
+- [@Hornsby-2009aa](./@Hornsby-2009aa.md)
+- [@Huarng-2016aa](./@Huarng-2016aa.md)
+- [@Ireland-2009aa](./@Ireland-2009aa.md)
+- [@Jennings-1990aa](./@Jennings-1990aa.md)
+- [@Kavzoglu-2014aa](./@Kavzoglu-2014aa.md)
+- [@Kickul-2001aa](./@Kickul-2001aa.md)
+- [@Kuratko-1990aa](./@Kuratko-1990aa.md)
+- [@Kuratko-2004aa](./@Kuratko-2004aa.md)
+- [@Kuratko-2005aa](./@Kuratko-2005aa.md)
+- [@Kuratko-2009ac](./@Kuratko-2009ac.md)
+- [@Kuratko-2013ab](./@Kuratko-2013ab.md)
+- [@Kuratko-2014aa](./@Kuratko-2014aa.md)
+- [@Kuratko-2015aa](./@Kuratko-2015aa.md)
+- [@Lohrke-2016aa](./@Lohrke-2016aa.md)
+- [@Montago-1986aa](./@Montago-1986aa.md)
+- [@Peterson-1971aa](./@Peterson-1971aa.md)
+- [@Pham-2016aa](./@Pham-2016aa.md)
+- [@Pinchot-1985aa](./@Pinchot-1985aa.md)
+- [@Pinchot-2001aa](./@Pinchot-2001aa.md)
+- [@Sambrook-2005aa](./@Sambrook-2005aa.md)
+- [@Sathe-1989aa](./@Sathe-1989aa.md)
+- [@Shepherd-2009aa](./@Shepherd-2009aa.md)
+- [@Strauss-1987aa](./@Strauss-1987aa.md)
+- [@Turner-2015aa](./@Turner-2015aa.md)
+- [@Zahra-1993aa](./@Zahra-1993aa.md)
+- [@Zahra-2015aa](./@Zahra-2015aa.md)
+
+[← Dissertation](../)
+
+---
+*Links:* [[University/Dissertation/Sources/@Audretsch-2015aa|@Audretsch-2015aa]] · [[University/Dissertation/Sources/@Bijker-1993aa|@Bijker-1993aa]] · [[University/Dissertation/Sources/@Blaikie-2010aa|@Blaikie-2010aa]] · [[University/Dissertation/Sources/@Burgelman-1983ab|@Burgelman-1983ab]] · [[University/Dissertation/Sources/@Burgelman-1984aa|@Burgelman-1984aa]] · [[University/Dissertation/Sources/@Cammann-1983aa|@Cammann-1983aa]] · [[University/Dissertation/Sources/@Chan-2012aa|@Chan-2012aa]] · [[University/Dissertation/Sources/@Chan-2017aa|@Chan-2017aa]] · [[University/Dissertation/Sources/@Coakes-2011aa|@Coakes-2011aa]] · [[University/Dissertation/Sources/@Coase-1937fk|@Coase-1937fk]] · [[University/Dissertation/Sources/@Covin-1991aa|@Covin-1991aa]] · [[University/Dissertation/Sources/@Covin-2015aa|@Covin-2015aa]] · [[University/Dissertation/Sources/@Covin-2016aa|@Covin-2016aa]] · [[University/Dissertation/Sources/@Dyduch-2008aa|@Dyduch-2008aa]] · [[University/Dissertation/Sources/@Easterby-Smith-2015aa|@Easterby-Smith-2015aa]] · [[University/Dissertation/Sources/@Fisher-2017aa|@Fisher-2017aa]] · [[University/Dissertation/Sources/@Goodale-2011aa|@Goodale-2011aa]] · [[University/Dissertation/Sources/@Grint-2005cr|@Grint-2005cr]] · [[University/Dissertation/Sources/@Hackman-1987aa|@Hackman-1987aa]] · [[University/Dissertation/Sources/@Hanan-1976aa|@Hanan-1976aa]] · [[University/Dissertation/Sources/@Hill-1972aa|@Hill-1972aa]] · [[University/Dissertation/Sources/@Hornsby-1999aa|@Hornsby-1999aa]] · [[University/Dissertation/Sources/@Hornsby-2002aa|@Hornsby-2002aa]] · [[University/Dissertation/Sources/@Hornsby-2009aa|@Hornsby-2009aa]] · [[University/Dissertation/Sources/@Huarng-2016aa|@Huarng-2016aa]] · [[University/Dissertation/Sources/@Ireland-2009aa|@Ireland-2009aa]] · [[University/Dissertation/Sources/@Jennings-1990aa|@Jennings-1990aa]] · [[University/Dissertation/Sources/@Kavzoglu-2014aa|@Kavzoglu-2014aa]] · [[University/Dissertation/Sources/@Kickul-2001aa|@Kickul-2001aa]] · [[University/Dissertation/Sources/@Kuratko-1990aa|@Kuratko-1990aa]] · [[University/Dissertation/Sources/@Kuratko-2004aa|@Kuratko-2004aa]] · [[University/Dissertation/Sources/@Kuratko-2005aa|@Kuratko-2005aa]] · [[University/Dissertation/Sources/@Kuratko-2009ac|@Kuratko-2009ac]] · [[University/Dissertation/Sources/@Kuratko-2013ab|@Kuratko-2013ab]] · [[University/Dissertation/Sources/@Kuratko-2014aa|@Kuratko-2014aa]] · [[University/Dissertation/Sources/@Kuratko-2015aa|@Kuratko-2015aa]] · [[University/Dissertation/Sources/@Lohrke-2016aa|@Lohrke-2016aa]] · [[University/Dissertation/Sources/@Montago-1986aa|@Montago-1986aa]] · [[University/Dissertation/Sources/@Peterson-1971aa|@Peterson-1971aa]] · [[University/Dissertation/Sources/@Pham-2016aa|@Pham-2016aa]] · [[University/Dissertation/Sources/@Pinchot-1985aa|@Pinchot-1985aa]] · [[University/Dissertation/Sources/@Pinchot-2001aa|@Pinchot-2001aa]] · [[University/Dissertation/Sources/@Sambrook-2005aa|@Sambrook-2005aa]] · [[University/Dissertation/Sources/@Sathe-1989aa|@Sathe-1989aa]] · [[University/Dissertation/Sources/@Shepherd-2009aa|@Shepherd-2009aa]] · [[University/Dissertation/Sources/@Strauss-1987aa|@Strauss-1987aa]] · [[University/Dissertation/Sources/@Turner-2015aa|@Turner-2015aa]] · [[University/Dissertation/Sources/@Zahra-1993aa|@Zahra-1993aa]] · [[University/Dissertation/Sources/@Zahra-2015aa|@Zahra-2015aa]] · [[University/Dissertation/Dissertation|Dissertation]]

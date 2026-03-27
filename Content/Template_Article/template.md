@@ -1,3 +1,7 @@
+---
+links: "[[University/Dissertation/Content/Template_Article/Template_Article|Template_Article]]"
+---
+
 ```yaml
 ---
 #
@@ -71,3 +75,6 @@ showindex               : "true"  # Show Index?
 ---
 
 ```
+
+---
+*Links:* [[University/Dissertation/Content/Template_Article/Template_Article|Template_Article]]

@@ -1,3 +1,7 @@
+---
+links: "[[University/Dissertation/Documentation/Documentation|Documentation]]"
+---
+
 # Installation of LaTeX under Windows
 
 ## Install TeXLive
@@ -143,10 +147,5 @@ Install SumatraPDF from [here](https://www.sumatrapdfreader.org/download-free-pd
 
 Install Jabref from [here](https://jabref.org)
 
-
-
-
-
-
-
-
+---
+*Links:* [[University/Dissertation/Documentation/Documentation|Documentation]]

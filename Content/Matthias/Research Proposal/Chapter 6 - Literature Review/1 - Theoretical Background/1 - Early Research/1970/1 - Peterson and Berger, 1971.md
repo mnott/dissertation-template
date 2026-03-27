@@ -1,3 +1,7 @@
+---
+up: "[[1970]]"
+---
+
 ##### Market Turbulence
 
 Linking Entrepreneurship to the strategies of companies dealing with turbulence, [[@Peterson-1971aa]](a) draw on interview data over a timespan of eight years exploring entrepreneurship as "a strategy employed by large organizations to cope with turbulent market environments." ((91)[[@Peterson-1971aa]](y)), to identify three characteristics of a successful intrapreneurship strategy:

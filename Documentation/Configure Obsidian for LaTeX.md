@@ -1,3 +1,8 @@
+---
+links:
+  - "[[Ideaverse/Programming/LaTeX/- -|LaTeX]]"
+  - "[[University/Dissertation/Documentation/Documentation|Documentation]]"
+---
 # Configure Obsidian for LaTeX
 
 ## Install Obisidan
@@ -88,7 +93,5 @@ Use the community plugins installer option of Obsidian to install the Novel Word
 
 ![](Attachments/latex_obsidian_word_count.png)
 
-
-
-
-
+---
+*Links:* [[Ideaverse/Programming/LaTeX/- -|LaTeX]] · [[University/Dissertation/Documentation/Documentation|Documentation]]

@@ -1,6 +1,7 @@
 ---
-title: "Designing social research"
 authors: Norman Blaikie
+links: "[[University/Dissertation/Sources/Sources|Sources]]"
+title: Designing social research
 year: 2010
 ---
 [See in BibDesk](x-bdsk://Blaikie-2010aa)
@@ -9,4 +10,5 @@ year: 2010
 
 ## Notes and Quotes
 
-
+---
+*Links:* [[University/Dissertation/Sources/Sources|Sources]]

@@ -1,3 +1,7 @@
+---
+up: "[[0 - Overview]]"
+---
+
 ### Research Strategy
 
 As introduced on page  (pr)[[../../../Template/Chapter 0 - Abstract/1 - What#^researchquestion|Research Question]], the research question is a how question about a change process, which, according to (105)[[@Blaikie-2010aa]](t) would best be addressed using a retroductive research strategy. This strategy aims "to discover underlying mechanisms that, in particular contexts, explain observed regularities." (87)[[@Blaikie-2010aa]](p) The first stage, according to [[@Blaikie-2010aa]](a), is "to provide an adequate description of the regularity to be explained" ([[@Blaikie-2010aa]](i)), using, in this case, an retroductive strategy that includes an examination of the context, the mechanisms, and their relevance, or weights, to establish the "features of the context, in terms of ways in which it facilitates or inhibits the operation of the mechanism(s)." ([[@Blaikie-2010aa]](i)) [[@Blaikie-2010aa]](a) indicates that "the central problem for the retroductive research strategy is how to discover the structures and mechanisms that are proposed to explain observed regularities." ([[@Blaikie-2010aa]](i))

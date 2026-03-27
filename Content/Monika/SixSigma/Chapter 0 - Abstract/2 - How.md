@@ -1,3 +1,7 @@
+---
+links: "[[University/Dissertation/Content/Monika/SixSigma/Chapter 0 - Abstract/Chapter 0 - Abstract|Chapter 0 - Abstract]]"
+---
+
 ### * Research Approach
 
 We propose a Six Sigma study based on data accumulated over a longitudinal analysis spanning over a period of three years, monitoring several cycles of tenant data cleanup. The study will employ both quantitative data analysis techniques, including machine learning algorithms for structured and unstructured data, and qualitative data analysis methods such as expert interviews and Delphi panels with account executives and sales support teams.

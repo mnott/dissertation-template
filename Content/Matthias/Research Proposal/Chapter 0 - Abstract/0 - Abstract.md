@@ -1,3 +1,7 @@
+---
+up: "[[Chapter 0 - Abstract]]"
+---
+
 # Thesis
 
 ## * Abstract

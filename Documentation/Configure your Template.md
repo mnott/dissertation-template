@@ -1,3 +1,7 @@
+---
+links: "[[University/Dissertation/Documentation/Documentation|Documentation]]"
+---
+
 # Configure your Template
 
 Once you have [cloned your template](Clone%20your%20own%20Template.md), you can configure it. Look into your context's folder under `Content`. Typically you'll see this structure:
@@ -8,3 +12,5 @@ Once you have [cloned your template](Clone%20your%20own%20Template.md), you can 
 4. `ZZ - Appendix`: These are sample files for static appendices. They give you place for adding a static glossary and additional appendix content. Even if you don't need them, leave them there.
 5. `Chapter 0` etc.: Actual content as listed by `include`; you can add more as you like; the LaTeX shell will parse them in alphabetical order.
 
+---
+*Links:* [[University/Dissertation/Documentation/Documentation|Documentation]]

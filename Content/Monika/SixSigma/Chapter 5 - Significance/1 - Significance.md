@@ -1,3 +1,7 @@
+---
+links: "[[University/Dissertation/Content/Monika/SixSigma/Chapter 5 - Significance/Chapter 5 - Significance|Chapter 5 - Significance]]"
+---
+
 ## Significance
 
 
@@ -31,5 +35,5 @@ This chapter outlines the significance of the research in the context of tenant 
 
 Given the potential vagueness of claiming significance at this level, this research proposal will present a formal model for cost estimates, demonstrate the value of machine learning in decision-making, and outline how the Delphi method can be made more accessible.
 
-
-
+---
+*Links:* [[University/Dissertation/Content/Monika/SixSigma/Chapter 5 - Significance/Chapter 5 - Significance|Chapter 5 - Significance]]

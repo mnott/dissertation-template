@@ -14,7 +14,7 @@ author                  : "Matthias Nott"
 organization            : "Henley Business School"
 contact                 : "matthias.nott@sap.com"
 contactid               : "24909282"
-submissiondate          : "April 2018"
+#submissiondate          : "April 2018"
 version                 : "3.0"
 
 #

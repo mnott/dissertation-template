@@ -1,3 +1,7 @@
+---
+links: "[[University/Dissertation/Documentation/Documentation|Documentation]]"
+---
+
 
 # Initial Steps
 
@@ -47,4 +51,5 @@ I chose "Sign in with your browser:"
 
 after which I then had the required credentials installed for further  pushes.
 
-
+---
+*Links:* [[University/Dissertation/Documentation/Documentation|Documentation]]

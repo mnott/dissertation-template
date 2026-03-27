@@ -1,3 +1,7 @@
+---
+links: "[[University/Dissertation/Content/Monika/SixSigma/SixSigma|SixSigma]]"
+---
+
 ```
 Chapter 0 - Abstract
 Chapter 1 - Problem Statement
@@ -9,3 +13,6 @@ Chapter 6 - Literature Review
 Chapter 7 - Methodology
 Chapter 8 - Expected Results
 ```
+
+---
+*Links:* [[University/Dissertation/Content/Monika/SixSigma/SixSigma|SixSigma]]

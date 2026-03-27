@@ -1,3 +1,7 @@
+---
+links: "[[University/Dissertation/Documentation/Documentation|Documentation]]"
+---
+
 # Basic Usage
 
 ## The LaTeX Shell
@@ -28,3 +32,5 @@ Instead of using the interface above, you can also control the LaTeX shell from 
 ./make.sh clean pdf
 ```
 
+---
+*Links:* [[University/Dissertation/Documentation/Documentation|Documentation]]

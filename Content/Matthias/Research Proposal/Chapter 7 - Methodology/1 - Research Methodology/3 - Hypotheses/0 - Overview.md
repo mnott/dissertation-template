@@ -1,3 +1,7 @@
+---
+up: "[[3 - Hypotheses]]"
+---
+
 #### Hypotheses
 
 In the theoretical framework (see Exhibit  [vr#exhibit:Theoretical-Framework]), every team member brings into the group, and hence the program, his own personality and experience. Acting together as one team, the group must perform successfuly to be selected by the program. The group dynamic thus mediates the individual performances of the team members, and likewise, as the group is embedded within the organization's intrapreneurship program, the characteristics of that organization mediate the final outcome.

@@ -1,3 +1,7 @@
+---
+links: "[[University/Dissertation/Content/Monika/SixSigma/Chapter 7 - Methodology/1 - Research Methodology/2 - Measures/2 - Measures|2 - Measures]]"
+---
+
 ##### Program Level
 
 On the program level, there are five measures to assess the antecedents of Organizational Entrepreneurship ([[@Kuratko-2014aa]]):

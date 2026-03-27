@@ -1,3 +1,7 @@
+---
+links: "[[University/Dissertation/Content/Monika/SixSigma/Chapter 7 - Methodology/1 - Research Methodology/2 - Measures/2 - Measures|2 - Measures]]"
+---
+
 #### Measures
 
 ##### Individual Level

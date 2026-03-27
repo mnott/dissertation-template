@@ -1,3 +1,7 @@
+---
+up: "[[Chapter 1 - Problem Statement]]"
+---
+
 ```latex
 \sequals{\showpageheaders}{true}{
 \pagestyle{fancy}

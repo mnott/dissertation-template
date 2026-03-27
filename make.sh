@@ -702,7 +702,7 @@ _parse () {
   # nicely in Obsidian
   #
   if [[ -f "${INPUT}/template.md" ]]; then
-    cat "${INPUT}/template.md" | grep -v \`\`\` >"${DEST}/${FILE}.md"
+    perl "${ROOT}/templates/strip_obsidian.pl" "${INPUT}/template.md" >"${DEST}/${FILE}.md"
   fi
 
   #
@@ -745,6 +745,13 @@ _parse () {
   #
   # Run Pandoc
   #
+  #
+  # Strip any Obsidian metadata that leaked into the assembled document
+  #
+  if [[ -f "${ROOT}/templates/strip_obsidian.pl" ]]; then
+    perl "${ROOT}/templates/strip_obsidian.pl" "${DEST}/${FILE}.md" > "${DEST}/${FILE}.md.tmp" && mv "${DEST}/${FILE}.md.tmp" "${DEST}/${FILE}.md"
+  fi
+
   pandoc "${DEST}/${FILE}.md" -s -o "${DEST}/${FILE}.tex" --template "${DEST}/templates/template.tex"
 
   export PARSED=parsed
@@ -818,6 +825,11 @@ _pdflatex () {
   fi
 
   _check
+
+  # Remove potentially corrupt aux file from interrupted runs
+  if [[ $MAKELEVEL -le 2 ]] && [[ -f "${FILE}.aux" ]]; then
+    rm -f "${FILE}.aux"
+  fi
 
   log INFO "+ Running pdflatex..."
   if [[ "$VERBOSE" == "verbose" ]] ; then

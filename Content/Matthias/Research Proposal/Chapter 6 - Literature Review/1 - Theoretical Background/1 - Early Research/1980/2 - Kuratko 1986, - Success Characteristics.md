@@ -1,3 +1,7 @@
+---
+up: "[[1980]]"
+---
+
 ##### How to Retain People
 
 [[@Montago-1986aa]](t) observe two fundamental problems with [[@Pinchot-1985aa]](a)'s approach: the retention of corporate entrepreneurs, as well as the need to conceptualize the problem as mainly people driven, and to deal with it on a level of corporate strategy. In contrast to Pinchot, working with teams of each 25 middle managers across internal departmental boundaries of large organizations, the authors realize that the analysis of Corporate Entrepreneurship should begin with people, and not be departmentalized. In particular, the authors see the two issues with Pinchot's approach:

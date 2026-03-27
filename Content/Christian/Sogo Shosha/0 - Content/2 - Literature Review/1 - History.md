@@ -1,3 +1,7 @@
+---
+links: "[[University/Dissertation/Content/Christian/Sogo Shosha/0 - Content/2 - Literature Review/2 - Literature Review|2 - Literature Review]]"
+---
+
 # Literature Review
 
 ## History of Sogo Shosha

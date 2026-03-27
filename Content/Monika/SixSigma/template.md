@@ -1,3 +1,7 @@
+---
+links: "[[University/Dissertation/Content/Monika/SixSigma/SixSigma|SixSigma]]"
+---
+
 ```yaml
 ---
 #
@@ -71,3 +75,6 @@ showindex               : "true"  # Show Index?
 ---
 
 ```
+
+---
+*Links:* [[University/Dissertation/Content/Monika/SixSigma/SixSigma|SixSigma]]

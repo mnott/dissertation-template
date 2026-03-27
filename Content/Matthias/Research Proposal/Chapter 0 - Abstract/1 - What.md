@@ -1,3 +1,7 @@
+---
+up: "[[Chapter 0 - Abstract]]"
+---
+
 ### * Research Focus
 
 This research concerns the inner workings of Intrapreneurship Programs. There is ample research about the antecedents that lead up to companies investing in such programs, and likewise extensive research about what happens after the end of such programs with the ideas that went through to the end, as well as those that were selected out.

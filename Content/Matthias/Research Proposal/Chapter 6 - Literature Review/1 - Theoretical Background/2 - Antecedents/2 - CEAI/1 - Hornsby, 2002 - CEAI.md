@@ -1,3 +1,7 @@
+---
+up: "[[2 - CEAI]]"
+---
+
 ##### The Corporate Entrepreneurship Assessment Instrument (CEAI)
 
 In the Journal of Business Venturing of 2002, (254)[[@Hornsby-2002aa]](t) expand the earlier idea of an Interpreneurship Assessment Instrument, or IAI ([[@Kuratko-1990aa]]), and retitle it "Corporate Entrepreneurship Assessment Instrument (CEAI)," to get away from the Pinchot's buzzword, in favor of using the more strategic term. It is a diagnostic tool (based on perceptions) for evaluating _how supportive the corporate environment is_ towards corporate venturing initiatives. With the data that the authors collected for this article, they are able to validate all five factors that they had originally hypothesized in 1990: This is hence the first publication that validated the full instrument, including the remaining two factors listed in section [vr#iai], and thereby the first publication that validated the full instrument: ^toplevelmanagers

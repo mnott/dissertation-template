@@ -1,3 +1,7 @@
+---
+links: "[[University/Dissertation/Content/Monika/SixSigma/Chapter 7 - Methodology/1 - Research Methodology/0 - Overview/0 - Overview|0 - Overview]]"
+---
+
 #### Research Question
 It is important to recall the research question at this point:
 
@@ -10,3 +14,6 @@ How to get a winning team? How to improve finding the most promising team member
 \end{bulletpoint}
 \bigskip
 ```
+
+---
+*Links:* [[University/Dissertation/Content/Monika/SixSigma/Chapter 7 - Methodology/1 - Research Methodology/0 - Overview/0 - Overview|0 - Overview]]

@@ -1,4 +1,8 @@
-#### Theoretical Framework
+---
+links:
+- '[[University/Dissertation/Content/Monika/SixSigma/Chapter 7 - Methodology/1 - Research Methodology/1 - Research Methodology|1 - Research Methodology]]'
+---
+# Theoretical Framework
 Based on the units of analysis mentioned in the previous section, we are planning to use three analytical frameworks in order to assess each unit of analysis, and to bring them together into one single framework as shown in Exhibit  [vr#exhibit:Theoretical-Framework].
 
 ![[fig/Model.png]]

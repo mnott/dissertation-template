@@ -1,3 +1,7 @@
+---
+links: "[[University/Dissertation/Content/Monika/SixSigma/Chapter 1 - Problem Statement/Chapter 1 - Problem Statement|Chapter 1 - Problem Statement]]"
+---
+
 ```latex
 \sequals{\showpageheaders}{true}{
 \pagestyle{fancy}

@@ -337,7 +337,54 @@ sub itemize {
 #
 my $file = "";
 
-while (<>) {
+#
+# First pass: read entire input, detect if this is an Obsidian MOC file
+# MOC files contain [← back-navigation and should be skipped entirely
+#
+my @lines = <>;
+my $skip_file = 0;
+for my $line (@lines) {
+	# Skip MOC/navigation files:
+	# - Files with back-navigation [←
+	# - Files with relative Obsidian links like - [...](./...)
+	# - Files with Obsidian wiki-link lists like - [[...]]
+	# - template.md (has titlepage : config)
+	# - include.md (has bare directory names like "Chapter N - ...")
+	if (   $line =~ /\[←/
+	    || $line =~ /^- \[.*\]\(\.\/.*\)/
+	    || $line =~ /^- \[\[.*\]\]/
+	    || $line =~ /^titlepage\s*:/
+	    || $line =~ /^Chapter \d+ - / ) {
+		$skip_file = 1;
+		last;
+	}
+}
+
+#
+# Skip Obsidian YAML Frontmatter and Links lines
+#
+my $in_frontmatter = 0;
+my $frontmatter_seen = 0;
+
+for (@lines) {
+	# Skip entire file if it is an Obsidian MOC/navigation/template
+	last if $skip_file;
+
+	#
+	# Strip YAML frontmatter (--- ... ---)
+	#
+	if ( /^---\s*$/ && !$frontmatter_seen ) {
+		$in_frontmatter = !$in_frontmatter;
+		$frontmatter_seen = 1 if !$in_frontmatter;
+		next;
+	}
+	next if $in_frontmatter;
+
+	#
+	# Strip Obsidian navigation lines
+	#
+	next if /^\*Links:\*/;
+
 	#
 	# Escape Obsidian Double Brackets
 	#

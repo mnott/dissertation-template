@@ -1,3 +1,7 @@
+---
+up: "[[Chapter 8 - Expected Results]]"
+---
+
 ## Expected Results
 
 We made no hypotheses as to the outcome of the study, as by design we follow a data-driven approach that is very much akin to a grounded theory study. It would be wrong, at that point, to assume any outcomes, but we can derive some results from our pilot study. What we do expect is to get a much better understanding of the inner workings of intrapreneurship programs, which is a significant theoretical contributions that we want to make.

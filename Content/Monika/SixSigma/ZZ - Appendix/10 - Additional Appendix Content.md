@@ -1,3 +1,7 @@
+---
+links: "[[University/Dissertation/Content/Monika/SixSigma/ZZ - Appendix/ZZ - Appendix|ZZ - Appendix]]"
+---
+
 ```latex
 %=====================================================
 % Additional Appendix Content
@@ -21,3 +25,5 @@
 
 ```
 
+---
+*Links:* [[University/Dissertation/Content/Monika/SixSigma/ZZ - Appendix/ZZ - Appendix|ZZ - Appendix]]

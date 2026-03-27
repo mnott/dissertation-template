@@ -1,3 +1,7 @@
+---
+links: "[[University/Dissertation/Content/Template_Book/Template_Book|Template_Book]]"
+---
+
 ```yaml
 ---
 #
@@ -71,3 +75,6 @@ showindex               : "true"  # Show Index?
 ---
 
 ```
+
+---
+*Links:* [[University/Dissertation/Content/Template_Book/Template_Book|Template_Book]]

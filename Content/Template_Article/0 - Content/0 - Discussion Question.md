@@ -1,3 +1,7 @@
+---
+links: "[[University/Dissertation/Content/Template_Article/0 - Content/0 - Content|0 - Content]]"
+---
+
 # * Discussion Question
 ```latex
 \markboth{\MakeUppercase{\slshape Discussion Question}}{}

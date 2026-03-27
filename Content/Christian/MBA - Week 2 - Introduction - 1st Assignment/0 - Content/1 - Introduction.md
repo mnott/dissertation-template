@@ -1,3 +1,7 @@
+---
+links: "[[University/Dissertation/Content/Christian/MBA - Week 2 - Introduction - 1st Assignment/0 - Content/0 - Content|0 - Content]]"
+---
+
 # Introduction
 
 

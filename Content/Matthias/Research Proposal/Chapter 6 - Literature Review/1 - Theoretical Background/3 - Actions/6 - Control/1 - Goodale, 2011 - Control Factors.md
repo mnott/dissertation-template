@@ -1,3 +1,7 @@
+---
+up: "[[6 - Control]]"
+---
+
 Building on the prior work on ethical consequences 
 [[@Kuratko-2004aa]](t), [[@Goodale-2011aa]](t) examine control factors as the field started arguing that to have entrepreneurial activity, one needed to release all controls. In their empirical and highly acclaimed article, they study 177 firms operating on a large variety of industries to investigate the effect of several commonly-acknowledged antecedents of Corporate Entrepreneurship, as measured by the CEAI, on innovation performance. They then examined the moderating effects of operations control variables, specifically risk control and process control formality, on the relationships between the antecedents of Corporate Entrepreneurship and innovation performance. The study finds that each of the five antecedents significantly interacts with one or both of the operations control variables and thus has an influence on innovation performance.
 
